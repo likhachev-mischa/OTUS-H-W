@@ -398,6 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPool: {fileID: 562298207}
   _bulletSystem: {fileID: 363245577}
+  _bulletConfig: {fileID: 11400000, guid: b0a487c4622277c40af5397752b228fd, type: 2}
 --- !u!114 &562298207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +414,6 @@ MonoBehaviour:
   enemyPositions: {fileID: 7166351703523243261}
   character: {fileID: 4414282821800802397}
   worldTransform: {fileID: 1683128698}
-  count: 7
   container: {fileID: 178513672}
   prefab: {fileID: 559606060570185700, guid: 87fe189881a524806800482ac8eaaa83, type: 3}
 --- !u!1 &883274639

@@ -11,6 +11,8 @@ namespace ShootEmUp
 
         [SerializeField]
         private BulletSystem _bulletSystem;
+        [SerializeField] 
+        private BulletConfig _bulletConfig;
         
         private readonly HashSet<GameObject> m_activeEnemies = new();
 
@@ -47,9 +49,9 @@ namespace ShootEmUp
             _bulletSystem.FlyBulletByArgs(new BulletSystem.Args
             {
                 isPlayer = false,
-                physicsLayer = (int) PhysicsLayer.ENEMY,
-                color = Color.red,
-                damage = 1,
+                physicsLayer = (int) this._bulletConfig.physicsLayer,
+                color = this._bulletConfig.color,
+                damage = this._bulletConfig.damage,
                 position = position,
                 velocity = direction * 2.0f
             });
