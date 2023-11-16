@@ -2,13 +2,15 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class MoveComponent : MonoBehaviour
+    public sealed class MoveComponent 
     {
-        [SerializeField]
-        private new Rigidbody2D rigidbody2D;
-
-        [SerializeField]
-        private float speed = 5.0f;
+        private Rigidbody2D rigidbody2D;
+        private float speed;
+        public MoveComponent(Rigidbody2D rigidbody2D, float speed)
+        {
+            this.rigidbody2D = rigidbody2D;
+            this.speed = speed;
+        }
         
         public void MoveByRigidbodyVelocity(Vector2 vector)
         {

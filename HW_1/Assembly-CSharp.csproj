@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\Level\LevelBounds.cs" />
      <Compile Include="Assets\Scripts\Bullets\BulletUtils.cs" />
      <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Character\CharacterManager.cs" />
      <None Include="Assets\Resources\BillingMode.json" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Unity\Unity Editor\2021.3.7f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
