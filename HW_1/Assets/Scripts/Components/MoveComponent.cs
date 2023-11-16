@@ -4,8 +4,8 @@ namespace ShootEmUp
 {
     public sealed class MoveComponent 
     {
-        private Rigidbody2D rigidbody2D;
-        private float speed;
+        private  Rigidbody2D rigidbody2D;
+        private readonly float speed;
         public MoveComponent(Rigidbody2D rigidbody2D, float speed)
         {
             this.rigidbody2D = rigidbody2D;

@@ -168,6 +168,7 @@ MonoBehaviour:
   speed: 5
   inputManager: {fileID: 0}
   weaponTransform: {fileID: 3926786963072264220}
+  levelBounds: {fileID: 0}
   bulletSystem: {fileID: 0}
   bulletConfig: {fileID: 11400000, guid: 7138ae5d32d814e0ca50c616c65ea105, type: 2}
 --- !u!1 &3926786963072264211

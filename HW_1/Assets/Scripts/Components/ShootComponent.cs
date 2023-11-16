@@ -9,7 +9,7 @@ namespace ShootEmUp
     }
     public class ShootComponent
     {
-        private BulletManager bulletManager;
+        private BulletSystem bulletSystem;
         private BulletConfig bulletConfig;
         private WeaponComponent weaponComponent;
 
@@ -21,11 +21,11 @@ namespace ShootEmUp
 
         private IShooter shooter;
         public ShootComponent(IShooter shooter, Transform weaponTransform, 
-            BulletManager bulletManager, BulletConfig bulletConfig, bool isPlayer = false)
+            BulletSystem bulletSystem, BulletConfig bulletConfig, bool isPlayer = false)
         {
             this.shooter = shooter;
             this.weaponTransform = weaponTransform;
-            this.bulletManager = bulletManager;
+            this.bulletSystem = bulletSystem;
             this.bulletConfig = bulletConfig;
             this.isPlayer = isPlayer;
         }
@@ -42,7 +42,7 @@ namespace ShootEmUp
         
         public void OnBulletShot()
         {
-            bulletManager.LaunchBullet(new BulletManager.Args
+            bulletSystem.LaunchBullet(new BulletSystem.Args
             {
                 isPlayer = this.isPlayer,
                 physicsLayer = (int) this.bulletConfig.physicsLayer,

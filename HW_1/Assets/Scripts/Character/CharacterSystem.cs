@@ -1,33 +1,40 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ShootEmUp
 {
-    public class CharacterManager : MonoBehaviour
+    public class CharacterSystem : MonoBehaviour
     {
         [SerializeField] private float speed;
 
         [SerializeField] private InputManager inputManager;
         [SerializeField] private Transform weaponTransform;
 
-        public BulletManager bulletManager;
+        [SerializeField] private LevelBounds levelBounds;
+        
+        public BulletSystem bulletSystem;
         public BulletConfig bulletConfig;
 
         private MoveComponent moveComponent;
         private ShootComponent shootComponent;
+        private ContainInBoundsInteractor containInBoundsInteractor;
 
         private void Awake()
         {
             moveComponent = new MoveComponent(this.GetComponent<Rigidbody2D>(), speed);
             shootComponent = new ShootComponent(inputManager, weaponTransform,
-                bulletManager, bulletConfig, true);
+                bulletSystem, bulletConfig, true);
+            containInBoundsInteractor = new ContainInBoundsInteractor(levelBounds, this.transform.position);
         }
 
 
         private void FixedUpdate()
         {
-            moveComponent.MoveByRigidbodyVelocity(new Vector2(inputManager.HorizontalDirection, 0) * Time.fixedDeltaTime);
+            Vector2 direction = new Vector2(inputManager.HorizontalDirection, 0);
+            containInBoundsInteractor.CorrectDirection(ref direction, this.transform.position);
+            moveComponent.MoveByRigidbodyVelocity(direction * Time.fixedDeltaTime);
             shootComponent.WeaponTransform = weaponTransform;
         }
         

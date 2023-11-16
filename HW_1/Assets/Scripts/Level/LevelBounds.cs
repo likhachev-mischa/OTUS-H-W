@@ -16,6 +16,10 @@ namespace ShootEmUp
         [SerializeField]
         private Transform topBorder;
         
+        public Transform LeftBorder => leftBorder;
+
+        public Transform RightBorder => rightBorder;
+
         public bool InBounds(Vector3 position)
         {
             var positionX = position.x;

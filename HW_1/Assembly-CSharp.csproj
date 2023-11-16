@@ -58,13 +58,14 @@
      <Compile Include="Assets\Scripts\Bullets\BulletConfig.cs" />
      <Compile Include="Assets\Scripts\Level\LevelBounds.cs" />
      <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Character\CharacterManager.cs" />
+     <Compile Include="Assets\Scripts\Character\CharacterSystem.cs" />
      <Compile Include="Assets\Scripts\Components\ShootComponent.cs" />
      <Compile Include="Assets\Scripts\Common\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\Bullets\BulletPool.cs" />
-     <Compile Include="Assets\Scripts\Bullets\BulletManager.cs" />
+     <Compile Include="Assets\Scripts\Bullets\BulletSystem.cs" />
      <Compile Include="Assets\Scripts\Bullets\BulletCollisionHandler.cs" />
      <Compile Include="Assets\Scripts\Bullets\BulletDamageComponent.cs" />
+     <Compile Include="Assets\Scripts\Character\ContainInBoundsInteractor.cs" />
      <None Include="Assets\Resources\BillingMode.json" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Unity\Unity Editor\2021.3.7f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

@@ -46,7 +46,7 @@ namespace ShootEmUp
 
         private void OnFire(GameObject enemy, Vector2 position, Vector2 direction)
         {
-            _bulletSystem.FlyBulletByArgs(new BulletSystem.Args
+            /*_bulletSystem.FlyBulletByArgs(new BulletSystem.Args
             {
                 isPlayer = false,
                 physicsLayer = (int) this._bulletConfig.physicsLayer,
@@ -54,7 +54,7 @@ namespace ShootEmUp
                 damage = this._bulletConfig.damage,
                 position = position,
                 velocity = direction * 2.0f
-            });
+            });*/
         }
     }
 }

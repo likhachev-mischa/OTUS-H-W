@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class BulletManager : MonoBehaviour
+    public sealed class BulletSystem : MonoBehaviour
     {
         [SerializeField]
         private int initialCount = 50;
@@ -25,7 +25,7 @@ namespace ShootEmUp
             bulletCollisionHandler = new BulletCollisionHandler(bulletPool);
         }
         
-        public void LaunchBullet(BulletManager.Args args)
+        public void LaunchBullet(BulletSystem.Args args)
         {
             Bullet bullet = bulletPool.SpawnObject();
             
