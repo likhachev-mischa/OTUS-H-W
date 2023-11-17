@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class InputManager : MonoBehaviour, IShooter
+    public sealed class InputManager : MonoBehaviour
     {
         public float HorizontalDirection { get; private set; }
         
-        public event Action ShootEvent;
+        public event Action SpacePressedEvent;
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                ShootEvent?.Invoke();
+                SpacePressedEvent?.Invoke();
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {

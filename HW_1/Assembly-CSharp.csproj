@@ -42,12 +42,19 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Components\WeaponComponent.cs" />
+     <Compile Include="Assets\Scripts\Bullets\BulletCollisionHandler.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
+     <Compile Include="Assets\Scripts\Components\ShootComponent.cs" />
      <Compile Include="Assets\Scripts\Components\MoveComponent.cs" />
+     <Compile Include="Assets\Scripts\Bullets\BulletDamageComponent.cs" />
      <Compile Include="Assets\Scripts\Bullets\Bullet.cs" />
      <Compile Include="Assets\Scripts\Enemy\Agents\EnemyMoveAgent.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyPositions.cs" />
+     <Compile Include="Assets\Scripts\Character\CharacterMovementSystem.cs" />
+     <Compile Include="Assets\Scripts\Bullets\BulletSystem.cs" />
+     <Compile Include="Assets\Scripts\Common\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\Components\HitPointsComponent.cs" />
+     <Compile Include="Assets\Scripts\Bullets\BulletPool.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyPool.cs" />
      <Compile Include="Assets\Scripts\Input\InputManager.cs" />
      <Compile Include="Assets\Scripts\Enemy\Agents\EnemyAttackAgent.cs" />
@@ -57,15 +64,12 @@
      <Compile Include="Assets\Scripts\Common\PhysicsLayer.cs" />
      <Compile Include="Assets\Scripts\Bullets\BulletConfig.cs" />
      <Compile Include="Assets\Scripts\Level\LevelBounds.cs" />
-     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Character\CharacterSystem.cs" />
-     <Compile Include="Assets\Scripts\Components\ShootComponent.cs" />
-     <Compile Include="Assets\Scripts\Common\ObjectPool.cs" />
-     <Compile Include="Assets\Scripts\Bullets\BulletPool.cs" />
-     <Compile Include="Assets\Scripts\Bullets\BulletSystem.cs" />
-     <Compile Include="Assets\Scripts\Bullets\BulletCollisionHandler.cs" />
-     <Compile Include="Assets\Scripts\Bullets\BulletDamageComponent.cs" />
      <Compile Include="Assets\Scripts\Character\ContainInBoundsInteractor.cs" />
+     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Components\DeathComponent.cs" />
+     <Compile Include="Assets\Scripts\Components\TakeDamageComponent.cs" />
+     <Compile Include="Assets\Scripts\Character\CharacterShootingSystem.cs" />
+     <Compile Include="Assets\Scripts\Character\CharacterHealthSystem.cs" />
      <None Include="Assets\Resources\BillingMode.json" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Unity\Unity Editor\2021.3.7f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

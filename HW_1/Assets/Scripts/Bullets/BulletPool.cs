@@ -11,8 +11,7 @@ namespace ShootEmUp
             Transform worldTransform, LevelBounds levelBounds)
             : base(initialCount,container,prefab,
             worldTransform,levelBounds){}
-        
-        
+
         public override Bullet SpawnObject()
         {
             Bullet bullet = base.SpawnObject();
@@ -47,16 +46,6 @@ namespace ShootEmUp
             
         }
 
-        // public override void RemoveObject(Bullet bullet)
-        // {
-        //     if (this.activeObjects.Remove(bullet))
-        //     {
-        //        // bullet.OnCollisionEntered -= this.OnBulletCollision;
-        //         base.RemoveObject(bullet);
-        //     }
-        // }
-        
-        
     }
     
     
