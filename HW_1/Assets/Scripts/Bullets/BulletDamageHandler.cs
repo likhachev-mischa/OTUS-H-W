@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class BulletDamageComponent
+    public sealed class BulletDamageHandler
     {
 
         public void Enable(Bullet bullet)
@@ -16,7 +16,7 @@ namespace ShootEmUp
             bullet.OnCollisionEntered -= DealDamage;
         }
         
-        internal static void DealDamage(Bullet bullet, Collision2D collision)
+        private static void DealDamage(Bullet bullet, Collision2D collision)
         {
             var other = collision.gameObject;
             if (!other.TryGetComponent(out TeamComponent team))
@@ -29,9 +29,9 @@ namespace ShootEmUp
                 return;
             }
 
-            if (other.TryGetComponent(out HitPointsComponent hitPoints))
+            if (other.TryGetComponent(out IDamageable hitPoints))
             {
-                hitPoints.TakeDamage(bullet.Damage);
+                hitPoints.Health -= bullet.Damage;
             }
         }
     }

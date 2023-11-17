@@ -1,20 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class EnemyManager : MonoBehaviour
+    public sealed class EnemyManager : MonoBehaviour, IShooter
     {
         [SerializeField]
         private EnemyPool _enemyPool;
 
         [SerializeField]
-        private BulletSystem _bulletSystem;
+        private BulletSystem bulletSystem;
         [SerializeField] 
-        private BulletConfig _bulletConfig;
+        private BulletConfig bulletConfig;
         
         private readonly HashSet<GameObject> m_activeEnemies = new();
+
+        private ShootComponent shootComponent;
+        
+        public event Action ShootEvent;
+        
+        private void Awake()
+        {
+            shootComponent = new ShootComponent(this, this.transform,
+                bulletSystem, bulletConfig, false);
+        }
+
+        private void OnEnable()
+        {
+            shootComponent.Enable();
+        }
+
+        private void OnDisable()
+        {
+            shootComponent.Disable();
+        }
+
+       
+        
 
         private IEnumerator Start()
         {
@@ -56,5 +80,7 @@ namespace ShootEmUp
                 velocity = direction * 2.0f
             });*/
         }
+
+       
     }
 }

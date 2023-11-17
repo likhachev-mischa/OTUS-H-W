@@ -9,15 +9,15 @@ namespace ShootEmUp
     }
     public class ShootComponent
     {
-        private BulletSystem bulletSystem;
-        private BulletConfig bulletConfig;
+        private readonly BulletSystem bulletSystem;
+        private readonly BulletConfig bulletConfig;
         private WeaponComponent weaponComponent;
 
-        private Transform weaponTransform;
+        private readonly Transform weaponTransform;
         
         public Transform WeaponTransform { get; set; }
 
-        private bool isPlayer;
+        private readonly bool isPlayer;
 
         private IShooter shooter;
         public ShootComponent(IShooter shooter, Transform weaponTransform, 
@@ -40,17 +40,17 @@ namespace ShootEmUp
         }
         
         
-        public void OnBulletShot()
+        private void OnBulletShot()
         {
-            bulletSystem.LaunchBullet(new BulletSystem.Args
+            BulletLauncherInteractor.LaunchBullet(new Bullet.Args
             {
                 isPlayer = this.isPlayer,
                 physicsLayer = (int) this.bulletConfig.physicsLayer,
                 color = this.bulletConfig.color,
                 damage = this.bulletConfig.damage,
                 position = weaponTransform.position,
-                velocity = weaponTransform.rotation * Vector3.up * this.bulletConfig.speed
-            });
+                velocity = weaponTransform.rotation * Vector3.up * this.bulletConfig.speed,
+            }, bulletSystem);
         }
     }
 }

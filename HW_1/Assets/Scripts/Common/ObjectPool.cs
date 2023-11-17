@@ -6,24 +6,22 @@ namespace ShootEmUp
 {
     public class ObjectPool<T> where T: MonoBehaviour
     {
-        protected int initialCount;
-        
-        protected Transform container;
-        protected T prefab;
-        protected Transform worldTransform;
-        protected LevelBounds levelBounds;
-    
-        protected readonly Queue<T> objectPool = new();
-        protected readonly List<T> cache = new();
+        private int initialCount;
+
+        private Transform container;
+        private T prefab;
+        private Transform worldTransform;
+
+        private Queue<T> objectPool = new();
+        private HashSet<T> activeObjects = new();
         
         public ObjectPool(int initialCount, Transform container, T prefab, 
-            Transform worldTransform, LevelBounds levelBounds)
+            Transform worldTransform)
         {
             this.initialCount = initialCount;
             this.container = container;
             this.prefab = prefab;
             this.worldTransform = worldTransform;
-            this.levelBounds = levelBounds;
         }
 
         public void Initialize()
@@ -34,21 +32,28 @@ namespace ShootEmUp
                 this.objectPool.Enqueue(obj);
             }
         }
-        public virtual T SpawnObject()
+        public T SpawnObject()
         {
             if (!this.objectPool.TryDequeue(out var obj))
             {
                 return null;
             }
+            
+            activeObjects.Add(obj);
             obj.transform.SetParent(this.worldTransform);
             return obj;
 
         }
-        
+
         public virtual void RemoveObject(T obj)
         {
-            obj.transform.SetParent(this.container);
+            if (!activeObjects.Remove(obj))
+            {
+                return;
+            }
+            
             this.objectPool.Enqueue(obj);
+            obj.transform.SetParent(this.container);
             
         }
     }

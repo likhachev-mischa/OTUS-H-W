@@ -9,13 +9,6 @@ namespace ShootEmUp
 
         [SerializeField]
         private int health;
-
-        /*[ContextMenu("takedamage")] 
-        private void DebugDamage()
-        {
-            Health -= 1;
-            Debug.Log(health);
-        }*/
         
         public int Health
         {

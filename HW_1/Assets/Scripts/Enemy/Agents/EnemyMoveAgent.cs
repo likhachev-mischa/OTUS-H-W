@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -14,6 +15,11 @@ namespace ShootEmUp
         private Vector2 destination;
 
         private bool isReached;
+
+        private void Awake()
+        {
+            moveComponent = new MoveComponent(this.GetComponent<Rigidbody2D>(), 5);
+        }
 
         public void SetDestination(Vector2 endPoint)
         {

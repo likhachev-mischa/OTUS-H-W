@@ -13,51 +13,41 @@ namespace ShootEmUp
         [SerializeField] private Transform container;
         [SerializeField] private Bullet prefab;
         [SerializeField] private Transform worldTransform;
-        [SerializeField] private LevelBounds levelBounds;
 
-        private BulletPool bulletPool;
+        [SerializeField]
+        private BulletBoundsHandler bulletBoundsHandler;
+
+        private ObjectPool<Bullet> bulletPool;
 
         private BulletCollisionHandler bulletCollisionHandler;
+        private BulletDamageHandler bulletDamageHandler;
+        
         private void Awake()
         {
-            bulletPool = new BulletPool(initialCount, container, prefab, worldTransform, levelBounds);
+            bulletPool = new ObjectPool<Bullet>(initialCount, container, prefab, worldTransform);
             bulletPool.Initialize();
-            bulletCollisionHandler = new BulletCollisionHandler(bulletPool);
+            bulletCollisionHandler = new BulletCollisionHandler(this);
+            bulletDamageHandler = new BulletDamageHandler();
         }
         
-        public void LaunchBullet(BulletSystem.Args args)
+        public Bullet SpawnBullet()
         {
-            Bullet bullet = bulletPool.SpawnObject();
-            
-            bullet.Position = args.position;
-            bullet.Color = args.color;
-            bullet.PhysicsLayer = args.physicsLayer;
-            bullet.Damage = args.damage;
-            bullet.IsPlayer = args.isPlayer;
-            bullet.Velocity = args.velocity;
-
-            if (this.bulletPool.TryAddToActive(bullet))
-            {
-                bulletCollisionHandler.Enable(bullet);
-            }
-            
-
+            var bullet = bulletPool.SpawnObject();
+            bulletDamageHandler.Enable(bullet);
+            bulletCollisionHandler.Enable(bullet);
+            bulletBoundsHandler.Enable(bullet);
+            return bullet;
         }
         
-        private void FixedUpdate()
+        public void DespawnBullet(Bullet bullet)
         {
-            bulletPool.CheckForBounds();
+            bulletDamageHandler.Disable(bullet);
+            bulletCollisionHandler.Disable(bullet);
+            bulletBoundsHandler.Disable(bullet);
+            bulletPool.RemoveObject(bullet);
         }
-
-        public struct Args
-        {
-            public Vector2 position;
-            public Vector2 velocity;
-            public Color color;
-            public int physicsLayer;
-            public int damage;
-            public bool isPlayer;
-        }
+        
+       
     }
     
 }
