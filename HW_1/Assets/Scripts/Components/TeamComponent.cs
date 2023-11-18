@@ -2,10 +2,12 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class TeamComponent : MonoBehaviour
+    namespace Components
     {
-        [SerializeField]
-        private bool isPlayer;
-        public bool IsPlayer => this.isPlayer;
+         public sealed class TeamComponent : MonoBehaviour
+        {
+            [SerializeField] private bool isPlayer;
+            public bool IsPlayer => this.isPlayer;
+        }
     }
 }

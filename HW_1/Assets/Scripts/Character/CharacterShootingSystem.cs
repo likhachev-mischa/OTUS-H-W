@@ -1,4 +1,5 @@
 ﻿using System;
+using ShootEmUp.Components;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -12,7 +13,7 @@ namespace ShootEmUp
         public event Action ShootEvent;
         
         [SerializeField]
-        private BulletSystem bulletSystem;
+        private BulletFactory bulletFactory;
         [SerializeField]
         private BulletConfig bulletConfig;
         
@@ -21,7 +22,7 @@ namespace ShootEmUp
         private void Awake()
         {
             shootComponent = new ShootComponent(this, weaponTransform,
-                bulletSystem, bulletConfig, true);
+                bulletFactory, bulletConfig, Vector2.up,true);
         }
         
         private void OnEnable()

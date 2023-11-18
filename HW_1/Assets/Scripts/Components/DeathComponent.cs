@@ -1,37 +1,37 @@
-﻿using System;
-using UnityEngine;
-
-namespace ShootEmUp
+﻿namespace ShootEmUp
 {
-
-    public interface IKillable : IDamageable
+    namespace Components
     {
-        public void Death();
-    }
-    
-    public sealed class DeathComponent
-    {
-        private IKillable killable;
-
-        public DeathComponent(IKillable killable)
+         public interface IKillable : IDamageable
         {
-            this.killable = killable;
-        }
-        public void Enable()
-        {
-            killable.TakeDamageEvent += OnTakeDamage;
+            public void Death();
         }
 
-        public void Disable()
+        public sealed class DeathComponent
         {
-            killable.TakeDamageEvent -= OnTakeDamage;
-        }
+            private IKillable killable;
 
-        private void OnTakeDamage(int damage)
-        {
-            if (killable.Health <= 0)
+            public DeathComponent(IKillable killable)
             {
-                killable.Death();
+                this.killable = killable;
+            }
+
+            public void Enable()
+            {
+                killable.TakeDamageEvent += OnTakeDamage;
+            }
+
+            public void Disable()
+            {
+                killable.TakeDamageEvent -= OnTakeDamage;
+            }
+
+            private void OnTakeDamage(int damage)
+            {
+                if (killable.Health <= 0)
+                {
+                    killable.Death();
+                }
             }
         }
     }

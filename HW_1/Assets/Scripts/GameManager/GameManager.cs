@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public static class GameManager
+    public class GameManager :MonoBehaviour
     {
         public static bool IsGameOver { get; private set; } = false;
 

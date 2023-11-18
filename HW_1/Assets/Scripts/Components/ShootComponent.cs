@@ -3,54 +3,67 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public interface IShooter
+    namespace Components
     {
-        public event Action ShootEvent;
-    }
-    public class ShootComponent
-    {
-        private readonly BulletSystem bulletSystem;
-        private readonly BulletConfig bulletConfig;
-        private WeaponComponent weaponComponent;
-
-        private readonly Transform weaponTransform;
-        
-        public Transform WeaponTransform { get; set; }
-
-        private readonly bool isPlayer;
-
-        private IShooter shooter;
-        public ShootComponent(IShooter shooter, Transform weaponTransform, 
-            BulletSystem bulletSystem, BulletConfig bulletConfig, bool isPlayer = false)
+         public interface IShooter
         {
-            this.shooter = shooter;
-            this.weaponTransform = weaponTransform;
-            this.bulletSystem = bulletSystem;
-            this.bulletConfig = bulletConfig;
-            this.isPlayer = isPlayer;
-        }
-        public void Enable()
-        {
-            shooter.ShootEvent += OnBulletShot;
+            public event Action ShootEvent;
         }
 
-        public void Disable()
+        public class ShootComponent
         {
-            shooter.ShootEvent -= OnBulletShot;
-        }
-        
-        
-        private void OnBulletShot()
-        {
-            BulletLauncherInteractor.LaunchBullet(new Bullet.Args
+            private readonly BulletFactory bulletFactory;
+            private readonly BulletConfig bulletConfig;
+            private WeaponComponent weaponComponent;
+
+            private readonly Transform weaponTransform;
+            private Vector2 direction;
+
+            public Transform WeaponTransform { get; set; }
+
+            private readonly bool isPlayer;
+
+            private IShooter shooter;
+
+            public ShootComponent(IShooter shooter, Transform weaponTransform,
+                BulletFactory bulletFactory, BulletConfig bulletConfig, Vector2 direction, bool isPlayer = false)
             {
-                isPlayer = this.isPlayer,
-                physicsLayer = (int) this.bulletConfig.physicsLayer,
-                color = this.bulletConfig.color,
-                damage = this.bulletConfig.damage,
-                position = weaponTransform.position,
-                velocity = weaponTransform.rotation * Vector3.up * this.bulletConfig.speed,
-            }, bulletSystem);
+                this.shooter = shooter;
+                this.weaponTransform = weaponTransform;
+                this.bulletFactory = bulletFactory;
+                this.bulletConfig = bulletConfig;
+                this.direction = direction;
+                this.isPlayer = isPlayer;
+            }
+
+            public void Enable()
+            {
+                shooter.ShootEvent += OnBulletShot;
+            }
+
+            public void UpdateDirection(Vector2 direction)
+            {
+                this.direction = direction;
+            }
+
+            public void Disable()
+            {
+                shooter.ShootEvent -= OnBulletShot;
+            }
+
+
+            private void OnBulletShot()
+            {
+                BulletLauncherInteractor.LaunchBullet(new Bullet.Args
+                {
+                    isPlayer = this.isPlayer,
+                    physicsLayer = (int)this.bulletConfig.physicsLayer,
+                    color = this.bulletConfig.color,
+                    damage = this.bulletConfig.damage,
+                    position = weaponTransform.position,
+                    velocity = weaponTransform.rotation * direction * this.bulletConfig.speed,
+                }, bulletFactory);
+            }
         }
     }
 }

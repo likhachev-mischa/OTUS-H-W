@@ -1,4 +1,5 @@
 ﻿using System;
+using ShootEmUp.Components;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -18,7 +19,6 @@ namespace ShootEmUp
                 health = value;
                 TakeDamageEvent?.Invoke(value);
             }
-            
         }
 
         private DeathComponent deathComponent;
@@ -37,8 +37,7 @@ namespace ShootEmUp
         {
             deathComponent.Disable();
         }
-
-
+        
         public void Death()
         {
             GameManager.FinishGame();

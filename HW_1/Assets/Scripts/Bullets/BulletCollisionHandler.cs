@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ShootEmUp
 {
     public sealed class BulletCollisionHandler
     {
         
-        private BulletSystem bulletSystem;
+        private BulletFactory bulletFactory;
         
-        public BulletCollisionHandler(BulletSystem bulletSystem)
+        public BulletCollisionHandler(BulletFactory bulletFactory)
         {
-            this.bulletSystem = bulletSystem;
+            this.bulletFactory = bulletFactory;
         }
         public void Enable(Bullet bullet)
         {
@@ -23,7 +21,7 @@ namespace ShootEmUp
         }
         private void OnBulletCollision(Bullet bullet, Collision2D collision)
         {
-            bulletSystem.DespawnBullet(bullet);
+            bulletFactory.DespawnBullet(bullet);
         }
         
     }

@@ -2,10 +2,12 @@
 {
     public static class BulletLauncherInteractor
     {
-        public static void LaunchBullet(Bullet.Args args, BulletSystem bulletSystem)
+        public static void LaunchBullet(Bullet.Args args, BulletFactory bulletFactory)
         {
-            Bullet bullet = bulletSystem.SpawnBullet();
-
+            if(!bulletFactory.SpawnBullet(out var bullet))
+            {
+                    return;
+            }
             bullet.Position = args.position;
             bullet.Color = args.color;
             bullet.PhysicsLayer = args.physicsLayer;

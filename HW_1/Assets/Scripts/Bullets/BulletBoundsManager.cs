@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ShootEmUp
 {
-    public class BulletBoundsHandler:MonoBehaviour
+    public class BulletBoundsManager:MonoBehaviour
     {
         [SerializeField]
         private LevelBounds levelBounds;
-        [SerializeField]
-        private BulletSystem bulletSystem;
+        [FormerlySerializedAs("bulletSystem")] [SerializeField]
+        private BulletFactory bulletFactory;
         
         private List<Bullet> bullets = new();
         private List<Bullet> toDestroy = new();
@@ -21,18 +21,21 @@ namespace ShootEmUp
         
         private void FixedUpdate()
         {
-            foreach (var bullet in bullets)
+            for (var index = 0; index < bullets.Count; index++)
             {
+                var bullet = bullets[index];
                 if (!this.levelBounds.InBounds(bullet.transform.position))
                 {
                     toDestroy.Add(bullet);
-                } 
+                }
             }
 
-            foreach (var bullet in toDestroy)
+            for (var index = 0; index < toDestroy.Count; index++)
             {
-                this.bulletSystem.DespawnBullet(bullet);
+                var bullet = toDestroy[index];
+                this.bulletFactory.DespawnBullet(bullet);
             }
+
             toDestroy.Clear();
         }
 

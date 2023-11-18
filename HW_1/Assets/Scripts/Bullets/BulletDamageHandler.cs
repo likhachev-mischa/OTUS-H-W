@@ -1,4 +1,4 @@
-﻿using System;
+﻿using ShootEmUp.Components;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -19,6 +19,7 @@ namespace ShootEmUp
         private static void DealDamage(Bullet bullet, Collision2D collision)
         {
             var other = collision.gameObject;
+            
             if (!other.TryGetComponent(out TeamComponent team))
             {
                 return;

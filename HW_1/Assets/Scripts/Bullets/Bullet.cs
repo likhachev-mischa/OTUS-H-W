@@ -32,8 +32,6 @@ namespace ShootEmUp
         public Vector3 Position { set => transform.position = value; }
         public Color Color { set => spriteRenderer.color = value; }
         
-        
-        
         private void OnCollisionEnter2D(Collision2D collision)
         {
             this.OnCollisionEntered?.Invoke(this, collision);

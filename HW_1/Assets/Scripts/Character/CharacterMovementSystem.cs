@@ -1,7 +1,5 @@
-
-using System;
+using ShootEmUp.Components;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace ShootEmUp
 {

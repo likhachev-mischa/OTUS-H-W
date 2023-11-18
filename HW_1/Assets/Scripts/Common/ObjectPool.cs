@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,17 +31,17 @@ namespace ShootEmUp
                 this.objectPool.Enqueue(obj);
             }
         }
-        public T SpawnObject()
+        
+        public bool SpawnObject(out T obj)
         {
-            if (!this.objectPool.TryDequeue(out var obj))
+            if (!this.objectPool.TryDequeue(out obj))
             {
-                return null;
+                return false;
             }
             
             activeObjects.Add(obj);
             obj.transform.SetParent(this.worldTransform);
-            return obj;
-
+            return true;
         }
 
         public virtual void RemoveObject(T obj)

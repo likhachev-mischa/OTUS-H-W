@@ -1,48 +1,62 @@
 using System;
+using ShootEmUp.Components;
 using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class EnemyMoveAgent : MonoBehaviour
+    namespace Enemy
     {
-        public bool IsReached
+         public interface IDependsOnReachedTarget
         {
-            get { return this.isReached; }
+            public void OnTargetReached();
         }
 
-        [SerializeField] private MoveComponent moveComponent;
-
-        private Vector2 destination;
-
-        private bool isReached;
-
-        private void Awake()
+        public sealed class EnemyMoveAgent : EnemyAgent, IDependsOnReachedTarget
         {
-            moveComponent = new MoveComponent(this.GetComponent<Rigidbody2D>(), 5);
-        }
+            private bool isReached;
+            public event Action ReachedEvent;
 
-        public void SetDestination(Vector2 endPoint)
-        {
-            this.destination = endPoint;
-            this.isReached = false;
-        }
+            [SerializeField] private float speed = 5.0f;
+            [SerializeField] private float reachOffset = 0.25f;
 
-        private void FixedUpdate()
-        {
-            if (this.isReached)
+            private Vector2 destination;
+
+            private MoveComponent moveComponent;
+
+            private void Awake()
             {
-                return;
-            }
-            
-            var vector = this.destination - (Vector2) this.transform.position;
-            if (vector.magnitude <= 0.25f)
-            {
-                this.isReached = true;
-                return;
+                moveComponent = new MoveComponent(this.GetComponent<Rigidbody2D>(), speed);
             }
 
-            var direction = vector.normalized * Time.fixedDeltaTime;
-            this.moveComponent.MoveByRigidbodyVelocity(direction);
+            public void OnTargetReached()
+            {
+                this.enabled = false;
+            }
+
+            public void SetDestination(Vector2 endPoint)
+            {
+                this.destination = endPoint;
+                this.isReached = false;
+            }
+
+            private void FixedUpdate()
+            {
+                if (this.isReached)
+                {
+                    return;
+                }
+
+                var vector = this.destination - (Vector2)this.transform.position;
+                if (vector.magnitude <= reachOffset)
+                {
+                    this.isReached = true;
+                    ReachedEvent?.Invoke();
+                    return;
+                }
+
+                var direction = vector.normalized * Time.fixedDeltaTime;
+                this.moveComponent.MoveByRigidbodyVelocity(direction);
+            }
         }
     }
 }

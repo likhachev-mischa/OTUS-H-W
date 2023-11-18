@@ -1,56 +1,84 @@
+using System;
+using ShootEmUp.Components;
 using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class EnemyAttackAgent : MonoBehaviour
+    namespace Enemy
     {
-        public delegate void FireHandler(GameObject enemy, Vector2 position, Vector2 direction);
-
-        public event FireHandler OnFire;
-
-        [SerializeField] private WeaponComponent weaponComponent;
-        [SerializeField] private EnemyMoveAgent moveAgent;
-        [SerializeField] private float countdown;
-
-        private GameObject target;
-        private float currentTime;
-
-        public void SetTarget(GameObject target)
+         public sealed class EnemyAttackAgent : EnemyAgent, IDependsOnReachedTarget, IShooter
         {
-            this.target = target;
-        }
 
-        public void Reset()
-        {
-            this.currentTime = this.countdown;
-        }
+            [SerializeField] private Transform weaponTransform;
 
-        private void FixedUpdate()
-        {
-            if (!this.moveAgent.IsReached)
+            public event Action ShootEvent;
+
+            private BulletFactory bulletFactory;
+            [SerializeField] private BulletConfig bulletConfig;
+
+            private ShootComponent shootComponent;
+
+            [SerializeField] private float cooldown;
+
+            private GameObject target;
+            private float currentTime;
+
+
+            private void Awake()
             {
-                return;
-            }
-            
-            if (!this.target.GetComponent<HitPointsComponent>().IsHitPointsExists())
-            {
-                return;
+                bulletFactory = FindObjectOfType<BulletFactory>();
+                shootComponent = new ShootComponent(this, weaponTransform,
+                    bulletFactory, bulletConfig, Vector3.down, false);
             }
 
-            this.currentTime -= Time.fixedDeltaTime;
-            if (this.currentTime <= 0)
+            private void OnEnable()
             {
+                shootComponent.Enable();
+            }
+
+
+            public void SetTarget(GameObject target)
+            {
+                this.target = target;
+            }
+
+            public void Reset()
+            {
+                this.currentTime = this.cooldown;
+            }
+
+            public void OnTargetReached()
+            {
+                this.enabled = true;
+            }
+
+            private void FixedUpdate()
+            {
+
+                this.currentTime -= Time.fixedDeltaTime;
+                if (this.currentTime > 0)
+                {
+                    return;
+                }
+
                 this.Fire();
-                this.currentTime += this.countdown;
+                this.Reset();
             }
-        }
 
-        private void Fire()
-        {
-            var startPosition = this.weaponComponent.Position;
-            var vector = (Vector2) this.target.transform.position - startPosition;
-            var direction = vector.normalized;
-            this.OnFire?.Invoke(this.gameObject, startPosition, direction);
+            private void Fire()
+            {
+                shootComponent.WeaponTransform = weaponTransform;
+                Vector2 startPosition = this.weaponTransform.position;
+                var vector = (Vector2)this.target.transform.position - startPosition;
+                var direction = vector.normalized;
+                shootComponent.UpdateDirection(direction);
+                ShootEvent?.Invoke();
+            }
+
+            private void OnDisable()
+            {
+                shootComponent.Disable();
+            }
         }
     }
 }

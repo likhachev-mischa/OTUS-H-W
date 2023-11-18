@@ -1,21 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class BulletSystem : MonoBehaviour
+    public sealed class BulletFactory : MonoBehaviour
     {
         [SerializeField]
         private int initialCount = 50;
+        
+        public int InitialCount { get; }
         
         [SerializeField] private Transform container;
         [SerializeField] private Bullet prefab;
         [SerializeField] private Transform worldTransform;
 
         [SerializeField]
-        private BulletBoundsHandler bulletBoundsHandler;
+        private BulletBoundsManager bulletBoundsManager;
 
         private ObjectPool<Bullet> bulletPool;
 
@@ -30,20 +29,23 @@ namespace ShootEmUp
             bulletDamageHandler = new BulletDamageHandler();
         }
         
-        public Bullet SpawnBullet()
+        public bool SpawnBullet(out Bullet bullet)
         {
-            var bullet = bulletPool.SpawnObject();
+            if (!bulletPool.SpawnObject(out bullet))
+            {
+                return false;
+            }
             bulletDamageHandler.Enable(bullet);
             bulletCollisionHandler.Enable(bullet);
-            bulletBoundsHandler.Enable(bullet);
-            return bullet;
+            bulletBoundsManager.Enable(bullet);
+            return true;
         }
         
         public void DespawnBullet(Bullet bullet)
         {
             bulletDamageHandler.Disable(bullet);
             bulletCollisionHandler.Disable(bullet);
-            bulletBoundsHandler.Disable(bullet);
+            bulletBoundsManager.Disable(bullet);
             bulletPool.RemoveObject(bullet);
         }
         
