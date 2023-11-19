@@ -1,10 +1,16 @@
-﻿namespace ShootEmUp
+﻿using System;
+using UnityEngine;
+
+namespace ShootEmUp
 {
-    public static class BulletLauncherInteractor
+    public sealed class BulletLauncher : MonoBehaviour
     {
-        public static void LaunchBullet(Bullet.Args args, BulletFactory bulletFactory)
+        [SerializeField]
+        private BulletManager bulletManager;
+        
+        public void LaunchBullet(Bullet.Args args)
         {
-            if(!bulletFactory.SpawnBullet(out var bullet))
+            if(!this.bulletManager.SpawnBullet(out var bullet))
             {
                     return;
             }

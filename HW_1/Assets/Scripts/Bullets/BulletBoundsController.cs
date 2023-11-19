@@ -4,12 +4,12 @@ using UnityEngine.Serialization;
 
 namespace ShootEmUp
 {
-    public class BulletBoundsManager:MonoBehaviour
+    public class BulletBoundsController : MonoBehaviour
     {
         [SerializeField]
         private LevelBounds levelBounds;
-        [FormerlySerializedAs("bulletSystem")] [SerializeField]
-        private BulletFactory bulletFactory;
+        [SerializeField]
+        private BulletManager bulletManager;
         
         private List<Bullet> bullets = new();
         private List<Bullet> toDestroy = new();
@@ -33,7 +33,7 @@ namespace ShootEmUp
             for (var index = 0; index < toDestroy.Count; index++)
             {
                 var bullet = toDestroy[index];
-                this.bulletFactory.DespawnBullet(bullet);
+                this.bulletManager.DespawnBullet(bullet);
             }
 
             toDestroy.Clear();

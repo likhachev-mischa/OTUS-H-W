@@ -1,13 +1,14 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ShootEmUp
 {
     namespace Enemy
     {
-         public sealed class EnemySpawnManager : MonoBehaviour
+         public sealed class EnemySpawner : MonoBehaviour
         {
 
-            [SerializeField] private EnemyFactory enemyFactory;
+            [FormerlySerializedAs("enemyFactory")] [SerializeField] private EnemyManager enemyManager;
             [SerializeField] private float spawnDelay;
 
             private float timeElapsed;
@@ -31,7 +32,7 @@ namespace ShootEmUp
                 }
 
                 this.Reset();
-                enemyFactory.SpawnEnemy(out var enemy);
+                enemyManager.SpawnEnemy();
             }
 
 

@@ -1,36 +1,37 @@
-﻿namespace ShootEmUp
+﻿using System;
+using UnityEngine;
+
+namespace ShootEmUp
 {
     namespace Components
     {
-         public interface IKillable : IDamageable
+
+        [RequireComponent(typeof(HealthComponent))]
+        public sealed class DeathComponent : MonoBehaviour
         {
-            public void Death();
-        }
+            private HealthComponent healthComponent;
+            public event Action DeathEvent;
 
-        public sealed class DeathComponent
-        {
-            private IKillable killable;
-
-            public DeathComponent(IKillable killable)
+            private void Awake()
             {
-                this.killable = killable;
+                this.healthComponent = this.GetComponent<HealthComponent>();
             }
 
-            public void Enable()
+            private void OnEnable()
             {
-                killable.TakeDamageEvent += OnTakeDamage;
+                this.healthComponent.TakeDamageEvent += this.OnDeath;
             }
 
-            public void Disable()
+            private void OnDisable()
             {
-                killable.TakeDamageEvent -= OnTakeDamage;
+                this.healthComponent.TakeDamageEvent += this.OnDeath;
             }
 
-            private void OnTakeDamage(int damage)
+            private void OnDeath()
             {
-                if (killable.Health <= 0)
+                if (healthComponent.Health <= 0)
                 {
-                    killable.Death();
+                    DeathEvent?.Invoke();
                 }
             }
         }

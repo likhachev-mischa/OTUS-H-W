@@ -6,37 +6,54 @@ namespace ShootEmUp
 {
     namespace Enemy
     {
-         public sealed class EnemyAttackAgent : EnemyAgent, IDependsOnReachedTarget, IShooter
-        {
-
-            [SerializeField] private Transform weaponTransform;
-
-            public event Action ShootEvent;
-
-            private BulletFactory bulletFactory;
-            [SerializeField] private BulletConfig bulletConfig;
-
-            private ShootComponent shootComponent;
+        
+        [RequireComponent(typeof(ShootComponent),typeof(WeaponComponent))]
+         public sealed class EnemyAttackAgent : MonoBehaviour
+         {
+             private WeaponComponent weaponComponent; 
+             private ShootComponent shootComponent;
+            public event Action FireEvent;
 
             [SerializeField] private float cooldown;
 
             private GameObject target;
             private float currentTime;
 
-
             private void Awake()
             {
-                bulletFactory = FindObjectOfType<BulletFactory>();
-                shootComponent = new ShootComponent(this, weaponTransform,
-                    bulletFactory, bulletConfig, Vector3.down, false);
+                this.weaponComponent = this.GetComponent<WeaponComponent>();
+                this.shootComponent = this.GetComponent<ShootComponent>();
             }
-
+            
             private void OnEnable()
             {
-                shootComponent.Enable();
+                this.FireEvent += this.shootComponent.OnFireBullet;
+            }
+            
+            private void FixedUpdate()
+            {
+
+                this.currentTime -= Time.fixedDeltaTime;
+                if (this.currentTime > 0)
+                {
+                    return;
+                }
+                
+                var vector = (Vector2)this.target.transform.position - this.weaponComponent.Position;
+                var direction = vector.normalized;
+
+                this.shootComponent.Direction = direction;
+                this.FireEvent?.Invoke();
+                this.Reset();
             }
 
-
+            
+            private void OnDisable()
+            {
+                this.FireEvent -= this.shootComponent.OnFireBullet;
+            }
+            
+            
             public void SetTarget(GameObject target)
             {
                 this.target = target;
@@ -50,34 +67,6 @@ namespace ShootEmUp
             public void OnTargetReached()
             {
                 this.enabled = true;
-            }
-
-            private void FixedUpdate()
-            {
-
-                this.currentTime -= Time.fixedDeltaTime;
-                if (this.currentTime > 0)
-                {
-                    return;
-                }
-
-                this.Fire();
-                this.Reset();
-            }
-
-            private void Fire()
-            {
-                shootComponent.WeaponTransform = weaponTransform;
-                Vector2 startPosition = this.weaponTransform.position;
-                var vector = (Vector2)this.target.transform.position - startPosition;
-                var direction = vector.normalized;
-                shootComponent.UpdateDirection(direction);
-                ShootEvent?.Invoke();
-            }
-
-            private void OnDisable()
-            {
-                shootComponent.Disable();
             }
         }
     }

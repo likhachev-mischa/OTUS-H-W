@@ -1,20 +1,19 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ShootEmUp
 {
-    public sealed class BulletFactory : MonoBehaviour
+    [RequireComponent(typeof(BulletBoundsController))]
+    public sealed class BulletManager : MonoBehaviour
     {
         [SerializeField]
         private int initialCount = 50;
-        
-        public int InitialCount { get; }
-        
-        [SerializeField] private Transform container;
-        [SerializeField] private Bullet prefab;
-        [SerializeField] private Transform worldTransform;
 
-        [SerializeField]
-        private BulletBoundsManager bulletBoundsManager;
+        [SerializeField] private Transform container;
+        [SerializeField] private GameObject prefab;
+        [SerializeField] private Transform worldTransform;
+        
+        private BulletBoundsController bulletBoundsController;
 
         private ObjectPool<Bullet> bulletPool;
 
@@ -23,6 +22,8 @@ namespace ShootEmUp
         
         private void Awake()
         {
+            this.bulletBoundsController = GetComponent<BulletBoundsController>();
+            
             bulletPool = new ObjectPool<Bullet>(initialCount, container, prefab, worldTransform);
             bulletPool.Initialize();
             bulletCollisionHandler = new BulletCollisionHandler(this);
@@ -37,7 +38,7 @@ namespace ShootEmUp
             }
             bulletDamageHandler.Enable(bullet);
             bulletCollisionHandler.Enable(bullet);
-            bulletBoundsManager.Enable(bullet);
+            bulletBoundsController.Enable(bullet);
             return true;
         }
         
@@ -45,7 +46,7 @@ namespace ShootEmUp
         {
             bulletDamageHandler.Disable(bullet);
             bulletCollisionHandler.Disable(bullet);
-            bulletBoundsManager.Disable(bullet);
+            bulletBoundsController.Disable(bullet);
             bulletPool.RemoveObject(bullet);
         }
         

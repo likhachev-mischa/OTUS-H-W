@@ -4,9 +4,9 @@ namespace ShootEmUp
 {
     public class GameManager :MonoBehaviour
     {
-        public static bool IsGameOver { get; private set; } = false;
+        public bool IsGameOver { get; private set; }
 
-        public static void FinishGame()
+        public void FinishGame()
         {
             Debug.Log("Game over!");
             IsGameOver = true;

@@ -6,56 +6,40 @@ namespace ShootEmUp
 {
     namespace Enemy
     {
-         public interface IDependsOnReachedTarget
+        [RequireComponent(typeof(MoveComponent))]
+        public sealed class EnemyMoveAgent : MonoBehaviour
         {
-            public void OnTargetReached();
-        }
-
-        public sealed class EnemyMoveAgent : EnemyAgent, IDependsOnReachedTarget
-        {
-            private bool isReached;
-            public event Action ReachedEvent;
-
-            [SerializeField] private float speed = 5.0f;
+            public event Action<EnemyFacade> TargetReachedEvent;
+            
             [SerializeField] private float reachOffset = 0.25f;
 
             private Vector2 destination;
 
             private MoveComponent moveComponent;
+            private EnemyFacade enemy;
 
             private void Awake()
             {
-                moveComponent = new MoveComponent(this.GetComponent<Rigidbody2D>(), speed);
-            }
-
-            public void OnTargetReached()
-            {
-                this.enabled = false;
+                this.moveComponent = this.GetComponent<MoveComponent>();
+                this.enemy = this.GetComponent<EnemyFacade>();
             }
 
             public void SetDestination(Vector2 endPoint)
             {
                 this.destination = endPoint;
-                this.isReached = false;
             }
 
             private void FixedUpdate()
             {
-                if (this.isReached)
-                {
-                    return;
-                }
-
                 var vector = this.destination - (Vector2)this.transform.position;
                 if (vector.magnitude <= reachOffset)
                 {
-                    this.isReached = true;
-                    ReachedEvent?.Invoke();
+                    TargetReachedEvent?.Invoke(enemy);
                     return;
                 }
 
                 var direction = vector.normalized * Time.fixedDeltaTime;
-                this.moveComponent.MoveByRigidbodyVelocity(direction);
+                this.moveComponent.Move(direction);
             }
         }
     }

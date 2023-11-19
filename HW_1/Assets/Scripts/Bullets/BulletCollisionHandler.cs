@@ -5,11 +5,11 @@ namespace ShootEmUp
     public sealed class BulletCollisionHandler
     {
         
-        private BulletFactory bulletFactory;
+        private BulletManager bulletManager;
         
-        public BulletCollisionHandler(BulletFactory bulletFactory)
+        public BulletCollisionHandler(BulletManager bulletManager)
         {
-            this.bulletFactory = bulletFactory;
+            this.bulletManager = bulletManager;
         }
         public void Enable(Bullet bullet)
         {
@@ -21,7 +21,7 @@ namespace ShootEmUp
         }
         private void OnBulletCollision(Bullet bullet, Collision2D collision)
         {
-            bulletFactory.DespawnBullet(bullet);
+            bulletManager.DespawnBullet(bullet);
         }
         
     }

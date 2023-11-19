@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public class ObjectPool<T> where T: MonoBehaviour
+    public class ObjectPool<T> where T : MonoBehaviour
     {
         private int initialCount;
 
         private Transform container;
-        private T prefab;
+        private GameObject prefab;
         private Transform worldTransform;
 
         private Queue<T> objectPool = new();
         private HashSet<T> activeObjects = new();
         
-        public ObjectPool(int initialCount, Transform container, T prefab, 
+        public ObjectPool(int initialCount, Transform container, GameObject prefab, 
             Transform worldTransform)
         {
             this.initialCount = initialCount;
@@ -28,7 +28,7 @@ namespace ShootEmUp
             for (var i = 0; i < this.initialCount; i++)
             {
                 var obj = Object.Instantiate(this.prefab, this.container);
-                this.objectPool.Enqueue(obj);
+                this.objectPool.Enqueue(obj.GetComponent<T>());
             }
         }
         

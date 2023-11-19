@@ -30,7 +30,7 @@ namespace ShootEmUp
                 return;
             }
 
-            if (other.TryGetComponent(out IDamageable hitPoints))
+            if (other.TryGetComponent(out HealthComponent hitPoints))
             {
                 hitPoints.Health -= bullet.Damage;
             }
