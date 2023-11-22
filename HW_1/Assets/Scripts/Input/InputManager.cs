@@ -6,7 +6,7 @@ namespace ShootEmUp
     public sealed class InputManager : MonoBehaviour
     {
         public float MoveDirection { get; private set; }
-        
+
         public event Action FireEvent;
 
         private void Update()
@@ -15,6 +15,7 @@ namespace ShootEmUp
             {
                 FireEvent?.Invoke();
             }
+
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 this.MoveDirection = -1;
@@ -28,6 +29,5 @@ namespace ShootEmUp
                 this.MoveDirection = 0;
             }
         }
-        
     }
 }

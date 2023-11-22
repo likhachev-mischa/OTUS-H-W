@@ -3,36 +3,32 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    namespace Components
+    [RequireComponent(typeof(HealthComponent))]
+    public sealed class DeathComponent : MonoBehaviour
     {
+        private HealthComponent healthComponent;
+        public event Action DeathEvent;
 
-        [RequireComponent(typeof(HealthComponent))]
-        public sealed class DeathComponent : MonoBehaviour
+        private void Awake()
         {
-            private HealthComponent healthComponent;
-            public event Action DeathEvent;
+            this.healthComponent = this.GetComponent<HealthComponent>();
+        }
 
-            private void Awake()
-            {
-                this.healthComponent = this.GetComponent<HealthComponent>();
-            }
+        private void OnEnable()
+        {
+            this.healthComponent.TakeDamageEvent += this.OnDeath;
+        }
 
-            private void OnEnable()
-            {
-                this.healthComponent.TakeDamageEvent += this.OnDeath;
-            }
+        private void OnDisable()
+        {
+            this.healthComponent.TakeDamageEvent += this.OnDeath;
+        }
 
-            private void OnDisable()
+        private void OnDeath()
+        {
+            if (healthComponent.Health <= 0)
             {
-                this.healthComponent.TakeDamageEvent += this.OnDeath;
-            }
-
-            private void OnDeath()
-            {
-                if (healthComponent.Health <= 0)
-                {
-                    DeathEvent?.Invoke();
-                }
+                DeathEvent?.Invoke();
             }
         }
     }

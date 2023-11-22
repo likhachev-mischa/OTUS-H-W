@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class ContainInBoundsController : MonoBehaviour
+    public sealed class ContainInBoundsCorrector : MonoBehaviour
     {
         private  LevelBounds levelBounds;
         

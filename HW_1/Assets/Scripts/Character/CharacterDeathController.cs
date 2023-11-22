@@ -1,17 +1,15 @@
-﻿using System;
-using ShootEmUp.Components;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ShootEmUp
 {
     public class CharacterDeathController : MonoBehaviour
     {
-        
         private GameManager gameManager;
 
         [SerializeField] private GameObject character;
-        
+
         private DeathComponent deathComponent;
+
         private void Awake()
         {
             this.deathComponent = this.character.GetComponent<DeathComponent>();

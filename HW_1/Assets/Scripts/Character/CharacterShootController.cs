@@ -1,15 +1,11 @@
-﻿using ShootEmUp.Components;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 namespace ShootEmUp
 {
     public class CharacterShootController : MonoBehaviour
     {
-        [SerializeField] 
-        private InputManager inputManager;
-        [SerializeField]
-        private GameObject character;
+        [SerializeField] private InputManager inputManager;
+        [SerializeField] private GameObject character;
 
         private ShootComponent shootComponent;
 

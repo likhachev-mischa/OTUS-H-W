@@ -1,46 +1,42 @@
 using System;
-using ShootEmUp.Components;
 using UnityEngine;
 
 namespace ShootEmUp
 {
-    namespace Enemy
+    [RequireComponent(typeof(MoveComponent))]
+    public sealed class EnemyMoveAgent : MonoBehaviour
     {
-        [RequireComponent(typeof(MoveComponent))]
-        public sealed class EnemyMoveAgent : MonoBehaviour
+        public event Action TargetReachedEvent;
+
+        [SerializeField] private float reachOffset = 0.25f;
+
+        private Vector2 destination;
+
+        private MoveComponent moveComponent;
+        private Enemy enemy;
+
+        private void Awake()
         {
-            public event Action<EnemyFacade> TargetReachedEvent;
-            
-            [SerializeField] private float reachOffset = 0.25f;
+            this.moveComponent = this.GetComponent<MoveComponent>();
+            this.enemy = this.GetComponent<Enemy>();
+        }
 
-            private Vector2 destination;
+        public void SetDestination(Vector2 endPoint)
+        {
+            this.destination = endPoint;
+        }
 
-            private MoveComponent moveComponent;
-            private EnemyFacade enemy;
-
-            private void Awake()
+        private void FixedUpdate()
+        {
+            var vector = this.destination - (Vector2)this.transform.position;
+            if (vector.magnitude <= reachOffset)
             {
-                this.moveComponent = this.GetComponent<MoveComponent>();
-                this.enemy = this.GetComponent<EnemyFacade>();
+                TargetReachedEvent?.Invoke();
+                return;
             }
 
-            public void SetDestination(Vector2 endPoint)
-            {
-                this.destination = endPoint;
-            }
-
-            private void FixedUpdate()
-            {
-                var vector = this.destination - (Vector2)this.transform.position;
-                if (vector.magnitude <= reachOffset)
-                {
-                    TargetReachedEvent?.Invoke(enemy);
-                    return;
-                }
-
-                var direction = vector.normalized * Time.fixedDeltaTime;
-                this.moveComponent.Move(direction);
-            }
+            var direction = vector.normalized * Time.fixedDeltaTime;
+            this.moveComponent.Move(direction);
         }
     }
 }

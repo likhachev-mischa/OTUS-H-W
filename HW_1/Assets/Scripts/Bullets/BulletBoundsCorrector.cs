@@ -1,24 +1,21 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace ShootEmUp
 {
-    public class BulletBoundsController : MonoBehaviour
+    public class BulletBoundsCorrector : MonoBehaviour
     {
-        [SerializeField]
-        private LevelBounds levelBounds;
-        [SerializeField]
-        private BulletManager bulletManager;
-        
+        [SerializeField] private LevelBounds levelBounds;
+        [SerializeField] private BulletManager bulletManager;
+
         private List<Bullet> bullets = new();
         private List<Bullet> toDestroy = new();
-        
+
         public void Enable(Bullet bullet)
         {
             bullets.Add(bullet);
         }
-        
+
         private void FixedUpdate()
         {
             for (var index = 0; index < bullets.Count; index++)

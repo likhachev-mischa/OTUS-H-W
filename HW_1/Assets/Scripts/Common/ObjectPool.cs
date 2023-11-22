@@ -13,8 +13,8 @@ namespace ShootEmUp
 
         private Queue<T> objectPool = new();
         private HashSet<T> activeObjects = new();
-        
-        public ObjectPool(int initialCount, Transform container, GameObject prefab, 
+
+        public ObjectPool(int initialCount, Transform container, GameObject prefab,
             Transform worldTransform)
         {
             this.initialCount = initialCount;
@@ -31,14 +31,14 @@ namespace ShootEmUp
                 this.objectPool.Enqueue(obj.GetComponent<T>());
             }
         }
-        
+
         public bool SpawnObject(out T obj)
         {
             if (!this.objectPool.TryDequeue(out obj))
             {
                 return false;
             }
-            
+
             activeObjects.Add(obj);
             obj.transform.SetParent(this.worldTransform);
             return true;
@@ -50,11 +50,9 @@ namespace ShootEmUp
             {
                 return;
             }
-            
+
             this.objectPool.Enqueue(obj);
             obj.transform.SetParent(this.container);
-            
         }
     }
-
 }

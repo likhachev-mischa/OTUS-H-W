@@ -1,6 +1,4 @@
-﻿using System;
-using ShootEmUp.Components;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ShootEmUp
 
@@ -9,25 +7,23 @@ namespace ShootEmUp
     {
         [SerializeField] private InputManager inputManager;
 
-        [SerializeField]
-        private GameObject character;
+        [SerializeField] private GameObject character;
 
         private MoveComponent moveComponent;
-        private ContainInBoundsController containInBoundsController;
+        private ContainInBoundsCorrector containInBoundsCorrector;
 
         private void Awake()
         {
-            this.containInBoundsController = FindObjectOfType<ContainInBoundsController>();
+            this.containInBoundsCorrector = FindObjectOfType<ContainInBoundsCorrector>();
             this.moveComponent = this.character.GetComponent<MoveComponent>();
         }
 
         private void FixedUpdate()
         {
             Vector2 direction = new Vector2(this.inputManager.MoveDirection, 0);
-            
-            this.containInBoundsController.CorrectDirection(ref direction, this.moveComponent.transform.position);
-            this.moveComponent.Move(direction * Time.fixedDeltaTime);
 
+            this.containInBoundsCorrector.CorrectDirection(ref direction, this.moveComponent.transform.position);
+            this.moveComponent.Move(direction * Time.fixedDeltaTime);
         }
     }
 }

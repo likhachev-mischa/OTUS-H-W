@@ -10,12 +10,10 @@ namespace ShootEmUp
         private bool isPlayer;
         private int damage;
 
-        [SerializeField]
-        private new Rigidbody2D rigidbody2D;
+        [SerializeField] private new Rigidbody2D rigidbody2D;
 
-        [SerializeField]
-        private SpriteRenderer spriteRenderer;
-        
+        [SerializeField] private SpriteRenderer spriteRenderer;
+
         public bool IsPlayer
         {
             get => isPlayer;
@@ -27,16 +25,32 @@ namespace ShootEmUp
             get => damage;
             set => damage = value;
         }
-        public Vector2 Velocity { set => rigidbody2D.velocity = value; }
-        public int PhysicsLayer { set => gameObject.layer = value; }
-        public Vector3 Position { set => transform.position = value; }
-        public Color Color { set => spriteRenderer.color = value; }
-        
+
+        public Vector2 Velocity
+        {
+            set => rigidbody2D.velocity = value;
+        }
+
+        public int PhysicsLayer
+        {
+            set => gameObject.layer = value;
+        }
+
+        public Vector3 Position
+        {
+            set => transform.position = value;
+        }
+
+        public Color Color
+        {
+            set => spriteRenderer.color = value;
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             this.OnCollisionEntered?.Invoke(this, collision);
         }
-        
+
         public struct Args
         {
             public Vector2 position;
@@ -47,5 +61,4 @@ namespace ShootEmUp
             public bool isPlayer;
         }
     }
-    
 }
