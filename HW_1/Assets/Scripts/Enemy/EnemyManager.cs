@@ -29,14 +29,14 @@ namespace ShootEmUp
             }
 
             enemy.SetPosition(this.enemyPositions.RandomSpawnPosition().position);
-            enemy.Enable();
+            enemy.OnStart();
             enemy.SetDestination(this.enemyPositions.RandomAttackPosition().position);
             enemy.SetTarget(this.character);
         }
 
         public void DespawnEnemy(Enemy enemy)
         {
-            enemy.Disable();
+            enemy.OnFinish();
             enemyPool.RemoveObject(enemy);
         }
     }

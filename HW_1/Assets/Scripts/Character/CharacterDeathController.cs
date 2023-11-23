@@ -2,9 +2,11 @@
 
 namespace ShootEmUp
 {
-    public class CharacterDeathController : MonoBehaviour
+    public class CharacterDeathController : MonoBehaviour,
+        IGameStartListener,
+        IGameFinishListener
     {
-        private GameManager gameManager;
+        private GameFinisher gameFinisher;
 
         [SerializeField] private GameObject character;
 
@@ -13,23 +15,22 @@ namespace ShootEmUp
         private void Awake()
         {
             this.deathComponent = this.character.GetComponent<DeathComponent>();
-            this.gameManager = FindObjectOfType<GameManager>();
+            this.gameFinisher = FindObjectOfType<GameFinisher>();
         }
 
-        private void OnEnable()
+        public void OnStart()
         {
             this.deathComponent.DeathEvent += this.OnCharacterDeath;
         }
 
-        private void OnDisable()
+        public void OnFinish()
         {
             this.deathComponent.DeathEvent -= this.OnCharacterDeath;
         }
 
-
         private void OnCharacterDeath()
         {
-            this.gameManager.FinishGame();
+            this.gameFinisher.FinishGame();
         }
     }
 }

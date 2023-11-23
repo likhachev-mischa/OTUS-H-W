@@ -2,7 +2,9 @@
 
 namespace ShootEmUp
 {
-    public sealed class Enemy : MonoBehaviour
+    public sealed class Enemy : MonoBehaviour,
+        IGameStartListener,
+        IGameFinishListener
     {
         private EnemyAttackAgent enemyAttackAgent;
         private EnemyMoveAgent enemyMoveAgent;
@@ -19,7 +21,7 @@ namespace ShootEmUp
             this.initialHealth = healthComponent.Health;
         }
 
-        public void Enable()
+        public void OnStart()
         {
             this.enemyAttackAgent.enabled = false;
             this.enemyMoveAgent.enabled = true;
@@ -28,7 +30,7 @@ namespace ShootEmUp
             this.enemyMoveAgent.TargetReachedEvent += OnTargetReached;
         }
 
-        public void Disable()
+        public void OnFinish()
         {
             this.enemyAttackAgent.enabled = false;
             this.enemyMoveAgent.enabled = false;

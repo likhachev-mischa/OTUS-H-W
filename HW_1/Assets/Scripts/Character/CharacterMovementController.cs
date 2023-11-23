@@ -3,7 +3,8 @@
 namespace ShootEmUp
 
 {
-    public class CharacterMovementController : MonoBehaviour
+    public class CharacterMovementController : MonoBehaviour,
+        IGameFixedUpdateListener
     {
         [SerializeField] private InputManager inputManager;
 
@@ -18,12 +19,12 @@ namespace ShootEmUp
             this.moveComponent = this.character.GetComponent<MoveComponent>();
         }
 
-        private void FixedUpdate()
+        public void OnFixedUpdate(float deltaTime)
         {
             Vector2 direction = new Vector2(this.inputManager.MoveDirection, 0);
 
             this.containInBoundsCorrector.CorrectDirection(ref direction, this.moveComponent.transform.position);
-            this.moveComponent.Move(direction * Time.fixedDeltaTime);
+            this.moveComponent.Move(direction * deltaTime);
         }
     }
 }

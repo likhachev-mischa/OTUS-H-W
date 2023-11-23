@@ -3,7 +3,8 @@ using UnityEngine.Serialization;
 
 namespace ShootEmUp
 {
-    public sealed class EnemySpawner : MonoBehaviour
+    public sealed class EnemySpawner : MonoBehaviour,
+        IGameUpdateListener
     {
         [SerializeField] private EnemyManager enemyManager;
 
@@ -21,9 +22,9 @@ namespace ShootEmUp
             timeElapsed = spawnDelay;
         }
 
-        private void Update()
+        public void OnUpdate(float deltaTime)
         {
-            timeElapsed -= Time.deltaTime;
+            timeElapsed -= deltaTime;
             if (timeElapsed > 0)
             {
                 return;

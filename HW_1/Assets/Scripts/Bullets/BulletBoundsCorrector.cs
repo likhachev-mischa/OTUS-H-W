@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public class BulletBoundsCorrector : MonoBehaviour
+    public class BulletBoundsCorrector : MonoBehaviour,
+        IGameFixedUpdateListener
     {
         [SerializeField] private LevelBounds levelBounds;
         [SerializeField] private BulletManager bulletManager;
@@ -16,7 +17,7 @@ namespace ShootEmUp
             bullets.Add(bullet);
         }
 
-        private void FixedUpdate()
+        public void OnFixedUpdate(float deltaTime)
         {
             for (var index = 0; index < bullets.Count; index++)
             {

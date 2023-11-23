@@ -4,7 +4,10 @@ using UnityEngine;
 namespace ShootEmUp
 {
     [RequireComponent(typeof(ShootComponent), typeof(WeaponComponent))]
-    public sealed class EnemyAttackAgent : MonoBehaviour
+    public sealed class EnemyAttackAgent : MonoBehaviour,
+        IGameStartListener,
+        IGameFinishListener,
+        IGameFixedUpdateListener
     {
         private WeaponComponent weaponComponent;
         private ShootComponent shootComponent;
@@ -21,14 +24,14 @@ namespace ShootEmUp
             this.shootComponent = this.GetComponent<ShootComponent>();
         }
 
-        private void OnEnable()
+        public void OnStart()
         {
             this.FireEvent += this.shootComponent.OnFireBullet;
         }
 
-        private void FixedUpdate()
+        public void OnFixedUpdate(float deltaTime)
         {
-            this.currentTime -= Time.fixedDeltaTime;
+            this.currentTime -= deltaTime;
             if (this.currentTime > 0)
             {
                 return;
@@ -42,12 +45,10 @@ namespace ShootEmUp
             this.Reset();
         }
 
-
-        private void OnDisable()
+        public void OnFinish()
         {
             this.FireEvent -= this.shootComponent.OnFireBullet;
         }
-
 
         public void SetTarget(GameObject target)
         {
@@ -57,11 +58,6 @@ namespace ShootEmUp
         public void Reset()
         {
             this.currentTime = this.cooldown;
-        }
-
-        public void OnTargetReached()
-        {
-            this.enabled = true;
         }
     }
 }

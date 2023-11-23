@@ -4,7 +4,9 @@ using UnityEngine;
 namespace ShootEmUp
 {
     [RequireComponent(typeof(DeathComponent))]
-    public class EnemyDeathAgent : MonoBehaviour
+    public class EnemyDeathAgent : MonoBehaviour,
+        IGameStartListener,
+        IGameFinishListener
     {
         private EnemyManager enemyManager;
         private DeathComponent deathComponent;
@@ -18,12 +20,12 @@ namespace ShootEmUp
             this.enemyManager = FindObjectOfType<EnemyManager>();
         }
 
-        private void OnEnable()
+        public void OnStart()
         {
             this.deathComponent.DeathEvent += this.OnEnemyDeath;
         }
 
-        private void OnDisable()
+        public void OnFinish()
         {
             this.deathComponent.DeathEvent -= this.OnEnemyDeath;
         }
