@@ -42,12 +42,10 @@ namespace ShootEmUp
             this.Reset();
         }
 
-
         private void OnDisable()
         {
             this.FireEvent -= this.shootComponent.OnFireBullet;
         }
-
 
         public void SetTarget(GameObject target)
         {
@@ -57,11 +55,6 @@ namespace ShootEmUp
         public void Reset()
         {
             this.currentTime = this.cooldown;
-        }
-
-        public void OnTargetReached()
-        {
-            this.enabled = true;
         }
     }
 }

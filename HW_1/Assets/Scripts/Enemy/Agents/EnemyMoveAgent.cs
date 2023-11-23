@@ -13,12 +13,10 @@ namespace ShootEmUp
         private Vector2 destination;
 
         private MoveComponent moveComponent;
-        private Enemy enemy;
 
         private void Awake()
         {
             this.moveComponent = this.GetComponent<MoveComponent>();
-            this.enemy = this.GetComponent<Enemy>();
         }
 
         public void SetDestination(Vector2 endPoint)
