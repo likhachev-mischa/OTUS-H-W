@@ -90,7 +90,7 @@ namespace ShootEmUp
 
             this.State = GameState.PAUSED;
         }
-        
+
         [ContextMenu("ResumeGame")]
         public void ResumeGame()
         {

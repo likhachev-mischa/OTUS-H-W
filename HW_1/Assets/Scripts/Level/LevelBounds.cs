@@ -4,18 +4,14 @@ namespace ShootEmUp
 {
     public sealed class LevelBounds : MonoBehaviour
     {
-        [SerializeField]
-        private Transform leftBorder;
+        [SerializeField] private Transform leftBorder;
 
-        [SerializeField]
-        private Transform rightBorder;
+        [SerializeField] private Transform rightBorder;
 
-        [SerializeField]
-        private Transform downBorder;
+        [SerializeField] private Transform downBorder;
 
-        [SerializeField]
-        private Transform topBorder;
-        
+        [SerializeField] private Transform topBorder;
+
         public Transform LeftBorder => leftBorder;
 
         public Transform RightBorder => rightBorder;

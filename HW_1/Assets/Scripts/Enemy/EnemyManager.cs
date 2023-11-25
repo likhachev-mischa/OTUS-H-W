@@ -10,8 +10,8 @@ namespace ShootEmUp
         [SerializeField] private GameObject prefab;
         [SerializeField] private Transform worldTransform;
         [SerializeField] private GameManager gameManager;
-        
-        
+
+
         [SerializeField] private EnemyPositions enemyPositions;
         [SerializeField] private GameObject character;
 

@@ -66,7 +66,7 @@ namespace ShootEmUp
         private void Awake()
         {
             this.bulletDamageHandler = new BulletDamageHandler(this);
-            this.bulletCollisionHandler = new BulletCollisionHandler(this, bulletManager);
+            this.bulletCollisionHandler = new BulletCollisionHandler(this);
         }
 
         public void Enable()
@@ -116,7 +116,7 @@ namespace ShootEmUp
         {
             this.bulletManager.DespawnBullet(this);
         }
-        
+
         public struct Args
         {
             public Vector2 position;

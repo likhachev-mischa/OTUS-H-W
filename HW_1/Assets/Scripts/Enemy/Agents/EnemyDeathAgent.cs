@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ShootEmUp
 {
@@ -22,11 +21,13 @@ namespace ShootEmUp
 
         public void OnStart()
         {
+            deathComponent.Enable();
             this.deathComponent.DeathEvent += this.OnEnemyDeath;
         }
 
         public void OnFinish()
         {
+            deathComponent.Disable();
             this.deathComponent.DeathEvent -= this.OnEnemyDeath;
         }
 

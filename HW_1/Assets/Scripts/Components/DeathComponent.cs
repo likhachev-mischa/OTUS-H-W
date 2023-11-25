@@ -4,9 +4,7 @@ using UnityEngine;
 namespace ShootEmUp
 {
     [RequireComponent(typeof(HealthComponent))]
-    public sealed class DeathComponent : MonoBehaviour,
-        IGameStartListener,
-        IGameFinishListener
+    public sealed class DeathComponent : MonoBehaviour
     {
         private HealthComponent healthComponent;
         public event Action DeathEvent;
@@ -16,12 +14,12 @@ namespace ShootEmUp
             this.healthComponent = this.GetComponent<HealthComponent>();
         }
 
-        public void OnStart()
+        public void Enable()
         {
             this.healthComponent.TakeDamageEvent += this.OnDeath;
         }
 
-        public void OnFinish()
+        public void Disable()
         {
             this.healthComponent.TakeDamageEvent += this.OnDeath;
         }

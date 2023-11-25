@@ -72,7 +72,6 @@
      <Compile Include="Assets\Scripts\Character\ContainInBoundsCorrector.cs" />
      <Compile Include="Assets\Scripts\Bullets\BulletBoundsCorrector.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
-     <Compile Include="Assets\Scripts\GameManager\GameFinisher.cs" />
      <Compile Include="Assets\Scripts\GameManager\GameListeners.cs" />
      <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -20,24 +20,22 @@ namespace ShootEmUp
 
             this.healthComponent = this.GetComponent<HealthComponent>();
             this.initialHealth = healthComponent.Health;
-            
         }
-        
+
         public void SetManager(GameManager gameManager)
         {
             this.gameManager = gameManager;
         }
-        
+
         public void Enable()
         {
             this.gameManager.AddListener(this.moveAgent);
             this.gameManager.AddListener(this.deathAgent);
-            
+
             this.deathAgent.OnStart();
-            
+
             this.healthComponent.Health = this.initialHealth;
             this.moveAgent.OnTargetReached += this.OnTargetReached;
-            
         }
 
         public void Disable()
@@ -45,12 +43,11 @@ namespace ShootEmUp
             this.gameManager.RemoveListener(this.attackAgent);
             this.gameManager.RemoveListener(this.moveAgent);
             this.gameManager.RemoveListener(this.deathAgent);
-            
+
             this.attackAgent.OnFinish();
             this.deathAgent.OnFinish();
 
             this.moveAgent.OnTargetReached -= this.OnTargetReached;
-            
         }
 
         public void SetPosition(Vector3 position)
@@ -72,7 +69,7 @@ namespace ShootEmUp
         {
             this.gameManager.RemoveListener(this.moveAgent);
             this.gameManager.AddListener(this.attackAgent);
-            
+
             this.attackAgent.OnStart();
         }
     }

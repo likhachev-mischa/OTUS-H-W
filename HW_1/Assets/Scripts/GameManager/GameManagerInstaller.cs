@@ -19,7 +19,6 @@ namespace ShootEmUp
                     manager.AddListener(listeners[j]);
                 }
             }
-            
         }
     }
 }

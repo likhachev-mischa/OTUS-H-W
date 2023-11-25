@@ -6,15 +6,14 @@ namespace ShootEmUp
     {
         private Bullet bullet;
 
-        public BulletCollisionHandler(Bullet bullet,BulletManager bulletManager)
+        public BulletCollisionHandler(Bullet bullet)
         {
             this.bullet = bullet;
         }
-        
+
         public void Enable()
         {
             this.bullet.OnCollisionEntered += this.OnBulletCollision;
-            
         }
 
         public void Disable()

@@ -6,7 +6,7 @@ namespace ShootEmUp
         IGameStartListener,
         IGameFinishListener
     {
-        private GameFinisher gameFinisher;
+        private GameManager gameManager;
 
         [SerializeField] private GameObject character;
 
@@ -15,22 +15,24 @@ namespace ShootEmUp
         private void Awake()
         {
             this.deathComponent = this.character.GetComponent<DeathComponent>();
-            this.gameFinisher = FindObjectOfType<GameFinisher>();
+            this.gameManager = FindObjectOfType<GameManager>();
         }
 
         public void OnStart()
         {
+            deathComponent.Enable();
             this.deathComponent.DeathEvent += this.OnCharacterDeath;
         }
 
         public void OnFinish()
         {
+            deathComponent.Disable();
             this.deathComponent.DeathEvent -= this.OnCharacterDeath;
         }
 
         private void OnCharacterDeath()
         {
-            this.gameFinisher.FinishGame();
+            this.gameManager.FinishGame();
         }
     }
 }
