@@ -4,6 +4,11 @@
     {
     }
 
+    public interface IInitializeListener
+    {
+        void OnInitialize();
+    }
+
     public interface IGameStartListener : IGameListener
     {
         void OnStart();

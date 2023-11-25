@@ -4,26 +4,27 @@ namespace ShootEmUp
 {
     public sealed class BulletCollisionHandler
     {
-        private BulletManager bulletManager;
+        private Bullet bullet;
 
-        public BulletCollisionHandler(BulletManager bulletManager)
+        public BulletCollisionHandler(Bullet bullet,BulletManager bulletManager)
         {
-            this.bulletManager = bulletManager;
+            this.bullet = bullet;
+        }
+        
+        public void Enable()
+        {
+            this.bullet.OnCollisionEntered += this.OnBulletCollision;
+            
         }
 
-        public void Enable(Bullet bullet)
+        public void Disable()
         {
-            bullet.OnCollisionEntered += this.OnBulletCollision;
+            this.bullet.OnCollisionEntered -= this.OnBulletCollision;
         }
 
-        public void Disable(Bullet bullet)
+        private void OnBulletCollision(Collision2D collision)
         {
-            bullet.OnCollisionEntered -= this.OnBulletCollision;
-        }
-
-        private void OnBulletCollision(Bullet bullet, Collision2D collision)
-        {
-            bulletManager.DespawnBullet(bullet);
+            this.bullet.Despawn();
         }
     }
 }

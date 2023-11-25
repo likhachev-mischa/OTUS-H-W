@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class LevelBackground : MonoBehaviour
+    public sealed class LevelBackground : MonoBehaviour,
+        IGameFixedUpdateListener
     {
         private float startPositionY;
 
@@ -31,7 +32,7 @@ namespace ShootEmUp
             this.positionZ = position.z;
         }
 
-        private void FixedUpdate()
+        public void OnFixedUpdate(float deltaTime)
         {
             if (this.myTransform.position.y <= this.endPositionY)
             {
@@ -44,7 +45,7 @@ namespace ShootEmUp
 
             this.myTransform.position -= new Vector3(
                 this.positionX,
-                this.movingSpeedY * Time.fixedDeltaTime,
+                this.movingSpeedY * deltaTime,
                 this.positionZ
             );
         }

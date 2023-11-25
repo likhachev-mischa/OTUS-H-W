@@ -10,12 +10,13 @@ namespace ShootEmUp
         [SerializeField] private Transform container;
         [SerializeField] private GameObject prefab;
         [SerializeField] private Transform worldTransform;
+        [SerializeField] private GameManager gameManager;
+        
 
         private ObjectPool<Bullet> bulletPool;
 
         private BulletBoundsCorrector bulletBoundsCorrector;
-        private BulletCollisionHandler bulletCollisionHandler;
-        private BulletDamageHandler bulletDamageHandler;
+
 
         private void Awake()
         {
@@ -23,8 +24,6 @@ namespace ShootEmUp
 
             bulletPool = new ObjectPool<Bullet>(initialCount, container, prefab, worldTransform);
             bulletPool.Initialize();
-            bulletCollisionHandler = new BulletCollisionHandler(this);
-            bulletDamageHandler = new BulletDamageHandler();
         }
 
         public bool SpawnBullet(out Bullet bullet)
@@ -34,16 +33,16 @@ namespace ShootEmUp
                 return false;
             }
 
-            bulletDamageHandler.Enable(bullet);
-            bulletCollisionHandler.Enable(bullet);
+            bullet.SetBulletManager(this);
+            bullet.SetManager(gameManager);
+            bullet.Enable();
             bulletBoundsCorrector.Enable(bullet);
             return true;
         }
 
         public void DespawnBullet(Bullet bullet)
         {
-            bulletDamageHandler.Disable(bullet);
-            bulletCollisionHandler.Disable(bullet);
+            bullet.Disable();
             bulletBoundsCorrector.Disable(bullet);
             bulletPool.RemoveObject(bullet);
         }

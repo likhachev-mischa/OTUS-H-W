@@ -7,7 +7,7 @@ namespace ShootEmUp
     public sealed class EnemyMoveAgent : MonoBehaviour,
         IGameFixedUpdateListener
     {
-        public event Action TargetReachedEvent;
+        public event Action OnTargetReached;
 
         [SerializeField] private float reachOffset = 0.25f;
 
@@ -30,12 +30,13 @@ namespace ShootEmUp
             var vector = this.destination - (Vector2)this.transform.position;
             if (vector.magnitude <= reachOffset)
             {
-                TargetReachedEvent?.Invoke();
+                OnTargetReached?.Invoke();
                 return;
             }
 
             var direction = vector.normalized * deltaTime;
             this.moveComponent.Move(direction);
         }
+        
     }
 }

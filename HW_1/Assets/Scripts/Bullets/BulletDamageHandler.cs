@@ -4,17 +4,24 @@ namespace ShootEmUp
 {
     public sealed class BulletDamageHandler
     {
-        public void Enable(Bullet bullet)
+        private Bullet bullet;
+
+        public BulletDamageHandler(Bullet bullet)
         {
-            bullet.OnCollisionEntered += DealDamage;
+            this.bullet = bullet;
+        }
+        
+        public void Enable()
+        {
+            this.bullet.OnCollisionEntered += DealDamage;
         }
 
-        public void Disable(Bullet bullet)
+        public void Disable()
         {
-            bullet.OnCollisionEntered -= DealDamage;
+            this.bullet.OnCollisionEntered -= DealDamage;
         }
 
-        private static void DealDamage(Bullet bullet, Collision2D collision)
+        private void DealDamage(Collision2D collision)
         {
             var other = collision.gameObject;
 
@@ -23,7 +30,7 @@ namespace ShootEmUp
                 return;
             }
 
-            if (bullet.IsPlayer == team.IsPlayer)
+            if (this.bullet.IsPlayer == team.IsPlayer)
             {
                 return;
             }

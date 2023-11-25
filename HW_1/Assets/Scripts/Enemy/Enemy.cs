@@ -2,40 +2,55 @@
 
 namespace ShootEmUp
 {
-    public sealed class Enemy : MonoBehaviour,
-        IGameStartListener,
-        IGameFinishListener
+    public sealed class Enemy : MonoBehaviour
     {
-        private EnemyAttackAgent enemyAttackAgent;
-        private EnemyMoveAgent enemyMoveAgent;
+        private EnemyAttackAgent attackAgent;
+        private EnemyMoveAgent moveAgent;
+        private EnemyDeathAgent deathAgent;
 
         private HealthComponent healthComponent;
         private int initialHealth;
+        private GameManager gameManager;
 
         private void Awake()
         {
-            this.enemyAttackAgent = this.GetComponent<EnemyAttackAgent>();
-            this.enemyMoveAgent = this.GetComponent<EnemyMoveAgent>();
+            this.attackAgent = this.GetComponent<EnemyAttackAgent>();
+            this.moveAgent = this.GetComponent<EnemyMoveAgent>();
+            this.deathAgent = this.GetComponent<EnemyDeathAgent>();
 
             this.healthComponent = this.GetComponent<HealthComponent>();
             this.initialHealth = healthComponent.Health;
+            
+        }
+        
+        public void SetManager(GameManager gameManager)
+        {
+            this.gameManager = gameManager;
+        }
+        
+        public void Enable()
+        {
+            this.gameManager.AddListener(this.moveAgent);
+            this.gameManager.AddListener(this.deathAgent);
+            
+            this.deathAgent.OnStart();
+            
+            this.healthComponent.Health = this.initialHealth;
+            this.moveAgent.OnTargetReached += this.OnTargetReached;
+            
         }
 
-        public void OnStart()
+        public void Disable()
         {
-            this.enemyAttackAgent.enabled = false;
-            this.enemyMoveAgent.enabled = true;
-            this.healthComponent.Health = initialHealth;
+            this.gameManager.RemoveListener(this.attackAgent);
+            this.gameManager.RemoveListener(this.moveAgent);
+            this.gameManager.RemoveListener(this.deathAgent);
+            
+            this.attackAgent.OnFinish();
+            this.deathAgent.OnFinish();
 
-            this.enemyMoveAgent.TargetReachedEvent += OnTargetReached;
-        }
-
-        public void OnFinish()
-        {
-            this.enemyAttackAgent.enabled = false;
-            this.enemyMoveAgent.enabled = false;
-
-            this.enemyMoveAgent.TargetReachedEvent -= OnTargetReached;
+            this.moveAgent.OnTargetReached -= this.OnTargetReached;
+            
         }
 
         public void SetPosition(Vector3 position)
@@ -45,18 +60,20 @@ namespace ShootEmUp
 
         public void SetDestination(Vector2 destination)
         {
-            this.enemyMoveAgent.SetDestination(destination);
+            this.moveAgent.SetDestination(destination);
         }
 
         public void SetTarget(GameObject target)
         {
-            this.enemyAttackAgent.SetTarget(target);
+            this.attackAgent.SetTarget(target);
         }
 
         private void OnTargetReached()
         {
-            this.enemyMoveAgent.enabled = false;
-            this.enemyAttackAgent.enabled = true;
+            this.gameManager.RemoveListener(this.moveAgent);
+            this.gameManager.AddListener(this.attackAgent);
+            
+            this.attackAgent.OnStart();
         }
     }
 }

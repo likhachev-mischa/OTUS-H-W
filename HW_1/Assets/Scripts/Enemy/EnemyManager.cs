@@ -9,7 +9,9 @@ namespace ShootEmUp
         [SerializeField] private Transform container;
         [SerializeField] private GameObject prefab;
         [SerializeField] private Transform worldTransform;
-
+        [SerializeField] private GameManager gameManager;
+        
+        
         [SerializeField] private EnemyPositions enemyPositions;
         [SerializeField] private GameObject character;
 
@@ -28,15 +30,16 @@ namespace ShootEmUp
                 return;
             }
 
+            enemy.SetManager(gameManager);
             enemy.SetPosition(this.enemyPositions.RandomSpawnPosition().position);
-            enemy.OnStart();
+            enemy.Enable();
             enemy.SetDestination(this.enemyPositions.RandomAttackPosition().position);
             enemy.SetTarget(this.character);
         }
 
         public void DespawnEnemy(Enemy enemy)
         {
-            enemy.OnFinish();
+            enemy.Disable();
             enemyPool.RemoveObject(enemy);
         }
     }
