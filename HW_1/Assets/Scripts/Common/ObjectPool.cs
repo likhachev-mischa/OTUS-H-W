@@ -12,7 +12,9 @@ namespace ShootEmUp
         private Transform worldTransform;
 
         private Queue<T> objectPool = new();
-        private HashSet<T> activeObjects = new();
+        private List<T> activeObjects = new();
+
+        public List<T> ActiveObjects => activeObjects;
 
         public ObjectPool(int initialCount, Transform container, GameObject prefab,
             Transform worldTransform)

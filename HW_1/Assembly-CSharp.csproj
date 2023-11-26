@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\GameManager\GameManagerInstaller.cs" />
      <Compile Include="Assets\Scripts\Common\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterMovementController.cs" />
+     <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Input\InputManager.cs" />
      <Compile Include="Assets\Scripts\Enemy\Agents\EnemyAttackAgent.cs" />
      <Compile Include="Assets\Scripts\Level\LevelBackground.cs" />
@@ -73,7 +74,6 @@
      <Compile Include="Assets\Scripts\Bullets\BulletBoundsCorrector.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\GameManager\GameListeners.cs" />
-     <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

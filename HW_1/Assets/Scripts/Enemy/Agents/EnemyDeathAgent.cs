@@ -3,9 +3,7 @@
 namespace ShootEmUp
 {
     [RequireComponent(typeof(DeathComponent))]
-    public class EnemyDeathAgent : MonoBehaviour,
-        IGameStartListener,
-        IGameFinishListener
+    public class EnemyDeathAgent : MonoBehaviour
     {
         private EnemyManager enemyManager;
         private DeathComponent deathComponent;
@@ -19,16 +17,18 @@ namespace ShootEmUp
             this.enemyManager = FindObjectOfType<EnemyManager>();
         }
 
-        public void OnStart()
+        public void Enable()
         {
             deathComponent.Enable();
             this.deathComponent.DeathEvent += this.OnEnemyDeath;
+            this.enabled = true;
         }
 
-        public void OnFinish()
+        public void Disable()
         {
             deathComponent.Disable();
             this.deathComponent.DeathEvent -= this.OnEnemyDeath;
+            this.enabled = false;
         }
 
         private void OnEnemyDeath()

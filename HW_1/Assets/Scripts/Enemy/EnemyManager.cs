@@ -2,16 +2,14 @@
 
 namespace ShootEmUp
 {
-    public class EnemyManager : MonoBehaviour
+    public class EnemyManager : MonoBehaviour,
+        IGameFixedUpdateListener
     {
         [SerializeField] private int initialCount = 7;
 
         [SerializeField] private Transform container;
         [SerializeField] private GameObject prefab;
         [SerializeField] private Transform worldTransform;
-        [SerializeField] private GameManager gameManager;
-
-
         [SerializeField] private EnemyPositions enemyPositions;
         [SerializeField] private GameObject character;
 
@@ -30,7 +28,6 @@ namespace ShootEmUp
                 return;
             }
 
-            enemy.SetManager(gameManager);
             enemy.SetPosition(this.enemyPositions.RandomSpawnPosition().position);
             enemy.Enable();
             enemy.SetDestination(this.enemyPositions.RandomAttackPosition().position);
@@ -41,6 +38,14 @@ namespace ShootEmUp
         {
             enemy.Disable();
             enemyPool.RemoveObject(enemy);
+        }
+
+        public void OnFixedUpdate(float deltaTime)
+        {
+            for (var i = 0; i < this.enemyPool.ActiveObjects.Count; i++)
+            {
+                this.enemyPool.ActiveObjects[i].OnFixedUpdate(deltaTime);
+            }
         }
     }
 }

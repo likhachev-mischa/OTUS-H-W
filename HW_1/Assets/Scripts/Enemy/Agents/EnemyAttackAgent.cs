@@ -5,8 +5,6 @@ namespace ShootEmUp
 {
     [RequireComponent(typeof(ShootComponent), typeof(WeaponComponent))]
     public sealed class EnemyAttackAgent : MonoBehaviour,
-        IGameStartListener,
-        IGameFinishListener,
         IGameFixedUpdateListener
     {
         private WeaponComponent weaponComponent;
@@ -24,8 +22,10 @@ namespace ShootEmUp
             this.shootComponent = this.GetComponent<ShootComponent>();
         }
 
-        public void OnStart()
+        public void Enable()
         {
+            this.enabled = true;
+            this.Reset();
             this.FireEvent += this.shootComponent.OnFireBullet;
         }
 
@@ -45,8 +45,9 @@ namespace ShootEmUp
             this.Reset();
         }
 
-        public void OnFinish()
+        public void Disable()
         {
+            this.enabled = false;
             this.FireEvent -= this.shootComponent.OnFireBullet;
         }
 

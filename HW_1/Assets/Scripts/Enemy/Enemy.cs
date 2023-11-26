@@ -2,7 +2,8 @@
 
 namespace ShootEmUp
 {
-    public sealed class Enemy : MonoBehaviour
+    public sealed class Enemy : MonoBehaviour,
+        IGameFixedUpdateListener
     {
         private EnemyAttackAgent attackAgent;
         private EnemyMoveAgent moveAgent;
@@ -10,7 +11,6 @@ namespace ShootEmUp
 
         private HealthComponent healthComponent;
         private int initialHealth;
-        private GameManager gameManager;
 
         private void Awake()
         {
@@ -22,17 +22,10 @@ namespace ShootEmUp
             this.initialHealth = healthComponent.Health;
         }
 
-        public void SetManager(GameManager gameManager)
-        {
-            this.gameManager = gameManager;
-        }
-
         public void Enable()
         {
-            this.gameManager.AddListener(this.moveAgent);
-            this.gameManager.AddListener(this.deathAgent);
-
-            this.deathAgent.OnStart();
+            this.moveAgent.Enable();
+            this.deathAgent.Enable();
 
             this.healthComponent.Health = this.initialHealth;
             this.moveAgent.OnTargetReached += this.OnTargetReached;
@@ -40,15 +33,34 @@ namespace ShootEmUp
 
         public void Disable()
         {
-            this.gameManager.RemoveListener(this.attackAgent);
-            this.gameManager.RemoveListener(this.moveAgent);
-            this.gameManager.RemoveListener(this.deathAgent);
+            this.deathAgent.Disable();
 
-            this.attackAgent.OnFinish();
-            this.deathAgent.OnFinish();
+            if (this.moveAgent.enabled)
+            {
+                this.moveAgent.Disable();
+            }
+
+            if (this.attackAgent.enabled)
+            {
+                this.attackAgent.Disable();
+            }
 
             this.moveAgent.OnTargetReached -= this.OnTargetReached;
         }
+
+        public void OnFixedUpdate(float deltaTime)
+        {
+            if (this.moveAgent.enabled)
+            {
+                this.moveAgent.OnFixedUpdate(deltaTime);
+            }
+
+            if (this.attackAgent.enabled)
+            {
+                this.attackAgent.OnFixedUpdate(deltaTime);
+            }
+        }
+
 
         public void SetPosition(Vector3 position)
         {
@@ -67,10 +79,8 @@ namespace ShootEmUp
 
         private void OnTargetReached()
         {
-            this.gameManager.RemoveListener(this.moveAgent);
-            this.gameManager.AddListener(this.attackAgent);
-
-            this.attackAgent.OnStart();
+            this.moveAgent.Disable();
+            this.attackAgent.Enable();
         }
     }
 }

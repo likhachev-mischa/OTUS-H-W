@@ -20,6 +20,16 @@ namespace ShootEmUp
             this.moveComponent = this.GetComponent<MoveComponent>();
         }
 
+        public void Enable()
+        {
+            this.enabled = true;
+        }
+
+        public void Disable()
+        {
+            this.enabled = false;
+        }
+
         public void SetDestination(Vector2 endPoint)
         {
             this.destination = endPoint;
@@ -37,6 +47,5 @@ namespace ShootEmUp
             var direction = vector.normalized * deltaTime;
             this.moveComponent.Move(direction);
         }
-        
     }
 }

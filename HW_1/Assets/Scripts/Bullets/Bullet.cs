@@ -11,7 +11,6 @@ namespace ShootEmUp
         private BulletCollisionHandler bulletCollisionHandler;
         private BulletDamageHandler bulletDamageHandler;
         private BulletManager bulletManager;
-        private GameManager gameManager;
         public event Action<Collision2D> OnCollisionEntered;
 
         private bool isPlayer;
@@ -58,11 +57,6 @@ namespace ShootEmUp
             this.bulletManager = bulletManager;
         }
 
-        public void SetManager(GameManager gameManager)
-        {
-            this.gameManager = gameManager;
-        }
-
         private void Awake()
         {
             this.bulletDamageHandler = new BulletDamageHandler(this);
@@ -71,14 +65,12 @@ namespace ShootEmUp
 
         public void Enable()
         {
-            gameManager.AddListener(this);
             this.bulletCollisionHandler.Enable();
             this.bulletDamageHandler.Enable();
         }
 
         public void Disable()
         {
-            gameManager.RemoveListener(this);
             this.bulletCollisionHandler.Disable();
             this.bulletDamageHandler.Disable();
         }

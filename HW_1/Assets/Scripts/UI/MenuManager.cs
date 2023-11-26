@@ -31,6 +31,7 @@ namespace ShootEmUp
         IEnumerator StartGame(int delay)
         {
             this.startButton.SetActive(false);
+            this.countdownText.gameObject.SetActive(true);
             for (int i = delay; i > 0; --i)
             {
                 this.countdownText.text = $"{i}";

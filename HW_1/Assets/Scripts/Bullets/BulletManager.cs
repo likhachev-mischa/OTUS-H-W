@@ -3,14 +3,16 @@ using UnityEngine;
 namespace ShootEmUp
 {
     [RequireComponent(typeof(BulletBoundsCorrector))]
-    public sealed class BulletManager : MonoBehaviour
+    public sealed class BulletManager : MonoBehaviour,
+        IGamePauseListener,
+        IGameResumeListener,
+        IGameFinishListener
     {
         [SerializeField] private int initialCount = 50;
 
         [SerializeField] private Transform container;
         [SerializeField] private GameObject prefab;
         [SerializeField] private Transform worldTransform;
-        [SerializeField] private GameManager gameManager;
 
         private ObjectPool<Bullet> bulletPool;
 
@@ -33,7 +35,6 @@ namespace ShootEmUp
             }
 
             bullet.SetBulletManager(this);
-            bullet.SetManager(gameManager);
             bullet.Enable();
             bulletBoundsCorrector.Enable(bullet);
             return true;
@@ -44,6 +45,30 @@ namespace ShootEmUp
             bullet.Disable();
             bulletBoundsCorrector.Disable(bullet);
             bulletPool.RemoveObject(bullet);
+        }
+
+        public void OnPause()
+        {
+            for (var index = 0; index < this.bulletPool.ActiveObjects.Count; index++)
+            {
+                this.bulletPool.ActiveObjects[index].OnPause();
+            }
+        }
+
+        public void OnResume()
+        {
+            for (var index = 0; index < this.bulletPool.ActiveObjects.Count; index++)
+            {
+                this.bulletPool.ActiveObjects[index].OnResume();
+            }
+        }
+
+        public void OnFinish()
+        {
+            for (var index = 0; index < this.bulletPool.ActiveObjects.Count; index++)
+            {
+                this.bulletPool.ActiveObjects[index].OnFinish();
+            }
         }
     }
 }
