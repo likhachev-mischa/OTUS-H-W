@@ -492,7 +492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &317197434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,7 +822,6 @@ MonoBehaviour:
   container: {fileID: 178513672}
   prefab: {fileID: 559606060570185700, guid: 87fe189881a524806800482ac8eaaa83, type: 3}
   worldTransform: {fileID: 1683128698}
-  gameManager: {fileID: 3951702117947426125}
   enemyPositions: {fileID: 7166351703523243261}
   character: {fileID: 4414282821800802397}
 --- !u!1 &597073486
@@ -1147,7 +1146,6 @@ MonoBehaviour:
   container: {fileID: 1831741369}
   prefab: {fileID: 2743036428890533592, guid: 5fe72886874b4e445b06cf777ca4920d, type: 3}
   worldTransform: {fileID: 1683128698}
-  gameManager: {fileID: 3951702117947426125}
 --- !u!1 &1049219807
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,7 +2182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyManager: {fileID: 562298205}
-  spawnDelay: 2
+  spawnDelay: 5
 --- !u!1 &1996296025
 GameObject:
   m_ObjectHideFlags: 0
