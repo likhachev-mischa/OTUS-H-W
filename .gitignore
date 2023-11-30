@@ -2,3 +2,6 @@
 **/Logs
 **/Temp
 **/UserSettings
+**/obj
+*.sln
+*.csproj
