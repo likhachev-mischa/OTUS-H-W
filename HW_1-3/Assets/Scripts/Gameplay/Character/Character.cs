@@ -1,6 +1,6 @@
 ﻿namespace ShootEmUp
 {
-    public class GameManagerInstaller
+    public class Character
     {
         
     }

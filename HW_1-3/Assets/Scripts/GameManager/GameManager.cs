@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -113,6 +114,13 @@ namespace ShootEmUp
             this.State = GameState.FINISHED;
         }
 
+        public void AddListeners(IEnumerable<IGameListener> listeners)
+        {
+            foreach (var listener in listeners)
+            {
+                this.AddListener(listener);
+            }
+        }
 
         public void AddListener(IGameListener listener)
         {
@@ -121,40 +129,23 @@ namespace ShootEmUp
                 return;
             }
 
-            if (listener is IGameStartListener startListener)
+            this.AddListeners(listener as IGameStartListener, startListeners);
+            this.AddListeners(listener as IGameFinishListener, finishListeners);
+            this.AddListeners(listener as IGamePauseListener, pauseListeners);
+            this.AddListeners(listener as IGameResumeListener, resumeListeners);
+            this.AddListeners(listener as IGameUpdateListener, updateListeners);
+            this.AddListeners(listener as IGameFixedUpdateListener, fixedUpdateListeners);
+            this.AddListeners(listener as IGameLateUpdateListener, lateUpdateListeners);
+        }
+
+        private void AddListeners<T>(T listener, List<T> listeners) where T : IGameListener
+        {
+            if (listener == null)
             {
-                this.startListeners.Add(startListener);
+                return;
             }
 
-            if (listener is IGameFinishListener finishListener)
-            {
-                this.finishListeners.Add(finishListener);
-            }
-
-            if (listener is IGamePauseListener pauseListener)
-            {
-                this.pauseListeners.Add(pauseListener);
-            }
-
-            if (listener is IGameResumeListener resumeListener)
-            {
-                this.resumeListeners.Add(resumeListener);
-            }
-
-            if (listener is IGameUpdateListener updateListener)
-            {
-                this.updateListeners.Add(updateListener);
-            }
-
-            if (listener is IGameFixedUpdateListener fixedUpdateListener)
-            {
-                this.fixedUpdateListeners.Add(fixedUpdateListener);
-            }
-
-            if (listener is IGameLateUpdateListener lateUpdateListener)
-            {
-                this.lateUpdateListeners.Add(lateUpdateListener);
-            }
+            listeners.Add(listener);
         }
 
         public void RemoveListener(IGameListener listener)
@@ -164,40 +155,23 @@ namespace ShootEmUp
                 return;
             }
 
-            if (listener is IGameStartListener startListener)
+            this.RemoveListeners(listener as IGameStartListener, startListeners);
+            this.RemoveListeners(listener as IGameFinishListener, finishListeners);
+            this.RemoveListeners(listener as IGamePauseListener, pauseListeners);
+            this.RemoveListeners(listener as IGameResumeListener, resumeListeners);
+            this.RemoveListeners(listener as IGameUpdateListener, updateListeners);
+            this.RemoveListeners(listener as IGameFixedUpdateListener, fixedUpdateListeners);
+            this.RemoveListeners(listener as IGameLateUpdateListener, lateUpdateListeners);
+        }
+
+        private void RemoveListeners<T>(T listener, List<T> listeners) where T : IGameListener
+        {
+            if (listener == null)
             {
-                this.startListeners.Remove(startListener);
+                return;
             }
 
-            if (listener is IGameFinishListener finishListener)
-            {
-                this.finishListeners.Remove(finishListener);
-            }
-
-            if (listener is IGamePauseListener pauseListener)
-            {
-                this.pauseListeners.Remove(pauseListener);
-            }
-
-            if (listener is IGameResumeListener resumeListener)
-            {
-                this.resumeListeners.Remove(resumeListener);
-            }
-
-            if (listener is IGameUpdateListener updateListener)
-            {
-                this.updateListeners.Remove(updateListener);
-            }
-
-            if (listener is IGameFixedUpdateListener fixedUpdateListener)
-            {
-                this.fixedUpdateListeners.Remove(fixedUpdateListener);
-            }
-
-            if (listener is IGameLateUpdateListener lateUpdateListener)
-            {
-                this.lateUpdateListeners.Remove(lateUpdateListener);
-            }
+            listeners.Remove(listener);
         }
     }
 }
