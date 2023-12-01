@@ -2,31 +2,30 @@
 
 namespace ShootEmUp
 {
-    public class CharacterDeathController : MonoBehaviour,
+    public sealed class CharacterDeathController :
         IGameStartListener,
         IGameFinishListener
     {
         private GameManager gameManager;
-
-        [SerializeField] private GameObject character;
-
         private DeathComponent deathComponent;
 
-        private void Awake()
+        [Inject]
+        public void Construct(GameManager gameManager,
+            Character character)
         {
-            this.deathComponent = this.character.GetComponent<DeathComponent>();
-            this.gameManager = FindObjectOfType<GameManager>();
+            this.gameManager = gameManager;
+            this.deathComponent = character.GetComponent<DeathComponent>();
         }
 
         public void OnStart()
         {
-            deathComponent.Enable();
+            this.deathComponent.Enable();
             this.deathComponent.DeathEvent += this.OnCharacterDeath;
         }
 
         public void OnFinish()
         {
-            deathComponent.Disable();
+            this.deathComponent.Disable();
             this.deathComponent.DeathEvent -= this.OnCharacterDeath;
         }
 

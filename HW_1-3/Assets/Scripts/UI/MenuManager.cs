@@ -8,21 +8,25 @@ namespace ShootEmUp
         IGameFinishListener,
         IGameUpdateListener
     {
-        [SerializeField] private GameManager gameManager;
         [SerializeField] private TextMeshProUGUI countdownText;
         [SerializeField] private GameObject startButton;
         [SerializeField] private GameObject startMenu;
         [SerializeField] private GameObject pauseMenu;
         [SerializeField] private GameObject inGameMenu;
         [SerializeField] private GameObject finishMenu;
-
         [SerializeField] private TextMeshProUGUI characterHealthDisplay;
-
-        [SerializeField] private HealthComponent characterHealth;
-
-
         [SerializeField] private int startDelay;
+        
+        private HealthComponent characterHealth;
+        private GameManager gameManager;
 
+        [Inject]
+        private void Construct(GameManager gameManager,Character character)
+        {
+            this.gameManager = gameManager;
+            this.characterHealth = character.GetComponent<HealthComponent>();
+        }
+        
         public void OnStartButtonClick()
         {
             StartCoroutine(StartGame(startDelay));

@@ -10,14 +10,11 @@ namespace ShootEmUp
 
         public object GetService(Type type)
         {
-            return services[type];
-        }
+            object service = services[type];
 
-        public T GetService<T>() where T : class
-        {
-            return services[typeof(T)] as T;
+            return service;
         }
-
+        
         public void BindService(Type type, object service)
         {
             services.Add(type, service);

@@ -2,18 +2,18 @@
 
 namespace ShootEmUp
 {
-    public class CharacterShootController : MonoBehaviour,
+    public class CharacterShootController :
         IGameStartListener,
         IGameFinishListener
     {
-        [SerializeField] private InputManager inputManager;
-        [SerializeField] private GameObject character;
-
+        private InputManager inputManager;
         private ShootComponent shootComponent;
 
-        private void Awake()
+        [Inject]
+        private void Construct(Character character, InputManager inputManager)
         {
-            this.shootComponent = this.character.GetComponent<ShootComponent>();
+            this.shootComponent = character.GetComponent<ShootComponent>();
+            this.inputManager = inputManager;
             this.shootComponent.Direction = Vector2.up;
         }
 
@@ -22,7 +22,7 @@ namespace ShootEmUp
             this.inputManager.FireEvent += this.shootComponent.OnFireBullet;
         }
 
-        
+
         public void OnFinish()
         {
             this.inputManager.FireEvent -= this.shootComponent.OnFireBullet;

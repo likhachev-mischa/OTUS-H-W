@@ -6,11 +6,16 @@ namespace ShootEmUp
     public sealed class EnemySpawner : MonoBehaviour,
         IGameUpdateListener
     {
-        [SerializeField] private EnemyManager enemyManager;
-
         [SerializeField] private float spawnDelay;
 
+        private EnemyManager enemyManager;
         private float timeElapsed;
+
+        [Inject]
+        private void Construct(EnemyManager enemyManager)
+        {
+            this.enemyManager = enemyManager;
+        }
 
         private void Awake()
         {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ShootEmUp
 {
@@ -9,12 +10,16 @@ namespace ShootEmUp
         private DeathComponent deathComponent;
 
         private Enemy enemy;
+        
+        public void Construct(EnemyManager enemyManager)
+        {
+            this.enemyManager = enemyManager;
+        }
 
         private void Awake()
         {
             this.deathComponent = this.GetComponent<DeathComponent>();
             this.enemy = this.GetComponent<Enemy>();
-            this.enemyManager = FindObjectOfType<EnemyManager>();
         }
 
         public void Enable()

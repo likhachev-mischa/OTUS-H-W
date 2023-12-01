@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    [RequireComponent(typeof(HealthComponent))]
     public sealed class DeathComponent : MonoBehaviour
     {
         private HealthComponent healthComponent;

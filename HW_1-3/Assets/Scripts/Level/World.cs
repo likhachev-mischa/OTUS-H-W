@@ -2,7 +2,7 @@
 
 namespace ShootEmUp
 {
-    public class Character : MonoBehaviour
+    public class World : MonoBehaviour
     {
     }
 }

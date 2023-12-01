@@ -2,28 +2,36 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    [RequireComponent(typeof(BulletBoundsCorrector))]
     public sealed class BulletManager : MonoBehaviour,
         IGamePauseListener,
         IGameResumeListener,
         IGameFinishListener
     {
         [SerializeField] private int initialCount = 50;
-
-        [SerializeField] private Transform container;
         [SerializeField] private GameObject prefab;
-        [SerializeField] private Transform worldTransform;
-
+        [SerializeField] private ServiceLocator serviceLocator;
+        
+        
+        private Transform container;
+        private Transform worldTransform;
         private ObjectPool<Bullet> bulletPool;
-
         private BulletBoundsCorrector bulletBoundsCorrector;
 
+        [Inject]
+        private void Construct(World world, BulletBoundsCorrector bulletBoundsCorrector)
+        {
+            this.worldTransform = world.transform;
+            this.bulletBoundsCorrector = bulletBoundsCorrector;
+        }
 
         private void Awake()
         {
-            this.bulletBoundsCorrector = GetComponent<BulletBoundsCorrector>();
-
-            bulletPool = new ObjectPool<Bullet>(initialCount, container, prefab, worldTransform);
+            var pool = new GameObject("Bullet Pool");
+            pool.transform.SetParent(this.transform);
+            pool.SetActive(false);
+            this.container = pool.transform;
+            bulletPool = new ObjectPool<Bullet>(initialCount, container, prefab,
+                worldTransform, serviceLocator);
             bulletPool.Initialize();
         }
 
@@ -33,17 +41,20 @@ namespace ShootEmUp
             {
                 return false;
             }
-
-            bullet.SetBulletManager(this);
+            
             bullet.Enable();
+            bullet.OnBulletDespawn += DespawnBullet;
             bulletBoundsCorrector.Enable(bullet);
+            bulletBoundsCorrector.OnBulletDespawn += DespawnBullet;
             return true;
         }
 
         public void DespawnBullet(Bullet bullet)
         {
             bullet.Disable();
+            bullet.OnBulletDespawn -= DespawnBullet;
             bulletBoundsCorrector.Disable(bullet);
+            bulletBoundsCorrector.OnBulletDespawn -= DespawnBullet;
             bulletPool.RemoveObject(bullet);
         }
 

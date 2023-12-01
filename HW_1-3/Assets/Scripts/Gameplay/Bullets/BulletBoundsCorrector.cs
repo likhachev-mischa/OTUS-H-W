@@ -1,17 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ShootEmUp
 {
-    public class BulletBoundsCorrector : MonoBehaviour,
-        IGameFixedUpdateListener
+    public class BulletBoundsCorrector : IGameFixedUpdateListener
     {
-        [SerializeField] private LevelBounds levelBounds;
-        [SerializeField] private BulletManager bulletManager;
+        private LevelBounds levelBounds;
+        public event Action<Bullet> OnBulletDespawn;
 
         private List<Bullet> bullets = new();
         private List<Bullet> toDestroy = new();
 
+        [Inject]
+        private void Construct(LevelBounds levelBounds)
+        {
+            this.levelBounds = levelBounds;
+        }
+        
         public void Enable(Bullet bullet)
         {
             bullets.Add(bullet);
@@ -31,7 +37,7 @@ namespace ShootEmUp
             for (var index = 0; index < toDestroy.Count; index++)
             {
                 var bullet = toDestroy[index];
-                this.bulletManager.DespawnBullet(bullet);
+                this.OnBulletDespawn?.Invoke(bullet);
             }
 
             toDestroy.Clear();

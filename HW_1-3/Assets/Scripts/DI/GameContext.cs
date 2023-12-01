@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ShootEmUp
 {
@@ -8,18 +9,18 @@ namespace ShootEmUp
 
         [SerializeField] private ServiceLocator serviceLocator;
 
-        [SerializeField] private MonoBehaviour[] modules;
+        [SerializeField] private MonoBehaviour[] installers;
 
         private void Awake()
         {
-            foreach (var module in this.modules)
+            foreach (var installer in this.installers)
             {
-                if (module is IGameListenerProvider listenerProvider)
+                if (installer is IGameListenerProvider listenerProvider)
                 {
                     this.gameManager.AddListeners(listenerProvider.ProvideListeners());
                 }
 
-                if (module is IServiceProvider serviceProvider)
+                if (installer is IServiceProvider serviceProvider)
                 {
                     var services = serviceProvider.ProvideServices();
                     foreach (var (type, service) in services)
@@ -32,9 +33,9 @@ namespace ShootEmUp
 
         private void Start()
         {
-            foreach (var module in this.modules)
+            foreach (var installer in this.installers)
             {
-                if (module is IInjectProvider injectProvider)
+                if (installer is IInjectProvider injectProvider)
                 {
                     injectProvider.Inject(this.serviceLocator);
                 }

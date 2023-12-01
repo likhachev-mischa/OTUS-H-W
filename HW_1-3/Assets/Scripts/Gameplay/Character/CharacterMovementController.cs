@@ -3,27 +3,29 @@
 namespace ShootEmUp
 
 {
-    public class CharacterMovementController : MonoBehaviour,
+    public class CharacterMovementController :
         IGameFixedUpdateListener
     {
-        [SerializeField] private InputManager inputManager;
-
-        [SerializeField] private GameObject character;
-
+        private InputManager inputManager;
         private MoveComponent moveComponent;
+        private Character character;
         private ContainInBoundsCorrector containInBoundsCorrector;
 
-        private void Awake()
+        [Inject]
+        private void Construct(InputManager inputManager, Character character,
+            ContainInBoundsCorrector containInBoundsCorrector)
         {
-            this.containInBoundsCorrector = FindObjectOfType<ContainInBoundsCorrector>();
-            this.moveComponent = this.character.GetComponent<MoveComponent>();
+            this.inputManager = inputManager;
+            this.character = character;
+            this.moveComponent = character.GetComponent<MoveComponent>();
+            this.containInBoundsCorrector = containInBoundsCorrector;
         }
 
         public void OnFixedUpdate(float deltaTime)
         {
             Vector2 direction = new Vector2(this.inputManager.MoveDirection, 0);
 
-            this.containInBoundsCorrector.CorrectDirection(ref direction, this.moveComponent.transform.position);
+            this.containInBoundsCorrector.CorrectDirection(ref direction, this.character.transform.position);
             this.moveComponent.Move(direction * deltaTime);
         }
     }

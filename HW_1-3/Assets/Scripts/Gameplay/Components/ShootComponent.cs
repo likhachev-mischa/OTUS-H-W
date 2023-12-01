@@ -8,16 +8,19 @@ namespace ShootEmUp
         [SerializeField] private BulletConfig bulletConfig;
 
         private BulletLauncher bulletLauncher;
-
         private WeaponComponent weaponComponent;
         private TeamComponent teamComponent;
 
         public Vector2 Direction { get; set; }
 
+        [Inject]
+        private void Construct(BulletLauncher bulletLauncher)
+        {
+            this.bulletLauncher = bulletLauncher;
+        }
+
         private void Awake()
         {
-            this.bulletLauncher = FindObjectOfType<BulletLauncher>();
-
             this.weaponComponent = this.GetComponent<WeaponComponent>();
             this.teamComponent = this.GetComponent<TeamComponent>();
         }

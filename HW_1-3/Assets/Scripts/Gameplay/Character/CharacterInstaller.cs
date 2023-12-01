@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 
 namespace ShootEmUp
 {
-    public class Character : MonoBehaviour
+    public class CharacterInstaller : GameInstaller
     {
-        
+        [Service(typeof(Character))] [SerializeField]
+        private Character character;
     }
 }

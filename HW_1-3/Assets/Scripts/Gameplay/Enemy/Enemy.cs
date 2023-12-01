@@ -8,15 +8,23 @@ namespace ShootEmUp
         private EnemyAttackAgent attackAgent;
         private EnemyMoveAgent moveAgent;
         private EnemyDeathAgent deathAgent;
+        private EnemyManager enemyManager;
 
         private HealthComponent healthComponent;
         private int initialHealth;
+
+        [Inject]
+        private void Construct(EnemyManager enemyManager)
+        {
+            this.enemyManager = enemyManager;
+        }
 
         private void Awake()
         {
             this.attackAgent = this.GetComponent<EnemyAttackAgent>();
             this.moveAgent = this.GetComponent<EnemyMoveAgent>();
             this.deathAgent = this.GetComponent<EnemyDeathAgent>();
+            deathAgent.Construct(enemyManager);
 
             this.healthComponent = this.GetComponent<HealthComponent>();
             this.initialHealth = healthComponent.Health;
@@ -60,7 +68,6 @@ namespace ShootEmUp
                 this.attackAgent.OnFixedUpdate(deltaTime);
             }
         }
-
 
         public void SetPosition(Vector3 position)
         {

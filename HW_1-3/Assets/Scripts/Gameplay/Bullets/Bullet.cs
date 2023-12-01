@@ -10,8 +10,8 @@ namespace ShootEmUp
     {
         private BulletCollisionHandler bulletCollisionHandler;
         private BulletDamageHandler bulletDamageHandler;
-        private BulletManager bulletManager;
         public event Action<Collision2D> OnCollisionEntered;
+        public event Action<Bullet> OnBulletDespawn;
 
         private bool isPlayer;
         private int damage;
@@ -50,11 +50,6 @@ namespace ShootEmUp
         public Color Color
         {
             set => spriteRenderer.color = value;
-        }
-
-        public void SetBulletManager(BulletManager bulletManager)
-        {
-            this.bulletManager = bulletManager;
         }
 
         private void Awake()
@@ -106,7 +101,7 @@ namespace ShootEmUp
 
         public void Despawn()
         {
-            this.bulletManager.DespawnBullet(this);
+            this.OnBulletDespawn?.Invoke(this);
         }
 
         public struct Args
