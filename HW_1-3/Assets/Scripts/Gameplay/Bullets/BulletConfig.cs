@@ -4,7 +4,7 @@ namespace ShootEmUp
 {
     [CreateAssetMenu(
         fileName = "BulletConfig",
-        menuName = "Bullets/New BulletConfig"
+        menuName = "Configs/New BulletConfig"
     )]
     public sealed class BulletConfig : ScriptableObject
     {

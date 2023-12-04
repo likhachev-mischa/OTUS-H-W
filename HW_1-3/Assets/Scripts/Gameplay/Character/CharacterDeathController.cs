@@ -14,24 +14,24 @@ namespace ShootEmUp
             Character character)
         {
             this.gameManager = gameManager;
-            this.deathComponent = character.GetComponent<DeathComponent>();
+            deathComponent = character.GetComponent<DeathComponent>();
         }
 
         public void OnStart()
         {
-            this.deathComponent.Enable();
-            this.deathComponent.DeathEvent += this.OnCharacterDeath;
+            deathComponent.Enable();
+            deathComponent.DeathEvent += OnCharacterDeath;
         }
 
         public void OnFinish()
         {
-            this.deathComponent.Disable();
-            this.deathComponent.DeathEvent -= this.OnCharacterDeath;
+            deathComponent.Disable();
+            deathComponent.DeathEvent -= OnCharacterDeath;
         }
 
         private void OnCharacterDeath()
         {
-            this.gameManager.FinishGame();
+            gameManager.FinishGame();
         }
     }
 }

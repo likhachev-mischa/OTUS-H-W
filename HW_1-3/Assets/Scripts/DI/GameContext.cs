@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace ShootEmUp
@@ -13,19 +15,19 @@ namespace ShootEmUp
 
         private void Awake()
         {
-            foreach (var installer in this.installers)
+            foreach (MonoBehaviour installer in installers)
             {
                 if (installer is IGameListenerProvider listenerProvider)
                 {
-                    this.gameManager.AddListeners(listenerProvider.ProvideListeners());
+                    gameManager.AddListeners(listenerProvider.ProvideListeners());
                 }
 
                 if (installer is IServiceProvider serviceProvider)
                 {
-                    var services = serviceProvider.ProvideServices();
-                    foreach (var (type, service) in services)
+                    IEnumerable<(Type, object)> services = serviceProvider.ProvideServices();
+                    foreach ((Type type, object service) in services)
                     {
-                        this.serviceLocator.BindService(type, service);
+                        serviceLocator.BindService(type, service);
                     }
                 }
             }
@@ -33,38 +35,38 @@ namespace ShootEmUp
 
         private void Start()
         {
-            foreach (var installer in this.installers)
+            foreach (MonoBehaviour installer in installers)
             {
                 if (installer is IInjectProvider injectProvider)
                 {
-                    injectProvider.Inject(this.serviceLocator);
+                    injectProvider.Inject(serviceLocator);
                 }
             }
 
-            this.InjectGameObjectsOnScene();
+            InjectGameObjectsOnScene();
         }
 
         private void InjectGameObjectsOnScene()
         {
-            GameObject[] gameObjects = this.gameObject.scene.GetRootGameObjects();
+            GameObject[] gameObjects = gameObject.scene.GetRootGameObjects();
 
-            foreach (var go in gameObjects)
+            foreach (GameObject go in gameObjects)
             {
-                this.Inject(go.transform);
+                Inject(go.transform);
             }
         }
 
         private void Inject(Transform targetTransform)
         {
-            var targets = targetTransform.GetComponents<MonoBehaviour>();
-            foreach (var target in targets)
+            MonoBehaviour[] targets = targetTransform.GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour target in targets)
             {
-                DependencyInjector.Inject(target, this.serviceLocator);
+                DependencyInjector.Inject(target, serviceLocator);
             }
 
             foreach (Transform child in targetTransform)
             {
-                this.Inject(child);
+                Inject(child);
             }
         }
     }

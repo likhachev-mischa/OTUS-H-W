@@ -2,36 +2,39 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class BulletManager : MonoBehaviour,
+    public sealed class BulletManager :
         IGamePauseListener,
         IGameResumeListener,
         IGameFinishListener
     {
-        [SerializeField] private int initialCount = 50;
-        [SerializeField] private GameObject prefab;
-        [SerializeField] private ServiceLocator serviceLocator;
-        
-        
-        private Transform container;
+        private int initialCount;
+        private GameObject prefab;
+
         private Transform worldTransform;
-        private ObjectPool<Bullet> bulletPool;
         private BulletBoundsCorrector bulletBoundsCorrector;
 
+        private ObjectPool<Bullet> bulletPool;
+
         [Inject]
-        private void Construct(World world, BulletBoundsCorrector bulletBoundsCorrector)
+        private void Construct(World world, BulletBoundsCorrector bulletBoundsCorrector,
+            BulletManagerConfig config)
         {
-            this.worldTransform = world.transform;
+            worldTransform = world.transform;
             this.bulletBoundsCorrector = bulletBoundsCorrector;
+            initialCount = config.initialCount;
+            prefab = config.prefab;
+
+            CreatePool();
         }
 
-        private void Awake()
+        private void CreatePool()
         {
             var pool = new GameObject("Bullet Pool");
-            pool.transform.SetParent(this.transform);
+            //pool.transform.SetParent(this.transform);
             pool.SetActive(false);
-            this.container = pool.transform;
-            bulletPool = new ObjectPool<Bullet>(initialCount, container, prefab,
-                worldTransform, serviceLocator);
+            Transform container = pool.transform;
+            bulletPool = new ObjectPool<Bullet>(initialCount, container,
+                prefab, worldTransform);
             bulletPool.Initialize();
         }
 
@@ -41,7 +44,7 @@ namespace ShootEmUp
             {
                 return false;
             }
-            
+
             bullet.Enable();
             bullet.OnBulletDespawn += DespawnBullet;
             bulletBoundsCorrector.Enable(bullet);
@@ -60,25 +63,25 @@ namespace ShootEmUp
 
         public void OnPause()
         {
-            for (var index = 0; index < this.bulletPool.ActiveObjects.Count; index++)
+            for (var index = 0; index < bulletPool.ActiveObjects.Count; index++)
             {
-                this.bulletPool.ActiveObjects[index].OnPause();
+                bulletPool.ActiveObjects[index].OnPause();
             }
         }
 
         public void OnResume()
         {
-            for (var index = 0; index < this.bulletPool.ActiveObjects.Count; index++)
+            for (var index = 0; index < bulletPool.ActiveObjects.Count; index++)
             {
-                this.bulletPool.ActiveObjects[index].OnResume();
+                bulletPool.ActiveObjects[index].OnResume();
             }
         }
 
         public void OnFinish()
         {
-            for (var index = 0; index < this.bulletPool.ActiveObjects.Count; index++)
+            for (var index = 0; index < bulletPool.ActiveObjects.Count; index++)
             {
-                this.bulletPool.ActiveObjects[index].OnFinish();
+                bulletPool.ActiveObjects[index].OnFinish();
             }
         }
     }

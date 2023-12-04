@@ -6,39 +6,34 @@ namespace ShootEmUp
     [RequireComponent(typeof(DeathComponent))]
     public class EnemyDeathAgent : MonoBehaviour
     {
-        private EnemyManager enemyManager;
-        private DeathComponent deathComponent;
+        public event Action<Enemy> OnDeath; 
 
+        private DeathComponent deathComponent;
         private Enemy enemy;
-        
-        public void Construct(EnemyManager enemyManager)
-        {
-            this.enemyManager = enemyManager;
-        }
 
         private void Awake()
         {
-            this.deathComponent = this.GetComponent<DeathComponent>();
-            this.enemy = this.GetComponent<Enemy>();
+            deathComponent = GetComponent<DeathComponent>();
+            enemy = GetComponent<Enemy>();
         }
 
         public void Enable()
         {
             deathComponent.Enable();
-            this.deathComponent.DeathEvent += this.OnEnemyDeath;
-            this.enabled = true;
+            deathComponent.DeathEvent += OnEnemyDeath;
+            enabled = true;
         }
 
         public void Disable()
         {
             deathComponent.Disable();
-            this.deathComponent.DeathEvent -= this.OnEnemyDeath;
-            this.enabled = false;
+            deathComponent.DeathEvent -= OnEnemyDeath;
+            enabled = false;
         }
 
         private void OnEnemyDeath()
         {
-            this.enemyManager.DespawnEnemy(enemy);
+            OnDeath?.Invoke(enemy);
         }
     }
 }

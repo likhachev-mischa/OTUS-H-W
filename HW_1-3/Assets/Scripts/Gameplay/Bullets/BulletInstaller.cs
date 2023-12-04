@@ -2,10 +2,13 @@
 
 namespace ShootEmUp
 {
-    public class BulletInstaller : GameInstaller
+    public sealed class BulletInstaller : GameInstaller
     {
-        [Service(typeof(BulletManager))] [Listener] [SerializeField]
-        private BulletManager bulletManager;
+        [Service(typeof(BulletManagerConfig))] [SerializeField]
+        private BulletManagerConfig bulletManagerConfig;
+
+        [Service(typeof(BulletManager))] [Listener]
+        private BulletManager bulletManager = new();
 
         [Service(typeof(BulletBoundsCorrector))] [Listener]
         private BulletBoundsCorrector bulletBoundsCorrector = new();

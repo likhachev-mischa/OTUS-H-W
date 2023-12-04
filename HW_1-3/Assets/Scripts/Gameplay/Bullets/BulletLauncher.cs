@@ -1,12 +1,7 @@
-﻿
-using System;
-using UnityEngine;
-
-namespace ShootEmUp
+﻿namespace ShootEmUp
 {
     public sealed class BulletLauncher
     {
-        
         private BulletManager bulletManager;
 
         [Inject]
@@ -14,13 +9,14 @@ namespace ShootEmUp
         {
             this.bulletManager = bulletManager;
         }
-        
+
         public void LaunchBullet(Bullet.Args args)
         {
-            if (!this.bulletManager.SpawnBullet(out var bullet))
+            if (!bulletManager.SpawnBullet(out Bullet bullet))
             {
                 return;
             }
+
             bullet.Position = args.position;
             bullet.Color = args.color;
             bullet.PhysicsLayer = args.physicsLayer;

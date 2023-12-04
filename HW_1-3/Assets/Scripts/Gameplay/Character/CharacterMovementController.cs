@@ -17,16 +17,16 @@ namespace ShootEmUp
         {
             this.inputManager = inputManager;
             this.character = character;
-            this.moveComponent = character.GetComponent<MoveComponent>();
+            moveComponent = character.GetComponent<MoveComponent>();
             this.containInBoundsCorrector = containInBoundsCorrector;
         }
 
         public void OnFixedUpdate(float deltaTime)
         {
-            Vector2 direction = new Vector2(this.inputManager.MoveDirection, 0);
+            var direction = new Vector2(inputManager.MoveDirection, 0);
 
-            this.containInBoundsCorrector.CorrectDirection(ref direction, this.character.transform.position);
-            this.moveComponent.Move(direction * deltaTime);
+            containInBoundsCorrector.CorrectDirection(ref direction, character.transform.position);
+            moveComponent.Move(direction * deltaTime);
         }
     }
 }

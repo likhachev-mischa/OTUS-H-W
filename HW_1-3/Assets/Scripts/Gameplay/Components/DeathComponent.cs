@@ -10,17 +10,17 @@ namespace ShootEmUp
 
         private void Awake()
         {
-            this.healthComponent = this.GetComponent<HealthComponent>();
+            healthComponent = GetComponent<HealthComponent>();
         }
 
         public void Enable()
         {
-            this.healthComponent.TakeDamageEvent += this.OnDeath;
+            healthComponent.TakeDamageEvent += OnDeath;
         }
 
         public void Disable()
         {
-            this.healthComponent.TakeDamageEvent += this.OnDeath;
+            healthComponent.TakeDamageEvent += OnDeath;
         }
 
         private void OnDeath()

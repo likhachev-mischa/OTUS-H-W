@@ -4,7 +4,8 @@ using UnityEngine;
 namespace ShootEmUp
 {
     [RequireComponent(typeof(MoveComponent))]
-    public sealed class EnemyMoveAgent : MonoBehaviour,
+    public sealed class EnemyMoveAgent :
+        MonoBehaviour,
         IGameFixedUpdateListener
     {
         public event Action OnTargetReached;
@@ -17,35 +18,35 @@ namespace ShootEmUp
 
         private void Awake()
         {
-            this.moveComponent = this.GetComponent<MoveComponent>();
+            moveComponent = GetComponent<MoveComponent>();
         }
 
         public void Enable()
         {
-            this.enabled = true;
+            enabled = true;
         }
 
         public void Disable()
         {
-            this.enabled = false;
+            enabled = false;
         }
 
         public void SetDestination(Vector2 endPoint)
         {
-            this.destination = endPoint;
+            destination = endPoint;
         }
 
         public void OnFixedUpdate(float deltaTime)
         {
-            var vector = this.destination - (Vector2)this.transform.position;
+            Vector2 vector = destination - (Vector2)transform.position;
             if (vector.magnitude <= reachOffset)
             {
                 OnTargetReached?.Invoke();
                 return;
             }
 
-            var direction = vector.normalized * deltaTime;
-            this.moveComponent.Move(direction);
+            Vector2 direction = vector.normalized * deltaTime;
+            moveComponent.Move(direction);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ShootEmUp
 
             return service;
         }
-        
+
         public void BindService(Type type, object service)
         {
             services.Add(type, service);

@@ -12,14 +12,14 @@ namespace ShootEmUp
     {
         public IEnumerable<IGameListener> ProvideListeners()
         {
-            FieldInfo[] fields = this.GetType().GetFields(
+            FieldInfo[] fields = GetType().GetFields(
                 BindingFlags.Instance |
                 BindingFlags.Public |
                 BindingFlags.NonPublic |
                 BindingFlags.DeclaredOnly
             );
 
-            foreach (var field in fields)
+            foreach (FieldInfo field in fields)
             {
                 if (field.IsDefined(typeof(ListenerAttribute)) &&
                     field.GetValue(this) is IGameListener gameListener)
@@ -31,14 +31,14 @@ namespace ShootEmUp
 
         public IEnumerable<(Type, object)> ProvideServices()
         {
-            FieldInfo[] fields = this.GetType().GetFields(
+            FieldInfo[] fields = GetType().GetFields(
                 BindingFlags.Instance |
                 BindingFlags.Public |
                 BindingFlags.NonPublic |
                 BindingFlags.DeclaredOnly
             );
 
-            foreach (var field in fields)
+            foreach (FieldInfo field in fields)
             {
                 var attribute = field.GetCustomAttribute<ServiceAttribute>();
                 if (attribute != null)
@@ -52,16 +52,16 @@ namespace ShootEmUp
 
         public void Inject(ServiceLocator serviceLocator)
         {
-            FieldInfo[] fields = this.GetType().GetFields(
+            FieldInfo[] fields = GetType().GetFields(
                 BindingFlags.Instance |
                 BindingFlags.Public |
                 BindingFlags.NonPublic |
                 BindingFlags.DeclaredOnly
             );
 
-            foreach (var field in fields)
+            foreach (FieldInfo field in fields)
             {
-                var target = field.GetValue(this);
+                object target = field.GetValue(this);
                 DependencyInjector.Inject(target, serviceLocator);
             }
         }
