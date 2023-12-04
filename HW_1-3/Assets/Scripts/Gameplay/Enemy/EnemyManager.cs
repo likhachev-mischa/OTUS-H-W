@@ -2,12 +2,10 @@
 
 namespace ShootEmUp
 {
-    public class EnemyManager : MonoBehaviour,
-        IGameFixedUpdateListener
+    public class EnemyManager : IGameFixedUpdateListener
     {
-        [SerializeField] private int initialCount = 7;
-        [SerializeField] private ServiceLocator serviceLocator;
-        [SerializeField] private GameObject prefab;
+        private int initialCount;
+        private GameObject prefab;
 
         private Transform container;
         private Transform worldTransform;
@@ -18,48 +16,54 @@ namespace ShootEmUp
 
         [Inject]
         private void Construct(World world, EnemyPositions enemyPositions,
-            Character character)
+            Character character, EnemyManagerConfig config)
         {
-            this.worldTransform = world.transform;
+            worldTransform = world.transform;
             this.enemyPositions = enemyPositions;
             this.character = character.gameObject;
+            initialCount = config.initialCount;
+            prefab = config.prefab;
+
+            CreatePool();
         }
 
-        private void Awake()
+        private void CreatePool()
         {
             var pool = new GameObject("Enemy Pool");
-            pool.transform.SetParent(this.transform);
+            //pool.transform.SetParent(transform);
             pool.SetActive(false);
-            this.container = pool.transform;
-            enemyPool = new ObjectPool<Enemy>(initialCount, container, prefab,
-                worldTransform, serviceLocator);
+            container = pool.transform;
+            enemyPool = new ObjectPool<Enemy>(initialCount, container,
+                prefab, worldTransform);
             enemyPool.Initialize();
         }
 
         public void SpawnEnemy()
         {
-            if (!enemyPool.SpawnObject(out var enemy))
+            if (!enemyPool.SpawnObject(out Enemy enemy))
             {
                 return;
             }
 
-            enemy.SetPosition(this.enemyPositions.RandomSpawnPosition().position);
+            enemy.SetPosition(enemyPositions.RandomSpawnPosition().position);
             enemy.Enable();
-            enemy.SetDestination(this.enemyPositions.RandomAttackPosition().position);
-            enemy.SetTarget(this.character);
+            enemy.OnDeath += DespawnEnemy;
+            enemy.SetDestination(enemyPositions.RandomAttackPosition().position);
+            enemy.SetTarget(character);
         }
 
         public void DespawnEnemy(Enemy enemy)
         {
             enemy.Disable();
+            enemy.OnDeath -= DespawnEnemy;
             enemyPool.RemoveObject(enemy);
         }
 
         public void OnFixedUpdate(float deltaTime)
         {
-            for (var i = 0; i < this.enemyPool.ActiveObjects.Count; i++)
+            for (var i = 0; i < enemyPool.ActiveObjects.Count; i++)
             {
-                this.enemyPool.ActiveObjects[i].OnFixedUpdate(deltaTime);
+                enemyPool.ActiveObjects[i].OnFixedUpdate(deltaTime);
             }
         }
     }

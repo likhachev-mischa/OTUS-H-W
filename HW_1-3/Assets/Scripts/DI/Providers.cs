@@ -7,12 +7,12 @@ namespace ShootEmUp
     {
         IEnumerable<IGameListener> ProvideListeners();
     }
-    
+
     public interface IServiceProvider
     {
-        IEnumerable<(Type,object)> ProvideServices();
+        IEnumerable<(Type, object)> ProvideServices();
     }
-    
+
     public interface IInjectProvider
     {
         void Inject(ServiceLocator serviceLocator);

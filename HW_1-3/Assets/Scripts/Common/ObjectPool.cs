@@ -10,7 +10,6 @@ namespace ShootEmUp
         private readonly Transform container;
         private readonly GameObject prefab;
         private readonly Transform worldTransform;
-        private readonly ServiceLocator serviceLocator;
 
         private readonly Queue<T> objectPool = new();
         private readonly List<T> activeObjects = new();
@@ -18,34 +17,32 @@ namespace ShootEmUp
         public List<T> ActiveObjects => activeObjects;
 
         public ObjectPool(int initialCount, Transform container, GameObject prefab,
-            Transform worldTransform, ServiceLocator serviceLocator)
+            Transform worldTransform)
         {
             this.initialCount = initialCount;
             this.container = container;
             this.prefab = prefab;
             this.worldTransform = worldTransform;
-            this.serviceLocator = serviceLocator;
         }
 
         public void Initialize()
         {
-            for (var i = 0; i < this.initialCount; i++)
+            for (var i = 0; i < initialCount; i++)
             {
-                var obj = Object.Instantiate(this.prefab, this.container);
-                DependencyInjector.Inject(obj,serviceLocator);
-                this.objectPool.Enqueue(obj.GetComponent<T>());
+                GameObject obj = Object.Instantiate(prefab, container);
+                objectPool.Enqueue(obj.GetComponent<T>());
             }
         }
 
         public bool SpawnObject(out T obj)
         {
-            if (!this.objectPool.TryDequeue(out obj))
+            if (!objectPool.TryDequeue(out obj))
             {
                 return false;
             }
 
             activeObjects.Add(obj);
-            obj.transform.SetParent(this.worldTransform);
+            obj.transform.SetParent(worldTransform);
             return true;
         }
 
@@ -56,8 +53,8 @@ namespace ShootEmUp
                 return;
             }
 
-            this.objectPool.Enqueue(obj);
-            obj.transform.SetParent(this.container);
+            objectPool.Enqueue(obj);
+            obj.transform.SetParent(container);
         }
     }
 }

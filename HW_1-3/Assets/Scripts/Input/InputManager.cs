@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class InputManager : MonoBehaviour,
-        IGameUpdateListener
+    public sealed class InputManager : IGameUpdateListener
     {
         public float MoveDirection { get; private set; }
 
@@ -19,15 +18,15 @@ namespace ShootEmUp
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                this.MoveDirection = -1;
+                MoveDirection = -1;
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {
-                this.MoveDirection = 1;
+                MoveDirection = 1;
             }
             else
             {
-                this.MoveDirection = 0;
+                MoveDirection = 0;
             }
         }
     }

@@ -7,7 +7,7 @@ namespace ShootEmUp
         [Service(typeof(GameManager))] [SerializeField]
         private GameManager gameManager;
 
-        [Service(typeof(InputManager))] [SerializeField] [Listener]
-        private InputManager inputManager;
+        [Service(typeof(InputManager))] [Listener]
+        private InputManager inputManager = new();
     }
 }

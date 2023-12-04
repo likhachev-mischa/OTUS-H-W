@@ -12,20 +12,20 @@ namespace ShootEmUp
         [Inject]
         private void Construct(Character character, InputManager inputManager)
         {
-            this.shootComponent = character.GetComponent<ShootComponent>();
+            shootComponent = character.GetComponent<ShootComponent>();
             this.inputManager = inputManager;
-            this.shootComponent.Direction = Vector2.up;
+            shootComponent.Direction = Vector2.up;
         }
 
         public void OnStart()
         {
-            this.inputManager.FireEvent += this.shootComponent.OnFireBullet;
+            inputManager.FireEvent += shootComponent.OnFireBullet;
         }
 
 
         public void OnFinish()
         {
-            this.inputManager.FireEvent -= this.shootComponent.OnFireBullet;
+            inputManager.FireEvent -= shootComponent.OnFireBullet;
         }
     }
 }

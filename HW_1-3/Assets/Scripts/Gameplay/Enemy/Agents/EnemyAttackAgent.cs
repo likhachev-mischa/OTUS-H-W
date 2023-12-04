@@ -4,7 +4,8 @@ using UnityEngine;
 namespace ShootEmUp
 {
     [RequireComponent(typeof(ShootComponent), typeof(WeaponComponent))]
-    public sealed class EnemyAttackAgent : MonoBehaviour,
+    public sealed class EnemyAttackAgent : 
+        MonoBehaviour,
         IGameFixedUpdateListener
     {
         private WeaponComponent weaponComponent;
@@ -18,37 +19,37 @@ namespace ShootEmUp
 
         private void Awake()
         {
-            this.weaponComponent = this.GetComponent<WeaponComponent>();
-            this.shootComponent = this.GetComponent<ShootComponent>();
+            weaponComponent = GetComponent<WeaponComponent>();
+            shootComponent = GetComponent<ShootComponent>();
         }
 
         public void Enable()
         {
-            this.enabled = true;
-            this.Reset();
-            this.FireEvent += this.shootComponent.OnFireBullet;
+            enabled = true;
+            Reset();
+            FireEvent += shootComponent.OnFireBullet;
         }
 
         public void OnFixedUpdate(float deltaTime)
         {
-            this.currentTime -= deltaTime;
-            if (this.currentTime > 0)
+            currentTime -= deltaTime;
+            if (currentTime > 0)
             {
                 return;
             }
 
-            var vector = (Vector2)this.target.transform.position - this.weaponComponent.Position;
-            var direction = vector.normalized;
+            Vector2 vector = (Vector2)target.transform.position - weaponComponent.Position;
+            Vector2 direction = vector.normalized;
 
-            this.shootComponent.Direction = direction;
-            this.FireEvent?.Invoke();
-            this.Reset();
+            shootComponent.Direction = direction;
+            FireEvent?.Invoke();
+            Reset();
         }
 
         public void Disable()
         {
-            this.enabled = false;
-            this.FireEvent -= this.shootComponent.OnFireBullet;
+            enabled = false;
+            FireEvent -= shootComponent.OnFireBullet;
         }
 
         public void SetTarget(GameObject target)
@@ -58,7 +59,7 @@ namespace ShootEmUp
 
         public void Reset()
         {
-            this.currentTime = this.cooldown;
+            currentTime = cooldown;
         }
     }
 }

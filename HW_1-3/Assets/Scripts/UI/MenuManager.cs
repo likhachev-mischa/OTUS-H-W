@@ -16,35 +16,35 @@ namespace ShootEmUp
         [SerializeField] private GameObject finishMenu;
         [SerializeField] private TextMeshProUGUI characterHealthDisplay;
         [SerializeField] private int startDelay;
-        
+
         private HealthComponent characterHealth;
         private GameManager gameManager;
 
         [Inject]
-        private void Construct(GameManager gameManager,Character character)
+        private void Construct(GameManager gameManager, Character character)
         {
             this.gameManager = gameManager;
-            this.characterHealth = character.GetComponent<HealthComponent>();
+            characterHealth = character.GetComponent<HealthComponent>();
         }
-        
+
         public void OnStartButtonClick()
         {
             StartCoroutine(StartGame(startDelay));
         }
 
-        IEnumerator StartGame(int delay)
+        private IEnumerator StartGame(int delay)
         {
-            this.startButton.SetActive(false);
-            this.countdownText.gameObject.SetActive(true);
+            startButton.SetActive(false);
+            countdownText.gameObject.SetActive(true);
             for (int i = delay; i > 0; --i)
             {
-                this.countdownText.text = $"{i}";
+                countdownText.text = $"{i}";
                 yield return new WaitForSeconds(1);
             }
 
-            this.startMenu.SetActive(false);
-            this.inGameMenu.SetActive(true);
-            this.gameManager.StartGame();
+            startMenu.SetActive(false);
+            inGameMenu.SetActive(true);
+            gameManager.StartGame();
         }
 
         public void OnPauseButtonClick()
@@ -63,8 +63,8 @@ namespace ShootEmUp
 
         public void OnFinish()
         {
-            this.inGameMenu.SetActive(false);
-            this.finishMenu.SetActive(true);
+            inGameMenu.SetActive(false);
+            finishMenu.SetActive(true);
         }
 
         public void OnUpdate(float deltaTime)

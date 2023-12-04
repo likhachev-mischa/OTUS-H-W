@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -27,45 +26,45 @@ namespace ShootEmUp
 
         private void Update()
         {
-            if (this.State != GameState.ON)
+            if (State != GameState.ON)
             {
                 return;
             }
 
-            var deltaTime = Time.deltaTime;
-            for (int i = 0, count = this.updateListeners.Count; i < count; ++i)
+            float deltaTime = Time.deltaTime;
+            for (int i = 0, count = updateListeners.Count; i < count; ++i)
             {
-                var listener = this.updateListeners[i];
+                IGameUpdateListener listener = updateListeners[i];
                 listener.OnUpdate(deltaTime);
             }
         }
 
         private void FixedUpdate()
         {
-            if (this.State != GameState.ON)
+            if (State != GameState.ON)
             {
                 return;
             }
 
-            var deltaTime = Time.fixedDeltaTime;
-            for (int i = 0, count = this.fixedUpdateListeners.Count; i < count; ++i)
+            float deltaTime = Time.fixedDeltaTime;
+            for (int i = 0, count = fixedUpdateListeners.Count; i < count; ++i)
             {
-                var listener = this.fixedUpdateListeners[i];
+                IGameFixedUpdateListener listener = fixedUpdateListeners[i];
                 listener.OnFixedUpdate(deltaTime);
             }
         }
 
         private void LateUpdate()
         {
-            if (this.State != GameState.ON)
+            if (State != GameState.ON)
             {
                 return;
             }
 
-            var deltaTime = Time.deltaTime;
-            for (int i = 0, count = this.lateUpdateListeners.Count; i < count; ++i)
+            float deltaTime = Time.deltaTime;
+            for (int i = 0, count = lateUpdateListeners.Count; i < count; ++i)
             {
-                var listener = this.lateUpdateListeners[i];
+                IGameLateUpdateListener listener = lateUpdateListeners[i];
                 listener.OnLateUpdate(deltaTime);
             }
         }
@@ -73,52 +72,52 @@ namespace ShootEmUp
         [ContextMenu("StartGame")]
         public void StartGame()
         {
-            for (int i = 0, count = this.startListeners.Count; i < count; ++i)
+            for (int i = 0, count = startListeners.Count; i < count; ++i)
             {
-                this.startListeners[i].OnStart();
+                startListeners[i].OnStart();
             }
 
-            this.State = GameState.ON;
+            State = GameState.ON;
         }
 
         [ContextMenu("PauseGame")]
         public void PauseGame()
         {
-            for (int i = 0, count = this.pauseListeners.Count; i < count; ++i)
+            for (int i = 0, count = pauseListeners.Count; i < count; ++i)
             {
-                this.pauseListeners[i].OnPause();
+                pauseListeners[i].OnPause();
             }
 
-            this.State = GameState.PAUSED;
+            State = GameState.PAUSED;
         }
 
         [ContextMenu("ResumeGame")]
         public void ResumeGame()
         {
-            for (int i = 0, count = this.resumeListeners.Count; i < count; ++i)
+            for (int i = 0, count = resumeListeners.Count; i < count; ++i)
             {
-                this.resumeListeners[i].OnResume();
+                resumeListeners[i].OnResume();
             }
 
-            this.State = GameState.ON;
+            State = GameState.ON;
         }
 
         [ContextMenu("FinishGame")]
         public void FinishGame()
         {
-            for (int i = 0, count = this.finishListeners.Count; i < count; ++i)
+            for (int i = 0, count = finishListeners.Count; i < count; ++i)
             {
-                this.finishListeners[i].OnFinish();
+                finishListeners[i].OnFinish();
             }
 
-            this.State = GameState.FINISHED;
+            State = GameState.FINISHED;
         }
 
         public void AddListeners(IEnumerable<IGameListener> listeners)
         {
-            foreach (var listener in listeners)
+            foreach (IGameListener listener in listeners)
             {
-                this.AddListener(listener);
+                AddListener(listener);
             }
         }
 
@@ -129,13 +128,13 @@ namespace ShootEmUp
                 return;
             }
 
-            this.AddListeners(listener as IGameStartListener, startListeners);
-            this.AddListeners(listener as IGameFinishListener, finishListeners);
-            this.AddListeners(listener as IGamePauseListener, pauseListeners);
-            this.AddListeners(listener as IGameResumeListener, resumeListeners);
-            this.AddListeners(listener as IGameUpdateListener, updateListeners);
-            this.AddListeners(listener as IGameFixedUpdateListener, fixedUpdateListeners);
-            this.AddListeners(listener as IGameLateUpdateListener, lateUpdateListeners);
+            AddListeners(listener as IGameStartListener, startListeners);
+            AddListeners(listener as IGameFinishListener, finishListeners);
+            AddListeners(listener as IGamePauseListener, pauseListeners);
+            AddListeners(listener as IGameResumeListener, resumeListeners);
+            AddListeners(listener as IGameUpdateListener, updateListeners);
+            AddListeners(listener as IGameFixedUpdateListener, fixedUpdateListeners);
+            AddListeners(listener as IGameLateUpdateListener, lateUpdateListeners);
         }
 
         private void AddListeners<T>(T listener, List<T> listeners) where T : IGameListener
@@ -155,13 +154,13 @@ namespace ShootEmUp
                 return;
             }
 
-            this.RemoveListeners(listener as IGameStartListener, startListeners);
-            this.RemoveListeners(listener as IGameFinishListener, finishListeners);
-            this.RemoveListeners(listener as IGamePauseListener, pauseListeners);
-            this.RemoveListeners(listener as IGameResumeListener, resumeListeners);
-            this.RemoveListeners(listener as IGameUpdateListener, updateListeners);
-            this.RemoveListeners(listener as IGameFixedUpdateListener, fixedUpdateListeners);
-            this.RemoveListeners(listener as IGameLateUpdateListener, lateUpdateListeners);
+            RemoveListeners(listener as IGameStartListener, startListeners);
+            RemoveListeners(listener as IGameFinishListener, finishListeners);
+            RemoveListeners(listener as IGamePauseListener, pauseListeners);
+            RemoveListeners(listener as IGameResumeListener, resumeListeners);
+            RemoveListeners(listener as IGameUpdateListener, updateListeners);
+            RemoveListeners(listener as IGameFixedUpdateListener, fixedUpdateListeners);
+            RemoveListeners(listener as IGameLateUpdateListener, lateUpdateListeners);
         }
 
         private void RemoveListeners<T>(T listener, List<T> listeners) where T : IGameListener

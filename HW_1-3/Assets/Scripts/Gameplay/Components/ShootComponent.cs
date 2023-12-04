@@ -21,20 +21,20 @@ namespace ShootEmUp
 
         private void Awake()
         {
-            this.weaponComponent = this.GetComponent<WeaponComponent>();
-            this.teamComponent = this.GetComponent<TeamComponent>();
+            weaponComponent = GetComponent<WeaponComponent>();
+            teamComponent = GetComponent<TeamComponent>();
         }
 
         public void OnFireBullet()
         {
             bulletLauncher.LaunchBullet(new Bullet.Args
             {
-                isPlayer = this.teamComponent.IsPlayer,
-                physicsLayer = (int)this.bulletConfig.physicsLayer,
-                color = this.bulletConfig.color,
-                damage = this.bulletConfig.damage,
-                position = this.weaponComponent.Position,
-                velocity = this.weaponComponent.Rotation * this.Direction * this.bulletConfig.speed
+                isPlayer = teamComponent.IsPlayer,
+                physicsLayer = (int)bulletConfig.physicsLayer,
+                color = bulletConfig.color,
+                damage = bulletConfig.damage,
+                position = weaponComponent.Position,
+                velocity = weaponComponent.Rotation * Direction * bulletConfig.speed
             });
         }
     }

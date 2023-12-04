@@ -12,13 +12,13 @@ namespace ShootEmUp
 
         private void Awake()
         {
-            this.rigidbody2D = this.GetComponent<Rigidbody2D>();
+            rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
         public void Move(Vector2 vector)
         {
-            var nextPosition = this.rigidbody2D.position + vector * this.speed;
-            this.rigidbody2D.MovePosition(nextPosition);
+            Vector2 nextPosition = rigidbody2D.position + vector * speed;
+            rigidbody2D.MovePosition(nextPosition);
         }
     }
 }

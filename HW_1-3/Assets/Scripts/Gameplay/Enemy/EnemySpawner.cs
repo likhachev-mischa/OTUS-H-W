@@ -1,24 +1,16 @@
-using UnityEngine;
-using UnityEngine.Serialization;
-
 namespace ShootEmUp
 {
-    public sealed class EnemySpawner : MonoBehaviour,
-        IGameUpdateListener
+    public sealed class EnemySpawner : IGameUpdateListener
     {
-        [SerializeField] private float spawnDelay;
-
+        private float spawnDelay;
         private EnemyManager enemyManager;
         private float timeElapsed;
 
         [Inject]
-        private void Construct(EnemyManager enemyManager)
+        private void Construct(EnemyManager enemyManager, EnemyManagerConfig config)
         {
             this.enemyManager = enemyManager;
-        }
-
-        private void Awake()
-        {
+            spawnDelay = config.spawnDelay;
             Reset();
         }
 
@@ -35,7 +27,7 @@ namespace ShootEmUp
                 return;
             }
 
-            this.Reset();
+            Reset();
             enemyManager.SpawnEnemy();
         }
     }

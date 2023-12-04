@@ -54,54 +54,54 @@ namespace ShootEmUp
 
         private void Awake()
         {
-            this.bulletDamageHandler = new BulletDamageHandler(this);
-            this.bulletCollisionHandler = new BulletCollisionHandler(this);
+            bulletDamageHandler = new BulletDamageHandler(this);
+            bulletCollisionHandler = new BulletCollisionHandler(this);
         }
 
         public void Enable()
         {
-            this.bulletCollisionHandler.Enable();
-            this.bulletDamageHandler.Enable();
+            bulletCollisionHandler.Enable();
+            bulletDamageHandler.Enable();
         }
 
         public void Disable()
         {
-            this.bulletCollisionHandler.Disable();
-            this.bulletDamageHandler.Disable();
+            bulletCollisionHandler.Disable();
+            bulletDamageHandler.Disable();
         }
 
         private Vector2 cachedVelocity;
 
         public void OnPause()
         {
-            this.cachedVelocity = this.Velocity;
-            this.Velocity = Vector2.zero;
-            this.bulletCollisionHandler.Disable();
-            this.bulletDamageHandler.Disable();
+            cachedVelocity = Velocity;
+            Velocity = Vector2.zero;
+            bulletCollisionHandler.Disable();
+            bulletDamageHandler.Disable();
         }
 
         public void OnResume()
         {
-            this.Velocity = cachedVelocity;
-            this.bulletCollisionHandler.Enable();
-            this.bulletDamageHandler.Enable();
+            Velocity = cachedVelocity;
+            bulletCollisionHandler.Enable();
+            bulletDamageHandler.Enable();
         }
 
         public void OnFinish()
         {
-            this.Velocity = Vector2.zero;
-            this.bulletCollisionHandler.Disable();
-            this.bulletDamageHandler.Disable();
+            Velocity = Vector2.zero;
+            bulletCollisionHandler.Disable();
+            bulletDamageHandler.Disable();
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            this.OnCollisionEntered?.Invoke(collision);
+            OnCollisionEntered?.Invoke(collision);
         }
 
         public void Despawn()
         {
-            this.OnBulletDespawn?.Invoke(this);
+            OnBulletDespawn?.Invoke(this);
         }
 
         public struct Args

@@ -4,9 +4,12 @@ namespace ShootEmUp
 {
     public class EnemyInstaller : GameInstaller
     {
-        [Service(typeof(EnemyManager))] [Listener] [SerializeField]
-        private EnemyManager enemyManager;
+        [Service(typeof(EnemyManagerConfig))] [SerializeField]
+        private EnemyManagerConfig enemyManagerConfig;
 
-        [Listener] [SerializeField] private EnemySpawner enemySpawner;
+        [Service(typeof(EnemyManager))] [Listener]
+        private EnemyManager enemyManager = new();
+
+        [Listener] private EnemySpawner enemySpawner = new();
     }
 }

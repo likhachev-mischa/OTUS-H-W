@@ -10,27 +10,27 @@ namespace ShootEmUp
         {
             this.bullet = bullet;
         }
-        
+
         public void Enable()
         {
-            this.bullet.OnCollisionEntered += DealDamage;
+            bullet.OnCollisionEntered += DealDamage;
         }
 
         public void Disable()
         {
-            this.bullet.OnCollisionEntered -= DealDamage;
+            bullet.OnCollisionEntered -= DealDamage;
         }
 
         private void DealDamage(Collision2D collision)
         {
-            var other = collision.gameObject;
+            GameObject other = collision.gameObject;
 
             if (!other.TryGetComponent(out TeamComponent team))
             {
                 return;
             }
 
-            if (this.bullet.IsPlayer == team.IsPlayer)
+            if (bullet.IsPlayer == team.IsPlayer)
             {
                 return;
             }

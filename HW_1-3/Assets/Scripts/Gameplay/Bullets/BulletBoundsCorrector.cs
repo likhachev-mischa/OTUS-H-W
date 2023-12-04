@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ShootEmUp
 {
@@ -17,7 +16,7 @@ namespace ShootEmUp
         {
             this.levelBounds = levelBounds;
         }
-        
+
         public void Enable(Bullet bullet)
         {
             bullets.Add(bullet);
@@ -27,8 +26,8 @@ namespace ShootEmUp
         {
             for (var index = 0; index < bullets.Count; index++)
             {
-                var bullet = bullets[index];
-                if (!this.levelBounds.InBounds(bullet.transform.position))
+                Bullet bullet = bullets[index];
+                if (!levelBounds.InBounds(bullet.transform.position))
                 {
                     toDestroy.Add(bullet);
                 }
@@ -36,8 +35,8 @@ namespace ShootEmUp
 
             for (var index = 0; index < toDestroy.Count; index++)
             {
-                var bullet = toDestroy[index];
-                this.OnBulletDespawn?.Invoke(bullet);
+                Bullet bullet = toDestroy[index];
+                OnBulletDespawn?.Invoke(bullet);
             }
 
             toDestroy.Clear();

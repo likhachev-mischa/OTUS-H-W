@@ -17,7 +17,7 @@ namespace ShootEmUp
 
             for (var index = 0; index < methods.Length; index++)
             {
-                var method = methods[index];
+                MethodInfo method = methods[index];
                 if (method.IsDefined(typeof(InjectAttribute)))
                 {
                     InvokeInjection(method, target, locator);
@@ -30,12 +30,12 @@ namespace ShootEmUp
             ParameterInfo[] parameters = method.GetParameters();
 
             int count = parameters.Length;
-            object[] args = new object[count];
+            var args = new object[count];
 
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
-                var parameter = parameters[i];
-                var type = parameter.ParameterType;
+                ParameterInfo parameter = parameters[i];
+                Type type = parameter.ParameterType;
 
                 object service = locator.GetService(type);
                 args[i] = service;

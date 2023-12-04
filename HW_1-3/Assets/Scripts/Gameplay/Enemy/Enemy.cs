@@ -1,93 +1,93 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ShootEmUp
 {
     public sealed class Enemy : MonoBehaviour,
         IGameFixedUpdateListener
     {
+        public event Action<Enemy> OnDeath
+        {
+            add => deathAgent.OnDeath += value;
+            remove => deathAgent.OnDeath -= value;
+        }
+
         private EnemyAttackAgent attackAgent;
         private EnemyMoveAgent moveAgent;
         private EnemyDeathAgent deathAgent;
-        private EnemyManager enemyManager;
 
         private HealthComponent healthComponent;
         private int initialHealth;
-
-        [Inject]
-        private void Construct(EnemyManager enemyManager)
-        {
-            this.enemyManager = enemyManager;
-        }
-
+        
         private void Awake()
         {
-            this.attackAgent = this.GetComponent<EnemyAttackAgent>();
-            this.moveAgent = this.GetComponent<EnemyMoveAgent>();
-            this.deathAgent = this.GetComponent<EnemyDeathAgent>();
-            deathAgent.Construct(enemyManager);
+            attackAgent = GetComponent<EnemyAttackAgent>();
+            moveAgent = GetComponent<EnemyMoveAgent>();
+            deathAgent = GetComponent<EnemyDeathAgent>();
 
-            this.healthComponent = this.GetComponent<HealthComponent>();
-            this.initialHealth = healthComponent.Health;
+            healthComponent = GetComponent<HealthComponent>();
+            initialHealth = healthComponent.Health;
         }
 
         public void Enable()
         {
-            this.moveAgent.Enable();
-            this.deathAgent.Enable();
+            moveAgent.Enable();
+            deathAgent.Enable();
 
-            this.healthComponent.Health = this.initialHealth;
-            this.moveAgent.OnTargetReached += this.OnTargetReached;
+            healthComponent.Health = initialHealth;
+            moveAgent.OnTargetReached += OnTargetReached;
         }
 
         public void Disable()
         {
-            this.deathAgent.Disable();
+            deathAgent.Disable();
 
-            if (this.moveAgent.enabled)
+            if (moveAgent.enabled)
             {
-                this.moveAgent.Disable();
+                moveAgent.Disable();
             }
 
-            if (this.attackAgent.enabled)
+            if (attackAgent.enabled)
             {
-                this.attackAgent.Disable();
+                attackAgent.Disable();
             }
 
-            this.moveAgent.OnTargetReached -= this.OnTargetReached;
+            moveAgent.OnTargetReached -= OnTargetReached;
         }
 
         public void OnFixedUpdate(float deltaTime)
         {
-            if (this.moveAgent.enabled)
+            if (moveAgent.enabled)
             {
-                this.moveAgent.OnFixedUpdate(deltaTime);
+                moveAgent.OnFixedUpdate(deltaTime);
             }
 
-            if (this.attackAgent.enabled)
+            if (attackAgent.enabled)
             {
-                this.attackAgent.OnFixedUpdate(deltaTime);
+                attackAgent.OnFixedUpdate(deltaTime);
             }
         }
 
         public void SetPosition(Vector3 position)
         {
-            this.transform.position = position;
+            transform.position = position;
         }
 
         public void SetDestination(Vector2 destination)
         {
-            this.moveAgent.SetDestination(destination);
+            moveAgent.SetDestination(destination);
         }
 
         public void SetTarget(GameObject target)
         {
-            this.attackAgent.SetTarget(target);
+            attackAgent.SetTarget(target);
         }
 
         private void OnTargetReached()
         {
-            this.moveAgent.Disable();
-            this.attackAgent.Enable();
+            moveAgent.Disable();
+            attackAgent.Enable();
         }
+        
     }
 }
