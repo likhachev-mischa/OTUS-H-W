@@ -6,11 +6,7 @@ namespace ShootEmUp
     public sealed class Enemy : MonoBehaviour,
         IGameFixedUpdateListener
     {
-        public event Action<Enemy> OnDeath
-        {
-            add => deathAgent.OnDeath += value;
-            remove => deathAgent.OnDeath -= value;
-        }
+        public event Action<Enemy> OnDeath;
 
         private EnemyAttackAgent attackAgent;
         private EnemyMoveAgent moveAgent;
@@ -18,7 +14,7 @@ namespace ShootEmUp
 
         private HealthComponent healthComponent;
         private int initialHealth;
-        
+
         private void Awake()
         {
             attackAgent = GetComponent<EnemyAttackAgent>();
@@ -36,6 +32,7 @@ namespace ShootEmUp
 
             healthComponent.Health = initialHealth;
             moveAgent.OnTargetReached += OnTargetReached;
+            deathAgent.OnDeath += OnEnemyDeath;
         }
 
         public void Disable()
@@ -52,6 +49,7 @@ namespace ShootEmUp
                 attackAgent.Disable();
             }
 
+            deathAgent.OnDeath -= OnEnemyDeath;
             moveAgent.OnTargetReached -= OnTargetReached;
         }
 
@@ -88,6 +86,10 @@ namespace ShootEmUp
             moveAgent.Disable();
             attackAgent.Enable();
         }
-        
+
+        private void OnEnemyDeath()
+        {
+            OnDeath?.Invoke(this);
+        }
     }
 }

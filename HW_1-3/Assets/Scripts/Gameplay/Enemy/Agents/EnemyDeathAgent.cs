@@ -6,15 +6,13 @@ namespace ShootEmUp
     [RequireComponent(typeof(DeathComponent))]
     public class EnemyDeathAgent : MonoBehaviour
     {
-        public event Action<Enemy> OnDeath; 
+        public event Action OnDeath;
 
         private DeathComponent deathComponent;
-        private Enemy enemy;
 
         private void Awake()
         {
             deathComponent = GetComponent<DeathComponent>();
-            enemy = GetComponent<Enemy>();
         }
 
         public void Enable()
@@ -33,7 +31,7 @@ namespace ShootEmUp
 
         private void OnEnemyDeath()
         {
-            OnDeath?.Invoke(enemy);
+            OnDeath?.Invoke();
         }
     }
 }
