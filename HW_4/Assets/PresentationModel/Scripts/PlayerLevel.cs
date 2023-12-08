@@ -1,26 +1,35 @@
 using System;
-//using Sirenix.OdinInspector;
+using UnityEngine;
 
-namespace Lessons.Architecture.PM
+namespace MVVM
 {
+    [Serializable]
+
     public sealed class PlayerLevel
     {
         public event Action OnLevelUp;
         public event Action<int> OnExperienceChanged;
 
-        //[ShowInInspector, ReadOnly]
-        public int CurrentLevel { get; private set; } = 1;
+        public int CurrentLevel
+        {
+            get => currentLevel;
+            private set => currentLevel = value;
+        }
 
-        //[ShowInInspector, ReadOnly]
-        public int CurrentExperience { get; private set; }
+        public int CurrentExperience
+        {
+            get => currentExperience;
+            private set => currentExperience = value;
+        }
 
-       // [ShowInInspector, ReadOnly]
         public int RequiredExperience
         {
             get { return 100 * (this.CurrentLevel + 1); }
         }
 
-        //[Button]
+        [SerializeField] private int currentLevel = 1;
+        [SerializeField] private int currentExperience;
+
         public void AddExperience(int range)
         {
             var xp = Math.Min(this.CurrentExperience + range, this.RequiredExperience);
@@ -28,7 +37,6 @@ namespace Lessons.Architecture.PM
             this.OnExperienceChanged?.Invoke(xp);
         }
 
-        //[Button]
         public void LevelUp()
         {
             if (this.CanLevelUp())
@@ -43,5 +51,7 @@ namespace Lessons.Architecture.PM
         {
             return this.CurrentExperience == this.RequiredExperience;
         }
+
     }
+
 }

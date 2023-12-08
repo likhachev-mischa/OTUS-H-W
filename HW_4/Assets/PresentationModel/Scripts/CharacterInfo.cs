@@ -1,28 +1,26 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-//using Sirenix.OdinInspector;
+using UnityEngine;
 
-namespace Lessons.Architecture.PM
+namespace MVVM
 {
+    [Serializable]
     public sealed class CharacterInfo
     {
         public event Action<CharacterStat> OnStatAdded;
         public event Action<CharacterStat> OnStatRemoved;
-    
-        //[ShowInInspector]
-        private readonly HashSet<CharacterStat> stats = new();
 
-       // [Button]
+        [SerializeField] private List<CharacterStat> stats = new();
+        
         public void AddStat(CharacterStat stat)
         {
-            if (this.stats.Add(stat))
+            if (!this.stats.Contains(stat))
             {
+                stats.Add(stat);
                 this.OnStatAdded?.Invoke(stat);
             }
         }
 
-        //[Button]
         public void RemoveStat(CharacterStat stat)
         {
             if (this.stats.Remove(stat))
