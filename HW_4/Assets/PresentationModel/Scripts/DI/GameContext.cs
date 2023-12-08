@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MVVM
 {
@@ -10,39 +12,72 @@ namespace MVVM
 
         [SerializeField] private ServiceLocator serviceLocator;
 
-        [SerializeField] private MonoBehaviour[] installers;
+        [SerializeField] private MonoBehaviour[] monoInstallers;
 
+        [SerializeField] private GameInstallerContainer installerContainer;
+        
+        private GameInstaller[] gameInstallers;
         private void Awake()
         {
-            foreach (MonoBehaviour installer in installers)
+            gameInstallers = installerContainer.ProvideInstallers().ToArray();
+            
+            foreach (MonoBehaviour installer in monoInstallers)
             {
-                if (installer is IGameListenerProvider listenerProvider)
-                {
-                    gameManager.AddListeners(listenerProvider.ProvideListeners());
-                }
+                ExtractListeners(installer);
 
-                if (installer is IServiceProvider serviceProvider)
+                ExtractServices(installer);
+            }
+
+            foreach (GameInstaller installer in gameInstallers)
+            {
+                ExtractListeners(installer);
+
+                ExtractServices(installer);
+            }
+            
+        }
+
+        private void ExtractServices(object installer)
+        {
+            if (installer is IServiceProvider serviceProvider)
+            {
+                IEnumerable<(Type, object)> services = serviceProvider.ProvideServices();
+                foreach ((Type type, object service) in services)
                 {
-                    IEnumerable<(Type, object)> services = serviceProvider.ProvideServices();
-                    foreach ((Type type, object service) in services)
-                    {
-                        serviceLocator.BindService(type, service);
-                    }
+                    serviceLocator.BindService(type, service);
                 }
+            }
+        }
+
+        private void ExtractListeners(object installer)
+        {
+            if (installer is IGameListenerProvider listenerProvider)
+            {
+                gameManager.AddListeners(listenerProvider.ProvideListeners());
             }
         }
 
         private void Start()
         {
-            foreach (MonoBehaviour installer in installers)
+            foreach (MonoBehaviour installer in monoInstallers)
             {
-                if (installer is IInjectProvider injectProvider)
-                {
-                    injectProvider.Inject(serviceLocator);
-                }
+                ExtractInjectors(installer);
+            }
+
+            foreach (GameInstaller installer in gameInstallers)
+            {
+                ExtractInjectors(installer);
             }
 
             InjectGameObjectsOnScene();
+        }
+
+        private void ExtractInjectors(object installer)
+        {
+            if (installer is IInjectProvider injectProvider)
+            {
+                injectProvider.Inject(serviceLocator);
+            }
         }
 
         private void InjectGameObjectsOnScene()

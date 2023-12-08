@@ -9,6 +9,7 @@ namespace MVVM
     {
         [SerializeField] private Character character;
 
+        [Space]
         [SerializeField] private CharacterStatConfig[] characterStatConfigRegistry;
         private readonly Dictionary<string, CharacterStat> characterStats = new();
 

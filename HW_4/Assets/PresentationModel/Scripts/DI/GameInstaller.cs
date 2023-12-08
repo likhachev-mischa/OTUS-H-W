@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using UnityEngine;
 
 namespace MVVM
 {
-    public abstract class GameInstaller : MonoBehaviour,
+    public abstract class GameInstaller :
         IGameListenerProvider,
         IServiceProvider,
         IInjectProvider

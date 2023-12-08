@@ -8,14 +8,20 @@ namespace MVVM
     {
         public event Action<int> OnValueChanged;
 
-       [ReadOnly]
         public string Name
         {
-            get;
-            private set;
+            get => name;
+            private set => name = value;
         }
 
-        public int Value { get; private set; }
+        public int Value
+        {
+            get => this.value;
+            private set => this.value = value;
+        }
+
+        [SerializeField] [ReadOnly] private string name;
+        [SerializeField] [ReadOnly] private int value;
 
         public CharacterStat(string name, int value)
         {

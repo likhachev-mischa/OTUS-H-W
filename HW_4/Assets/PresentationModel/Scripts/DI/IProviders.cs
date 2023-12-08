@@ -17,4 +17,9 @@ namespace MVVM
     {
         void Inject(ServiceLocator serviceLocator);
     }
+    
+    public interface IGameInstallerProvider
+    {
+        IEnumerable<GameInstaller> ProvideInstallers();
+    }
 }
