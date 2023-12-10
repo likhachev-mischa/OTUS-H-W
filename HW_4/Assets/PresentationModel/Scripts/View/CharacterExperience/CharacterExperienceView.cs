@@ -67,7 +67,7 @@ namespace MVVM
         {
             DisableView();
             experiencePresenter.LevelUp();
-            levelText.text = $"Level : {this.experiencePresenter.CurrentLevel}";
+            levelText.text = $"Level : {experiencePresenter.CurrentLevel}";
         }
 
         private void OnDestroy()

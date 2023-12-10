@@ -11,19 +11,19 @@ namespace MVVM
 
         public int CurrentLevel
         {
-            get => currentLevel;
-            private set => currentLevel = value;
+            get { return currentLevel; }
+            private set { currentLevel = value; }
         }
 
         public int CurrentExperience
         {
-            get => currentExperience;
-            private set => currentExperience = value;
+            get { return currentExperience; }
+            private set { currentExperience = value; }
         }
 
         public int RequiredExperience
         {
-            get { return 100 * (this.CurrentLevel + 1); }
+            get { return 100 * (CurrentLevel + 1); }
         }
 
         [SerializeField] [ReadOnly] private int currentLevel = 1;
@@ -31,21 +31,21 @@ namespace MVVM
 
         public void AddExperience(int range)
         {
-            var xp = Math.Min(this.CurrentExperience + range, this.RequiredExperience);
-            this.CurrentExperience = xp;
-            this.OnExperienceChanged?.Invoke(xp);
+            int xp = Math.Min(CurrentExperience + range, RequiredExperience);
+            CurrentExperience = xp;
+            OnExperienceChanged?.Invoke(xp);
         }
 
         public void LevelUp()
         {
-            this.CurrentExperience = 0;
-            this.CurrentLevel++;
-            this.OnLevelUp?.Invoke();
+            CurrentExperience = 0;
+            CurrentLevel++;
+            OnLevelUp?.Invoke();
         }
 
         public bool CanLevelUp()
         {
-            return this.CurrentExperience == this.RequiredExperience;
+            return CurrentExperience == RequiredExperience;
         }
     }
 }

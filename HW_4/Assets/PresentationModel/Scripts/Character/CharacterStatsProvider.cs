@@ -7,8 +7,7 @@ namespace MVVM
     [Serializable]
     public sealed class CharacterStatsProvider
     {
-        [Space]
-        [SerializeField] private CharacterStatConfig[] characterStatConfigRegistry;
+        [Space] [SerializeField] private CharacterStatConfig[] characterStatConfigRegistry;
         private readonly Dictionary<string, CharacterStat> characterStats = new();
 
         [Inject]
@@ -26,6 +25,7 @@ namespace MVVM
                     Debug.LogWarning($"{characterStatConfigRegistry[i].Name} is already registered!");
                     continue;
                 }
+
                 characterStats.Add(characterStatConfigRegistry[i].Name,
                     new CharacterStat(characterStatConfigRegistry[i].Name, characterStatConfigRegistry[i].Value));
             }
@@ -37,6 +37,7 @@ namespace MVVM
             {
                 Debug.LogWarning($"{chosenConfig.Name} config is not registered!");
             }
+
             characterInfo.AddStat(characterStats[chosenConfig.Name]);
         }
 
@@ -46,9 +47,8 @@ namespace MVVM
             {
                 Debug.LogWarning($"{chosenConfig.Name} config is not registered!");
             }
+
             characterInfo.RemoveStat(characterStats[chosenConfig.Name]);
         }
-        
-
     }
 }

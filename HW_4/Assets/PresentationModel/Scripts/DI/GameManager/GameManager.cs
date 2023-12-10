@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MVVM
 {
-        public enum GameState
+    public enum GameState
     {
         OFF,
         ON,
@@ -173,5 +173,4 @@ namespace MVVM
             listeners.Remove(listener);
         }
     }
-
 }

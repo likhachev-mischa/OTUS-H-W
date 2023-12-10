@@ -6,9 +6,9 @@ namespace MVVM
     {
         public UserInfo UserInfo
         {
-            get => userInfo;
+            get { return userInfo; }
         }
-        
+
         [SerializeField] private UserInfo userInfo = new();
     }
 }

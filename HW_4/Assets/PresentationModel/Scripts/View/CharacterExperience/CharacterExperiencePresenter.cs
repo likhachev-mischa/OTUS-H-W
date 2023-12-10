@@ -2,7 +2,7 @@
 
 namespace MVVM
 {
-    public sealed class CharacterExperiencePresenter : ICharacterExperiencePresenter,IDisposable
+    public sealed class CharacterExperiencePresenter : ICharacterExperiencePresenter, IDisposable
     {
         public int CurrentExperience { get; private set; }
         public int CurrentLevel { get; private set; }
@@ -12,6 +12,7 @@ namespace MVVM
         public event Action OnNewLevelReached;
 
         private CharacterLevel characterLevel;
+
         public CharacterExperiencePresenter(CharacterLevel characterLevel)
         {
             this.characterLevel = characterLevel;
@@ -31,7 +32,7 @@ namespace MVVM
                 OnNewLevelReached?.Invoke();
             }
         }
-        
+
         public void LevelUp()
         {
             characterLevel.LevelUp();
@@ -40,6 +41,7 @@ namespace MVVM
             CurrentLevel = characterLevel.CurrentLevel;
             OnExperienceChanged?.Invoke(characterLevel.CurrentExperience);
         }
+
         public void Dispose()
         {
             characterLevel.OnExperienceChanged -= OnExperienceChanged;

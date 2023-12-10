@@ -9,7 +9,7 @@ namespace MVVM
         [SerializeField] private CharacterExperienceView experienceViewPrefab;
 
         private CharacterExperienceView experienceView;
-        
+
         public void Show(IPresenter args)
         {
             if (args is not ICharacterExperiencePresenter experiencePresenter)
@@ -27,6 +27,5 @@ namespace MVVM
             gameObject.SetActive(false);
             Destroy(experienceView.gameObject);
         }
-        
     }
 }

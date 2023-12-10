@@ -5,9 +5,8 @@ namespace MVVM
     public sealed class UserInfoManager : MonoBehaviour
     {
         [SerializeField] private UserInfoConfig userData;
-        
-        [Space] 
-        [SerializeField] private string userName;
+
+        [Space] [SerializeField] private string userName;
         [SerializeField] private string description;
         [SerializeField] private Sprite icon;
 
@@ -28,7 +27,7 @@ namespace MVVM
             user.UserInfo.ChangeDescription(userData.description);
             user.UserInfo.ChangeIcon(userData.icon);
         }
-        
+
         public void ChangeName()
         {
             user.UserInfo.ChangeName(userName);

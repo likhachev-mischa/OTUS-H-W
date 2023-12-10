@@ -15,12 +15,13 @@ namespace MVVM
         [SerializeField] private MonoBehaviour[] monoInstallers;
 
         [SerializeField] private GameInstallerContainer installerContainer;
-        
+
         private GameInstaller[] gameInstallers;
+
         private void Awake()
         {
             gameInstallers = installerContainer.ProvideInstallers().ToArray();
-            
+
             foreach (MonoBehaviour installer in monoInstallers)
             {
                 ExtractListeners(installer);
@@ -34,7 +35,6 @@ namespace MVVM
 
                 ExtractServices(installer);
             }
-            
         }
 
         private void ExtractServices(object installer)
@@ -104,5 +104,4 @@ namespace MVVM
             }
         }
     }
-
 }

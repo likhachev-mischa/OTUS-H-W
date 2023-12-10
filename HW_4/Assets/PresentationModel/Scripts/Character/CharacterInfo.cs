@@ -11,27 +11,27 @@ namespace MVVM
         public event Action<CharacterStat> OnStatRemoved;
 
         [SerializeField] private List<CharacterStat> stats = new();
-        
+
         public void AddStat(CharacterStat stat)
         {
-            if (!this.stats.Contains(stat))
+            if (!stats.Contains(stat))
             {
                 stats.Add(stat);
-                this.OnStatAdded?.Invoke(stat);
+                OnStatAdded?.Invoke(stat);
             }
         }
 
         public void RemoveStat(CharacterStat stat)
         {
-            if (this.stats.Remove(stat))
+            if (stats.Remove(stat))
             {
-                this.OnStatRemoved?.Invoke(stat);
+                OnStatRemoved?.Invoke(stat);
             }
         }
 
         public CharacterStat GetStat(string name)
         {
-            foreach (var stat in this.stats)
+            foreach (CharacterStat stat in stats)
             {
                 if (stat.Name == name)
                 {
@@ -44,7 +44,7 @@ namespace MVVM
 
         public CharacterStat[] GetStats()
         {
-            return this.stats.ToArray();
+            return stats.ToArray();
         }
     }
 }

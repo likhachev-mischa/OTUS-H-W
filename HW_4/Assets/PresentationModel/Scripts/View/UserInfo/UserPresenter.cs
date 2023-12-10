@@ -18,9 +18,9 @@ namespace MVVM
         public UserPresenter(UserInfo userInfo)
         {
             this.userInfo = userInfo;
-            this.Name = userInfo.Name;
-            this.Description = userInfo.Description;
-            this.Icon = userInfo.Icon;
+            Name = userInfo.Name;
+            Description = userInfo.Description;
+            Icon = userInfo.Icon;
 
             userInfo.OnNameChanged += OnNameChanged;
             userInfo.OnDescriptionChanged += OnDescriptionChanged;
@@ -29,19 +29,19 @@ namespace MVVM
 
         private void OnNameChanged(string name)
         {
-            this.Name = name;
+            Name = name;
             OnNameUpdated?.Invoke(name);
         }
 
         private void OnDescriptionChanged(string description)
         {
-            this.Description = description;
+            Description = description;
             OnDescriptionUpdated?.Invoke(description);
         }
 
         private void OnIconChanged(Sprite icon)
         {
-            this.Icon = icon;
+            Icon = icon;
             OnIconUpdated?.Invoke(icon);
         }
 

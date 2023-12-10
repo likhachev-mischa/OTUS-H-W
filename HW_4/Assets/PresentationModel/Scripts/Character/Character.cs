@@ -6,16 +6,15 @@ namespace MVVM
     {
         public CharacterInfo CharacterInfo
         {
-            get => characterInfo;
+            get { return characterInfo; }
         }
 
         public CharacterLevel CharacterLevel
         {
-            get => characterLevel;
+            get { return characterLevel; }
         }
 
         [SerializeField] private CharacterInfo characterInfo = new();
         [SerializeField] private CharacterLevel characterLevel = new();
-        
     }
 }

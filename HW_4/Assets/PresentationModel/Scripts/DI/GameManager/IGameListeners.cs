@@ -38,5 +38,4 @@
     {
         void OnLateUpdate(float deltaTime);
     }
-
 }

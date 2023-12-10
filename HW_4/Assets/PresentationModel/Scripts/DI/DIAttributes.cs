@@ -17,7 +17,7 @@ namespace MVVM
 
         public ServiceAttribute(Type contract)
         {
-            this.Contract = contract;
+            Contract = contract;
         }
     }
 

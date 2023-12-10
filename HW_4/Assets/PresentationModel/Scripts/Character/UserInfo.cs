@@ -34,20 +34,20 @@ namespace MVVM
 
         public void ChangeName(string name)
         {
-            this.Name = name;
-            this.OnNameChanged?.Invoke(name);
+            Name = name;
+            OnNameChanged?.Invoke(name);
         }
 
         public void ChangeDescription(string description)
         {
-            this.Description = description;
-            this.OnDescriptionChanged?.Invoke(description);
+            Description = description;
+            OnDescriptionChanged?.Invoke(description);
         }
 
         public void ChangeIcon(Sprite icon)
         {
-            this.Icon = icon;
-            this.OnIconChanged?.Invoke(icon);
+            Icon = icon;
+            OnIconChanged?.Invoke(icon);
         }
     }
 }
