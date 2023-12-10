@@ -17,13 +17,7 @@ namespace MVVM
             {
                 manager.AddExperience();
             }
-
-            if (GUILayout.Button("Force Level Up Character"))
-            {
-                manager.ForceLevelUp();
-            }
             
-            manager.IsAutoLevelUpEnabled = GUILayout.Toggle(manager.IsAutoLevelUpEnabled, "Enable Auto LevelUp");
         }
     }
 }

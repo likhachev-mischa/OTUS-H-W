@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dab20a574434ab19dca83fb00060535, type: 3}
-  m_Name: User1
+  m_Name: Arthas
   m_EditorClassIdentifier: 
   userName: Arthas
   description: Papich

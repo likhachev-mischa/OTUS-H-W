@@ -36,7 +36,7 @@ namespace MVVM
             this.OnExperienceChanged?.Invoke(xp);
         }
 
-        public void ForceLevelUp()
+        public void LevelUp()
         {
             this.CurrentExperience = 0;
             this.CurrentLevel++;

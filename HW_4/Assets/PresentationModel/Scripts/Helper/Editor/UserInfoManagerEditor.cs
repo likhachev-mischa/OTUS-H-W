@@ -13,6 +13,11 @@ namespace MVVM
             var manager = (UserInfoManager)target;
 
 
+            if (GUILayout.Button("Change All Info From Config"))
+            {
+                manager.ChangeUserInfo();
+            }
+
             if (GUILayout.Button("Change Name"))
             {
                 manager.ChangeName();
@@ -22,7 +27,7 @@ namespace MVVM
             {
                 manager.ChangeDescription();
             }
-            
+
             if (GUILayout.Button("Change Icon"))
             {
                 manager.ChangeIcon();

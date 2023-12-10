@@ -6,7 +6,7 @@ namespace MVVM
     [Serializable]
     public sealed class CharacterStat
     {
-        public event Action<int> OnValueChanged;
+        public event Action<CharacterStat,int> OnValueChanged;
 
         public string Name
         {
@@ -32,7 +32,7 @@ namespace MVVM
         public void ChangeValue(int value)
         {
             this.Value = value;
-            this.OnValueChanged?.Invoke(value);
+            this.OnValueChanged?.Invoke(this,value);
         }
     }
 }

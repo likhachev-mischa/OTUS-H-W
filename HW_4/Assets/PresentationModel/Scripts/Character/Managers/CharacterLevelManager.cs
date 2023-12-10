@@ -6,29 +6,6 @@ namespace MVVM
     {
         [SerializeField] private int experience;
 
-        public bool IsAutoLevelUpEnabled
-        {
-            get { return isAutoLevelUpEnabled; }
-            set
-            {
-                if (isAutoLevelUpEnabled == value)
-                {
-                    return;
-                }
-                
-                isAutoLevelUpEnabled = value;
-                if (isAutoLevelUpEnabled)
-                {
-                    EnableAutoLevelUp();
-                }
-                else
-                {
-                    DisableAutoLevelUp();
-                }
-                
-            }
-        }
-        
         private bool isAutoLevelUpEnabled;
         
         private Character character;
@@ -46,19 +23,6 @@ namespace MVVM
             character.CharacterLevel.AddExperience(experience);
         }
 
-        public void ForceLevelUp()
-        {
-            character.CharacterLevel.ForceLevelUp();
-        }
 
-        private void EnableAutoLevelUp()
-        {
-            autoLevelUpObserver.Enable();
-        }
-
-        private void DisableAutoLevelUp()
-        {
-            autoLevelUpObserver.Disable();
-        }
     }
 }

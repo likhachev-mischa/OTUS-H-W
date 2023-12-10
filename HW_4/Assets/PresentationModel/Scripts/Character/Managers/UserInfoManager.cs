@@ -22,6 +22,13 @@ namespace MVVM
             this.user.UserInfo.ChangeIcon(userData.icon);
         }
 
+        public void ChangeUserInfo()
+        {
+            user.UserInfo.ChangeName(userData.userName);
+            user.UserInfo.ChangeDescription(userData.description);
+            user.UserInfo.ChangeIcon(userData.icon);
+        }
+        
         public void ChangeName()
         {
             user.UserInfo.ChangeName(userName);

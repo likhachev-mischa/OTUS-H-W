@@ -23,7 +23,7 @@
         {
             if (character.CharacterLevel.CanLevelUp())
             {
-                character.CharacterLevel.ForceLevelUp();
+                character.CharacterLevel.LevelUp();
             }
         }
     }

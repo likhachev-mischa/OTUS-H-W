@@ -2,7 +2,7 @@
 
 namespace MVVM
 {
-    [CreateAssetMenu(menuName = "Confgis/User Info", fileName = "User Info")]
+    [CreateAssetMenu(menuName = "Configs/User Info", fileName = "User Info")]
     public class UserInfoConfig : ScriptableObject
     {
         public string userName;

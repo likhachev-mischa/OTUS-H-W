@@ -1,40 +1,32 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace MVVM
 {
     public sealed class UserPopup : MonoBehaviour
     {
         [SerializeField] private Transform container;
-        [SerializeField] private UserView viewPrefab;
-        [SerializeField] private Button levelUpButton;
+        [SerializeField] private UserView userViewPrefab;
 
-        private IUserPresenter userPresenter;
         private UserView userView;
 
-        public void Initialize(IPresenter args)
+        public void Show(IPresenter args)
         {
             if (args is not IUserPresenter userPresenter)
             {
                 throw new Exception("Expected IUserPresenter");
             }
 
-            this.userPresenter = userPresenter;
-        }
-
-        public void Show()
-        {
             gameObject.SetActive(true);
 
-            userView = Instantiate(viewPrefab, container);
+            userView = Instantiate(userViewPrefab, container);
             userView.Initialize(userPresenter);
         }
 
         public void Hide()
         {
             gameObject.SetActive(false);
-            Destroy(userView);
+            Destroy(userView.gameObject);
         }
     }
 }
