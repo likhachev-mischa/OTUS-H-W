@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Arthas
   m_EditorClassIdentifier: 
   userName: Arthas
-  description: Papich
+  description: Batiskaf
   icon: {fileID: 21300000, guid: 954d79ad0f5124da59b33552ab47a641, type: 3}

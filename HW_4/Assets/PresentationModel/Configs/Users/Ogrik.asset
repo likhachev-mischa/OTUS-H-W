@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dab20a574434ab19dca83fb00060535, type: 3}
   m_Name: Ogrik
   m_EditorClassIdentifier: 
-  userName: 
-  description: 
-  icon: {fileID: 0}
+  userName: Ogr
+  description: Ya ogr
+  icon: {fileID: 21300000, guid: 7c0892898786946a98a1057c9873611a, type: 3}

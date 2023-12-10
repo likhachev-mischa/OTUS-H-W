@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a2df8b11fc64ca5a85e9d7343c5dd7f, type: 3}
   m_Name: IntelligenceStat
   m_EditorClassIdentifier: 
-  Name: 
-  Value: 0
+  Name: Intelligence
+  Value: -1
