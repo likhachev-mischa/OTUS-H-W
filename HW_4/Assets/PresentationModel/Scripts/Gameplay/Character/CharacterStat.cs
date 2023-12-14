@@ -6,6 +6,9 @@ namespace MVVM
     [Serializable]
     public sealed class CharacterStat
     {
+        [SerializeField] [ReadOnly] private string name;
+        [SerializeField] [ReadOnly] private int value;
+
         public event Action<CharacterStat, int> OnValueChanged;
 
         public string Name
@@ -19,9 +22,6 @@ namespace MVVM
             get { return value; }
             private set { this.value = value; }
         }
-
-        [SerializeField] [ReadOnly] private string name;
-        [SerializeField] [ReadOnly] private int value;
 
         public CharacterStat(string name, int value)
         {

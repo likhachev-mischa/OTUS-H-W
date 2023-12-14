@@ -7,10 +7,9 @@ namespace MVVM
     [Serializable]
     public sealed class CharacterInfo
     {
+        [SerializeField] private List<CharacterStat> stats = new();
         public event Action<CharacterStat> OnStatAdded;
         public event Action<CharacterStat> OnStatRemoved;
-
-        [SerializeField] private List<CharacterStat> stats = new();
 
         public void AddStat(CharacterStat stat)
         {
@@ -42,9 +41,9 @@ namespace MVVM
             throw new Exception($"Stat {name} is not found!");
         }
 
-        public CharacterStat[] GetStats()
+        public IReadOnlyList<CharacterStat> GetStats()
         {
-            return stats.ToArray();
+            return stats;
         }
     }
 }

@@ -22,8 +22,9 @@ namespace MVVM
         public void Initialize(ICharacterExperiencePresenter experiencePresenter)
         {
             this.experiencePresenter = experiencePresenter;
-            experienceText.text = $"{experiencePresenter.CurrentExperience}/{experiencePresenter.RequiredExperience}";
-            levelText.text = $"Level : {this.experiencePresenter.CurrentLevel}";
+            experienceText.text = this.experiencePresenter.ExperienceText;
+            levelText.text = this.experiencePresenter.LevelText;
+
             if (this.experiencePresenter.CanLevelUp)
             {
                 EnableView();
@@ -55,7 +56,7 @@ namespace MVVM
 
         private void OnExperienceChanged(int value)
         {
-            experienceText.text = $"{value}/{experiencePresenter.RequiredExperience}";
+            experienceText.text = experiencePresenter.ExperienceText;
         }
 
         private void OnNewLevelReached()
@@ -67,7 +68,7 @@ namespace MVVM
         {
             DisableView();
             experiencePresenter.LevelUp();
-            levelText.text = $"Level : {experiencePresenter.CurrentLevel}";
+            levelText.text = experiencePresenter.LevelText;
         }
 
         private void OnDestroy()

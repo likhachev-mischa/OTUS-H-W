@@ -8,10 +8,12 @@ namespace MVVM
         public int CurrentLevel { get; private set; }
         public bool CanLevelUp { get; private set; }
         public int RequiredExperience { get; private set; }
+        public string ExperienceText { get; private set; }
+        public string LevelText { get; private set; }
         public event Action<int> OnExperienceChanged;
         public event Action OnNewLevelReached;
 
-        private CharacterLevel characterLevel;
+        private readonly CharacterLevel characterLevel;
 
         public CharacterExperiencePresenter(CharacterLevel characterLevel)
         {
@@ -20,12 +22,14 @@ namespace MVVM
             CurrentLevel = this.characterLevel.CurrentLevel;
             RequiredExperience = this.characterLevel.RequiredExperience;
             CanLevelUp = this.characterLevel.CanLevelUp();
+            UpdateText();
             characterLevel.OnExperienceChanged += OnExperienceChangedListener;
         }
 
         private void OnExperienceChangedListener(int value)
         {
             CurrentExperience = value;
+            UpdateText();
             OnExperienceChanged?.Invoke(value);
             if (characterLevel.CanLevelUp())
             {
@@ -39,12 +43,20 @@ namespace MVVM
             CanLevelUp = characterLevel.CanLevelUp();
             RequiredExperience = characterLevel.RequiredExperience;
             CurrentLevel = characterLevel.CurrentLevel;
+            CurrentExperience = characterLevel.CurrentExperience;
+            UpdateText();
             OnExperienceChanged?.Invoke(characterLevel.CurrentExperience);
+        }
+
+        private void UpdateText()
+        {
+            LevelText = $"Level : {CurrentLevel}";
+            ExperienceText = $"{CurrentExperience}/{RequiredExperience}";
         }
 
         public void Dispose()
         {
-            characterLevel.OnExperienceChanged -= OnExperienceChanged;
+            characterLevel.OnExperienceChanged -= OnExperienceChangedListener;
         }
     }
 }

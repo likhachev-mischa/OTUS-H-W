@@ -6,7 +6,9 @@ namespace MVVM
     [Serializable]
     public sealed class CharacterLevel
     {
-        public event Action OnLevelUp;
+        [SerializeField] [ReadOnly] private int currentLevel = 1;
+        [SerializeField] [ReadOnly] private int currentExperience;
+        
         public event Action<int> OnExperienceChanged;
 
         public int CurrentLevel
@@ -26,9 +28,6 @@ namespace MVVM
             get { return 100 * (CurrentLevel + 1); }
         }
 
-        [SerializeField] [ReadOnly] private int currentLevel = 1;
-        [SerializeField] [ReadOnly] private int currentExperience;
-
         public void AddExperience(int range)
         {
             int xp = Math.Min(CurrentExperience + range, RequiredExperience);
@@ -40,7 +39,6 @@ namespace MVVM
         {
             CurrentExperience = 0;
             CurrentLevel++;
-            OnLevelUp?.Invoke();
         }
 
         public bool CanLevelUp()
