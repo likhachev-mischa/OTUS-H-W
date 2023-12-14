@@ -663,7 +663,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -845,6 +845,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1154563143}
+  - component: {fileID: 1154563147}
   - component: {fileID: 1154563146}
   - component: {fileID: 1154563145}
   - component: {fileID: 1154563144}
@@ -917,6 +918,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   container: {fileID: 1154563143}
   userViewPrefab: {fileID: 1036664299243660911, guid: 53d395516336ac841a83234f0512b693, type: 3}
+--- !u!114 &1154563147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154563142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7214d09f79d4b65bfd4a22eba455d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userPopup: {fileID: 1154563146}
+  characterStatsPopup: {fileID: 1154563145}
+  characterExperiencePopup: {fileID: 1154563144}
 --- !u!1 &1196171804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,7 +1067,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1164,9 +1180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showButton: {fileID: 133028663}
   hideButton: {fileID: 1724586342}
-  userPopup: {fileID: 1154563146}
-  characterStatsPopup: {fileID: 1154563145}
-  characterExperiencePopup: {fileID: 1154563144}
+  popup: {fileID: 1154563147}
 --- !u!1 &1674890424
 GameObject:
   m_ObjectHideFlags: 0
