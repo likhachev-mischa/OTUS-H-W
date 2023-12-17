@@ -4,300 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a455c0a2-5a04-4be3-8272-ca989391ed3f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../HW_4/.idea/.idea.HW_4/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/.idea/.idea.HW_4/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/.idea/.idea.HW_4/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/.idea/.idea.HW_4/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/.idea/.idea.My project/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/.idea/.idea.My project/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/.idea/.idea.My project/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats/ArmorStat.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats/ArmorStat.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats/DamageStat.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats/DamageStat.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats/HealthStat.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats/HealthStat.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats/IntelligenceStat.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats/IntelligenceStat.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats/RangeStat.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats/RangeStat.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats/SpeedStat.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/CharacterStats/SpeedStat.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/Users.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/Users/Arthas.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/Users/Arthas.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/Users/Ogrik.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Configs/Users/Ogrik.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Fonts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Fonts/OpenSans-Bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Fonts/OpenSans-Bold.ttf.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Fonts/OpenSans-Light.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Fonts/OpenSans-Light.ttf.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Fonts/OpenSans-Medium.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Fonts/OpenSans-Medium.ttf.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Fonts/OpenSans-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Fonts/OpenSans-Regular.ttf.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Fonts/OpenSans-SemiBold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Fonts/OpenSans-SemiBold.ttf.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/Character Experience Popup.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/Character Experience Popup.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/Character Stats Popup.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/Character Stats Popup.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/CharacterStatText.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/CharacterStatText.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/Hide Button.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/Hide Button.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/Level Text.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/Level Text.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/LevelUp Button.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/LevelUp Button.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/UserPopup.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Prefabs/UserPopup.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scene.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/DIAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/DIAttributes.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/DependancyInjector.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/DependancyInjector.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameContext.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameInstaller.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameInstaller.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameInstallerAttribute.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameInstallerAttribute.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameInstallerContainer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameInstallerContainer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameManager.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameManager/GameManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameManager/GameManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameManager/IGameListeners.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/GameManager/IGameListeners.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/IProviders.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/IProviders.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/ServiceLocator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/DI/ServiceLocator.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character/Character.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character/Character.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character/CharacterInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character/CharacterInfo.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character/CharacterLevel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character/CharacterLevel.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character/CharacterStat.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character/CharacterStat.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character/CharacterStatConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character/CharacterStatConfig.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character/CharacterStatsProvider.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Character/CharacterStatsProvider.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Managers.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Managers/CharacterLevelManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Managers/CharacterLevelManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Managers/CharacterStatsManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Managers/CharacterStatsManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Managers/UserInfoManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/Managers/UserInfoManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/User.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/User/User.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/User/User.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/User/UserInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/User/UserInfo.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/User/UserInfoConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Gameplay/User/UserInfoConfig.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Helper.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Helper/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Helper/Editor/CharacterLevelManagerEditor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Helper/Editor/CharacterLevelManagerEditor.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Helper/Editor/CharacterStatsManagerEditor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Helper/Editor/CharacterStatsManagerEditor.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Helper/Editor/UserInfoManagerEditor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Helper/Editor/UserInfoManagerEditor.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Helper/ReadOnlyDrawer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Helper/ReadOnlyDrawer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Installers.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Installers/CharacterInstaller.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Installers/CharacterInstaller.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Installers/SceneInstaller.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/Installers/SceneInstaller.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterExperience.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterExperience/CharacterExperiencePopup.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterExperience/CharacterExperiencePopup.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterExperience/CharacterExperiencePresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterExperience/CharacterExperiencePresenter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterExperience/CharacterExperienceView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterExperience/CharacterExperienceView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterExperience/ICharacterExperiencePresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterExperience/ICharacterExperiencePresenter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterStats.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterStats/CharacterStatsPopup.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterStats/CharacterStatsPopup.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterStats/CharacterStatsPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterStats/CharacterStatsPresenter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterStats/CharacterStatsView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterStats/CharacterStatsView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterStats/ICharacterStatsPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/CharacterStats/ICharacterStatsPresenter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/IPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/IPresenter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/Popup.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/Popup/IPopupPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/Popup/IPopupPresenter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/Popup/PopupManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/Popup/PopupManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/Popup/PopupPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/Popup/PopupPresenter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/Popup/PopupView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/Popup/PopupView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/UserInfo.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/UserInfo/IUserPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/UserInfo/IUserPresenter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/UserInfo/UserPopup.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/UserInfo/UserPopup.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/UserInfo/UserPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/UserInfo/UserPresenter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/UserInfo/UserView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Scripts/View/UserInfo/UserView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Ava1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Ava1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Ava2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Ava2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Ava3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Ava3.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Button (Close).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Button (Close).png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/ButtonActive.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/ButtonActive.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/ButtonInactive.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/ButtonInactive.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Point.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Point.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Popup (Background).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Popup (Background).png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Popup (Header).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Popup (Header).png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Portrait.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Portrait.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/ProgressBar (Background).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/ProgressBar (Background).png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/ProgressBar (Completed).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/ProgressBar (Completed).png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/ProgressBar (Not completed).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/ProgressBar (Not completed).png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Sunrays.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Sprites/Sunrays.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Template 1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Template 1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Template 2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/PresentationModel/Template 2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Documentation.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Fonts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Fonts/LiberationSans.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Fonts/LiberationSans.ttf.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Fonts &amp; Materials.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Drop Shadow.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Drop Shadow.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Outline.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Outline.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Sprite Assets.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Style Sheets.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/TMP Settings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Resources/TMP Settings.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_SDF.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMP_Sprite.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMPro.cginc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMPro.cginc.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Sprites.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Sprites/EmojiOne.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Sprites/EmojiOne.json.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Sprites/EmojiOne.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Assets/TextMesh Pro/Sprites/EmojiOne.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Packages/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/Packages/packages-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/AudioManager.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/ClusterInputManager.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/DynamicsManager.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/EditorSettings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/GraphicsSettings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/InputManager.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/MemorySettings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/NavMeshAreas.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/PackageManagerSettings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/Physics2DSettings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/PresetManager.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/ProjectSettings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/ProjectVersion.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/QualitySettings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/SceneTemplateSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/TagManager.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/TimeManager.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/VFXManager.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/VersionControlSettings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/XRSettings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HW_4/ProjectSettings/boot.config" beforeDir="false" />
-    </list>
+    <list default="true" id="a455c0a2-5a04-4be3-8272-ca989391ed3f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -311,26 +18,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\likha\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\likha\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\likha\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\likha\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\likha\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\likha\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Unity\Unity Editor\2021.3.7f1\Editor\Unity.exe" />
@@ -378,6 +85,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702807986004</updated>
       <workItem from="1702807987900" duration="1365000" />
+      <workItem from="1702810686533" duration="310000" />
     </task>
     <servers />
   </component>
