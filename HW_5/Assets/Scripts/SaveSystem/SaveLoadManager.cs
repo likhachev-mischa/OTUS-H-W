@@ -4,18 +4,18 @@ using UnityEngine;
 
 namespace SaveSystem
 {
-    //TODO вернуть один контекст и сервис локатор и продумать другое решение
     public class SaveLoadManager : MonoBehaviour
     {
         private GameRepository gameRepository;
-        private ServiceLocator serviceLocator;
         private IGameSaver[] gameSavers;
+        private Context gameContext;
 
         [Inject]
-        private void Construct(GameRepository gameRepository, IGameSaver[] gameSavers,ServiceLocator serviceLocator)
+        private void Construct(GameRepository gameRepository, IGameSaver[] gameSavers,Context gameContext)
         {
             this.gameRepository = gameRepository;
             this.gameSavers = gameSavers;
+            this.gameContext = gameContext;
         }
         
         [Button]
@@ -24,7 +24,7 @@ namespace SaveSystem
             for (var i = 0; i < gameSavers.Length; i++)
             {
                 IGameSaver gameSaver = gameSavers[i];
-                    //gameSaver.SaveData(gameRepository, serviceLocator);
+                gameSaver.SaveData(gameRepository, gameContext);
             }
 
             gameRepository.SetState();
@@ -38,7 +38,7 @@ namespace SaveSystem
             for (var i = 0; i < gameSavers.Length; i++)
             {
                 IGameSaver gameSaver = gameSavers[i];
-                //gameSaver.LoadData(gameRepository, serviceLocator);
+                gameSaver.LoadData(gameRepository, gameContext);
             }
         }
     }

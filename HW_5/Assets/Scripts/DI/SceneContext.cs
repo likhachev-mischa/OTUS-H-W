@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -6,24 +7,16 @@ namespace DI
 {
     public sealed class SceneContext : Context
     {
-        [SerializeField] private GameManager gameManager;
-
-        [SerializeField] private MonoBehaviour[] monoInstallers;
-
-        [SerializeField] private GameInstallerContainer installerContainer;
+        [SerializeField] private GameInstallerContainer sceneInstallerContainer;
 
         private GameInstaller[] gameInstallers;
 
-        private void Awake()
+        public void RegisterServices(ServiceLocator serviceLocator, GameManager gameManager)
         {
-            gameInstallers = installerContainer.ProvideInstallers().ToArray();
+            this.serviceLocator = serviceLocator;
+            this.gameManager = gameManager;
 
-            foreach (MonoBehaviour installer in monoInstallers)
-            {
-                ExtractListeners(installer);
-
-                ExtractServices(installer);
-            }
+            gameInstallers = sceneInstallerContainer.ProvideInstallers().ToArray();
 
             foreach (GameInstaller installer in gameInstallers)
             {
@@ -33,21 +26,8 @@ namespace DI
             }
         }
 
-        private void ExtractListeners(object installer)
+        public void Inject()
         {
-            if (installer is IGameListenerProvider listenerProvider)
-            {
-                gameManager.AddListeners(listenerProvider.ProvideListeners());
-            }
-        }
-
-        private void Start()
-        {
-            foreach (MonoBehaviour installer in monoInstallers)
-            {
-                ExtractInjectors(installer);
-            }
-
             foreach (GameInstaller installer in gameInstallers)
             {
                 ExtractInjectors(installer);
@@ -56,28 +36,25 @@ namespace DI
             InjectGameObjectsOnScene();
         }
 
-        private void InjectGameObjectsOnScene()
+        public void Unload()
         {
-            GameObject[] gameObjects = gameObject.scene.GetRootGameObjects();
-
-            foreach (GameObject go in gameObjects)
+            foreach (GameInstaller installer in gameInstallers)
             {
-                Inject(go.transform);
+                if (installer is IGameListenerProvider listenerProvider)
+                {
+                    gameManager.RemoveListeners(listenerProvider.ProvideListeners());
+                }
+
+                if (installer is IServiceProvider serviceProvider)
+                {
+                    IEnumerable<(Type, object)> services = serviceProvider.ProvideServices();
+                    foreach ((Type type, object service) temp in services)
+                    {
+                        serviceLocator.RemoveService(temp.type);
+                    }
+                }
             }
         }
 
-        private void Inject(Transform targetTransform)
-        {
-            MonoBehaviour[] targets = targetTransform.GetComponents<MonoBehaviour>();
-            foreach (MonoBehaviour target in targets)
-            {
-                DependencyInjector.Inject(target, serviceLocator);
-            }
-
-            foreach (Transform child in targetTransform)
-            {
-                Inject(child);
-            }
-        }
     }
 }

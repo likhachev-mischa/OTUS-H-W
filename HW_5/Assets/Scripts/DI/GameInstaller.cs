@@ -49,6 +49,26 @@ namespace DI
             }
         }
 
+        public IEnumerable<Type> ProvideServiceCollection()
+        {
+            FieldInfo[] fields = GetType().GetFields(
+                BindingFlags.Instance |
+                BindingFlags.Public |
+                BindingFlags.NonPublic |
+                BindingFlags.DeclaredOnly
+            );
+
+            foreach (FieldInfo field in fields)
+            {
+                var attribute = field.GetCustomAttribute<ServiceCollectionAttribute>();
+                if (attribute != null)
+                {
+                    Type type = attribute.Contract;
+                    yield return type;
+                }
+            }
+        }
+
         public void Inject(ServiceLocator serviceLocator)
         {
             FieldInfo[] fields = GetType().GetFields(

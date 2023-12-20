@@ -121,6 +121,14 @@ namespace DI
             }
         }
 
+        public void RemoveListeners(IEnumerable<IGameListener> listeners)
+        {
+            foreach (IGameListener listener in listeners)
+            {
+                RemoveListener(listener);
+            }
+        }
+
         public void AddListener(IGameListener listener)
         {
             if (listener == null)

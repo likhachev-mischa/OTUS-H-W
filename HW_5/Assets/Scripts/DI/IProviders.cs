@@ -11,6 +11,8 @@ namespace DI
     public interface IServiceProvider
     {
         IEnumerable<(Type, object)> ProvideServices();
+
+        IEnumerable<Type> ProvideServiceCollection();
     }
 
     public interface IInjectProvider

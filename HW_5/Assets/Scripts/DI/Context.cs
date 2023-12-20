@@ -6,8 +6,9 @@ namespace DI
 {
     public abstract class Context : MonoBehaviour
     {
-        protected readonly ServiceLocator serviceLocator = new();
-
+        [SerializeField] protected GameManager gameManager;
+        protected ServiceLocator serviceLocator;
+        
         public object GetService(Type type)
         {
             return serviceLocator.GetService(type);
@@ -22,7 +23,7 @@ namespace DI
         {
             serviceLocator.BindService(type, service);
         }
-
+        
         protected void ExtractServices(object installer)
         {
             if (installer is IServiceProvider serviceProvider)
@@ -32,6 +33,9 @@ namespace DI
                 {
                     serviceLocator.BindService(type, service);
                 }
+
+                IEnumerable<Type> serviceCollection = serviceProvider.ProvideServiceCollection();
+                serviceLocator.BindService(typeof(IEnumerable<Type>),serviceCollection);
             }
         }
 
@@ -40,6 +44,38 @@ namespace DI
             if (installer is IInjectProvider injectProvider)
             {
                 injectProvider.Inject(serviceLocator);
+            }
+        }
+
+        protected void ExtractListeners(object installer)
+        {
+            if (installer is IGameListenerProvider listenerProvider)
+            {
+                gameManager.AddListeners(listenerProvider.ProvideListeners());
+            }
+        }
+        
+        protected void InjectGameObjectsOnScene()
+        {
+            GameObject[] gameObjects = gameObject.scene.GetRootGameObjects();
+
+            foreach (GameObject go in gameObjects)
+            {
+                Inject(go.transform);
+            }
+        }
+
+        private void Inject(Transform targetTransform)
+        {
+            MonoBehaviour[] targets = targetTransform.GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour target in targets)
+            {
+                DependencyInjector.Inject(target, serviceLocator);
+            }
+
+            foreach (Transform child in targetTransform)
+            {
+                Inject(child);
             }
         }
     }

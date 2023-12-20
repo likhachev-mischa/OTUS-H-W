@@ -15,7 +15,7 @@ namespace SaveSystem
         private Aes aes;
         private byte[] aesKey;
         private byte[] aesIv;
-        
+
         public bool TryGetData<T>(out T data)
         {
             string key = typeof(T).Name;
@@ -43,7 +43,7 @@ namespace SaveSystem
             string serializedData = JsonConvert.SerializeObject(data);
             gameState[key] = serializedData;
         }
-        
+
         public void GetState()
         {
             var fileInfo = new FileInfo(SAVE_FILE_PATH);
@@ -64,7 +64,6 @@ namespace SaveSystem
                     binaryWriter.Write(aesKey);
                     binaryWriter.Write(aesIv);
                 }
-
 
                 fileStream.Dispose();
                 return;
@@ -107,14 +106,20 @@ namespace SaveSystem
             aes.Key = aesKey;
             aes.IV = aesIv;
 
-            var fileStream = new FileStream(SAVE_FILE_PATH, FileMode.Open);
-            fileStream.Position = fileStream.Length;
-            using (CryptoStream cryptoStream = new(fileStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+            var fileStream = new FileStream(SAVE_FILE_PATH, FileMode.Truncate);
+
+            using (var binaryWriter = new BinaryWriter(fileStream))
             {
-                using (StreamWriter encryptWriter = new(cryptoStream))
+                binaryWriter.Write(aesKey);
+                binaryWriter.Write(aesIv);
+                
+                using (CryptoStream cryptoStream = new(fileStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
                 {
-                    string json = JsonConvert.SerializeObject(gameState);
-                    encryptWriter.Write(json);
+                    using (StreamWriter encryptWriter = new(cryptoStream))
+                    {
+                        string json = JsonConvert.SerializeObject(gameState);
+                        encryptWriter.Write(json);
+                    }
                 }
             }
 

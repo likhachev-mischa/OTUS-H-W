@@ -14,7 +14,8 @@ namespace LoadSystem
 
         private void Start()
         {
-            projectContext.ResolveDependencies();
+            projectContext.RegisterProject();
+            projectContext.StartProject();
             LoadApplication().Forget();
         }
 
@@ -33,7 +34,9 @@ namespace LoadSystem
         private async UniTaskVoid LoadScene()
         {
             await SceneManager.LoadSceneAsync(sceneId, LoadSceneMode.Additive);
+            projectContext.RegisterScene();
             SceneManager.UnloadSceneAsync(0);
+            projectContext.StartScene();
             SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(sceneId));
         }
     }

@@ -1,35 +1,55 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace DI
 {
     public sealed class ProjectContext : Context
     {
-        [SerializeField] private GameInstallerContainer installerContainer;
+        [SerializeField] private GameInstallerContainer projectInstallerContainer;
 
-        private IEnumerable<GameInstaller> installers;
-        public void ResolveDependencies()
+        private SceneContext sceneContext;
+        private GameInstaller[] projectInstallers;
+        
+        public void RegisterProject()
         {
-            installers = installerContainer.ProvideInstallers();
+            serviceLocator = new ServiceLocator();
+            projectInstallers = projectInstallerContainer.ProvideInstallers().ToArray();
 
-            InitializeServiceLocator();
-            InjectDependencies();
-        }
-
-        private void InitializeServiceLocator()
-        {
-            foreach (GameInstaller installer in installers)
+            foreach (GameInstaller installer in projectInstallers)
             {
+                ExtractListeners(installer);
+
                 ExtractServices(installer);
             }
         }
-        
-        private void InjectDependencies()
+
+        public void StartProject()
         {
-            foreach (GameInstaller installer in installers)
+            foreach (GameInstaller installer in projectInstallers)
             {
                 ExtractInjectors(installer);
             }
+            InjectGameObjectsOnScene();
         }
+        
+        public void RegisterScene()
+        {
+            sceneContext = FindObjectOfType<SceneContext>();
+            sceneContext.RegisterServices(serviceLocator,gameManager);
+        }
+
+        public void StartScene()
+        {
+            sceneContext.Inject();
+        }
+
+        public void UnloadScene()
+        {
+            sceneContext.Unload();
+        }
+
+        
     }
 }

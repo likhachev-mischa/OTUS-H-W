@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace DI
 {
@@ -22,5 +21,16 @@ namespace DI
         {
             services.Add(type, service);
         }
+
+        public void RemoveService(Type type)
+        {
+            services.Remove(type);
+        }
+        
+        public void RemoveService<T>()
+        {
+            services.Remove(typeof(T));
+        }
+
     }
 }
