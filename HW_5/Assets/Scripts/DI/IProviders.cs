@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MVVM
+namespace DI
 {
     public interface IGameListenerProvider
     {

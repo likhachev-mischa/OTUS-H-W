@@ -2,7 +2,7 @@
 using System.Reflection;
 using UnityEngine;
 
-namespace MVVM
+namespace DI
 {
     public abstract class GameInstallerContainer : MonoBehaviour, IGameInstallerProvider
     {

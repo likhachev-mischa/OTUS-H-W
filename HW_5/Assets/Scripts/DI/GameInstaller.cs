@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace MVVM
+namespace DI
 {
     public abstract class GameInstaller :
         IGameListenerProvider,

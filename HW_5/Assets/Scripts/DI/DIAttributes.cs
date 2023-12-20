@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace MVVM
+namespace DI
 {
     [MeansImplicitUse]
     [AttributeUsage(AttributeTargets.Method)]

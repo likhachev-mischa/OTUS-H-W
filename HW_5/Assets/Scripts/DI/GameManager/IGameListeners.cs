@@ -1,4 +1,4 @@
-﻿namespace MVVM
+﻿namespace DI
 {
     public interface IGameListener
     {

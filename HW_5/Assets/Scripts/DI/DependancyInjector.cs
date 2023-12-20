@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace MVVM
+namespace DI
 {
     public static class DependencyInjector
     {

@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MVVM
+namespace DI
 {
-    public sealed class ServiceLocator : MonoBehaviour
+    public sealed class ServiceLocator
     {
         private readonly Dictionary<Type, object> services = new();
 
         public object GetService(Type type)
         {
-            object service = services[type];
+            return services[type];
+        }
 
-            return service;
+        public T GetService<T>() where T : class
+        {
+            return services[typeof(T)] as T;
         }
 
         public void BindService(Type type, object service)
