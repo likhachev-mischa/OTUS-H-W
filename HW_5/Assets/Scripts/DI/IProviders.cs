@@ -12,7 +12,7 @@ namespace DI
     {
         IEnumerable<(Type, object)> ProvideServices();
 
-        IEnumerable<Type> ProvideServiceCollection();
+        Dictionary<Type, List<object>> ProvideServiceCollections();
     }
 
     public interface IInjectProvider

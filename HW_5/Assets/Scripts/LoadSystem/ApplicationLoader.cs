@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using DI;
 using UnityEngine;
@@ -25,7 +26,10 @@ namespace LoadSystem
 
             foreach (LoadingTask task in taskList)
             {
-                await task.LoadTask();
+                if (task != null)
+                {
+                    await task.LoadTask();
+                }
             }
 
             LoadScene().Forget();
@@ -33,11 +37,9 @@ namespace LoadSystem
 
         private async UniTaskVoid LoadScene()
         {
-            await SceneManager.LoadSceneAsync(sceneId, LoadSceneMode.Additive);
+            await SceneManager.LoadSceneAsync(sceneId, LoadSceneMode.Single);
             projectContext.RegisterScene();
-            SceneManager.UnloadSceneAsync(0);
             projectContext.StartScene();
-            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(sceneId));
         }
     }
 }

@@ -15,6 +15,7 @@ namespace SaveSystem
         {
             this.gameRepository = gameRepository;
             this.gameSavers = gameSavers;
+            Debug.Log("SaveLoad Manager Construct");
             this.gameContext = gameContext;
         }
         

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 
 namespace DI
@@ -20,7 +21,7 @@ namespace DI
             Contract = contract;
         }
     }
-    
+
     [MeansImplicitUse]
     [AttributeUsage(AttributeTargets.Field)]
     public sealed class ServiceCollectionAttribute : Attribute
@@ -32,7 +33,6 @@ namespace DI
             Contract = contract;
         }
     }
-    
 
     [MeansImplicitUse]
     [AttributeUsage(AttributeTargets.Field)]

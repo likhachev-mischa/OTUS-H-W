@@ -1,6 +1,6 @@
 using System;
 using DI;
-using SaveSystem;
+using GameEngine;
 using UnityEngine;
 
 namespace Common
@@ -8,10 +8,11 @@ namespace Common
     [Serializable]
     public class SaveLoadInstaller : GameInstaller
     {
-        [Service(typeof(GameRepository))]
-        private GameRepository gameRepository = new();
+        [Service(typeof(Context))] [SerializeField]
+        private SceneContext sceneContext;
 
-        [Service(typeof(Context))]
-        [SerializeField] private SceneContext sceneContext;
+        [Service(typeof(ResourceService))] private ResourceService resourceService = new();
+
+        [Service(typeof(UnitManager))] private UnitManager unitManager = new();
     }
 }

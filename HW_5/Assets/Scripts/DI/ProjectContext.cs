@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Object = System.Object;
 
 namespace DI
 {
@@ -15,6 +16,8 @@ namespace DI
         public void RegisterProject()
         {
             serviceLocator = new ServiceLocator();
+            gameManager = gameObject.AddComponent<GameManager>();
+            
             projectInstallers = projectInstallerContainer.ProvideInstallers().ToArray();
 
             foreach (GameInstaller installer in projectInstallers)

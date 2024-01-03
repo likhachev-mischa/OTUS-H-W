@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using SaveSystem;
 
 namespace DI
 {
@@ -49,7 +51,7 @@ namespace DI
             }
         }
 
-        public IEnumerable<Type> ProvideServiceCollection()
+        public Dictionary<Type, List<object>> ProvideServiceCollections()
         {
             FieldInfo[] fields = GetType().GetFields(
                 BindingFlags.Instance |
@@ -58,15 +60,31 @@ namespace DI
                 BindingFlags.DeclaredOnly
             );
 
+            Dictionary<Type, List<object>> dict = new();
+
             foreach (FieldInfo field in fields)
             {
                 var attribute = field.GetCustomAttribute<ServiceCollectionAttribute>();
-                if (attribute != null)
+                if (attribute == null)
                 {
-                    Type type = attribute.Contract;
-                    yield return type;
+                    continue;
+                }
+
+                Type type = attribute.Contract;
+                
+                object service = field.GetValue(this);
+                if (dict.TryGetValue(type, out List<object> value))
+                {
+                    value.Add(service);
+                }
+                else
+                {
+                    dict.Add(type, new List<object>());
+                    dict[type].Add(service);
                 }
             }
+
+            return dict;
         }
 
         public void Inject(ServiceLocator serviceLocator)

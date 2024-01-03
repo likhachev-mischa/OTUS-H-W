@@ -5,23 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a455c0a2-5a04-4be3-8272-ca989391ed3f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/GameSaversInstaller.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/GameSaversInstaller.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/GameSavers.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/GameSavers/ResourceGameSaver.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/GameSavers/ResourceGameSaver.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/GameSavers/UnitGameSaver.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/GameSavers/UnitGameSaver.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/RepositoryInstaller.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/RepositoryInstaller.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/SceneInstallerContainer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/SceneInstallerContainer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/SceneRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/SceneRepository.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HW_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HW_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AssetsPack/Tiles/Prefabs/Tile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AssetsPack/Tiles/Prefabs/Tile.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LoadingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LoadingScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/GameSaversInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Common/GameSaversInstaller.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/ProjectInstallerContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Common/ProjectInstallerContainer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/SaveLoadInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Common/SaveLoadInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/SaveLoadInstaller.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Common/SaveLoadInstaller.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DI/Context.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DI/Context.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DI/Context.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DI/Context.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DI/DIAttributes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DI/DIAttributes.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DI/GameInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DI/GameInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DI/GameManager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DI/GameManager/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DI/IProviders.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DI/IProviders.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DI/ProjectContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DI/ProjectContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DI/SceneContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DI/SceneContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DI/ServiceLocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DI/ServiceLocator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/LoadSystem/ApplicationLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LoadSystem/ApplicationLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SaveSystem/GameRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SaveSystem/GameRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SaveSystem/GameSaver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SaveSystem/GameSaver.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/SaveSystem/SaveLoadManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SaveSystem/SaveLoadManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +41,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.analytics@4.0.1/Runtime/AnalyticsServiceInstance.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/51/e213dced/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2ZfL37mDeBGObV8221k1Hh8IuKV" />
   <component name="ProjectViewState">
@@ -110,6 +122,10 @@
       <workItem from="1702971232581" duration="7502000" />
       <workItem from="1703081552172" duration="9012000" />
       <workItem from="1703100697824" duration="150000" />
+      <workItem from="1703146649104" duration="9183000" />
+      <workItem from="1703233263062" duration="3722000" />
+      <workItem from="1704205896024" duration="3457000" />
+      <workItem from="1704276847122" duration="8457000" />
     </task>
     <servers />
   </component>

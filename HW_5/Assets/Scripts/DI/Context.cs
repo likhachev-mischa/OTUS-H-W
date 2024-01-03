@@ -6,7 +6,7 @@ namespace DI
 {
     public abstract class Context : MonoBehaviour
     {
-        [SerializeField] protected GameManager gameManager;
+        protected GameManager gameManager;
         protected ServiceLocator serviceLocator;
         
         public object GetService(Type type)
@@ -34,8 +34,23 @@ namespace DI
                     serviceLocator.BindService(type, service);
                 }
 
-                IEnumerable<Type> serviceCollection = serviceProvider.ProvideServiceCollection();
-                serviceLocator.BindService(typeof(IEnumerable<Type>),serviceCollection);
+                Dictionary<Type, List<object>> serviceCollections = serviceProvider.ProvideServiceCollections();
+
+                foreach ((Type type, List<object> list) in serviceCollections)
+                {
+                    if (!type.IsArray)
+                    {
+                        throw new Exception("Type of ServiceCollection must be an array!");
+                    }
+                    var array = Array.CreateInstance(type.GetElementType(), list.Count);
+                    for (int i = 0; i < array.Length; ++i)
+                    {
+                        array.SetValue(list[i],i);
+                    }
+  
+                    serviceLocator.BindService(type,array);
+                }
+                
             }
         }
 
