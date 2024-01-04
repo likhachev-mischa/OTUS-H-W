@@ -1,3 +1,4 @@
+using DI;
 using GameEngine;
 using UnityEngine;
 
@@ -5,11 +6,16 @@ using UnityEngine;
 //Развернуть архитектуру на Zenject/VContainer/Custom
 public sealed class EntryPoint : MonoBehaviour
 {
-    [SerializeField]
+    
     private UnitManager unitManager;
-
-    [SerializeField]
     private ResourceService resourceService;
+
+    [Inject]
+    private void Construct(UnitManager unitManager,ResourceService resourceService)
+    {
+        this.unitManager = unitManager;
+        this.resourceService = resourceService;
+    }
     
     private void Start()
     {

@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using DI;
 using GameEngine;
 using SaveSystem;
 using UnityEngine;
 
-namespace Common.GameSavers
+namespace GameSavers
 {
     public struct UnitData
     {
@@ -22,7 +23,17 @@ namespace Common.GameSavers
         }
     }
 
-    public class UnitGameSaver : GameSaver<IEnumerable<UnitData>, UnitManager>
+    public struct Units
+    {
+        public List<UnitData> list;
+
+        public Units(List<UnitData> list)
+        {
+            this.list = list;
+        }
+    }
+
+    public class UnitGameSaver : GameSaver<Units, UnitManager>
     {
         private Dictionary<string, Unit> unitPrefabs = new();
 
@@ -35,29 +46,36 @@ namespace Common.GameSavers
             }
         }
 
-        protected override IEnumerable<UnitData> ConvertToData(UnitManager service)
+        protected override Units ConvertToData(UnitManager service)
         {
             IEnumerable<Unit> units = service.GetAllUnits();
+            List<UnitData> unitList = new();
             foreach (Unit unit in units)
             {
                 var unitData = new UnitData(unit.Type, unit.HitPoints, unit.Position, unit.Rotation);
-                yield return unitData;
+                Debug.Log($"Unit {unitData.Type} was converted to data");
+                unitList.Add(unitData);
             }
+
+            return new Units(unitList);
         }
 
-        protected override void SetupData(IEnumerable<UnitData> data, UnitManager service)
+        protected override void SetupData(Units data, UnitManager service)
         {
-            IEnumerable<Unit> currentUnits = service.GetAllUnits();
-            foreach (Unit currentUnit in currentUnits)
+            Unit[] currentUnits = service.GetAllUnits().ToArray();
+            for (var index = 0; index < currentUnits.Length; index++)
             {
+                Unit currentUnit = currentUnits[index];
                 service.DestroyUnit(currentUnit);
+                Debug.Log($"{currentUnit.Type} was destroyed");
             }
-            
-            foreach (UnitData unitData in data)
+
+            foreach (UnitData unitData in data.list)
             {
                 Unit unitPrefab = unitPrefabs[unitData.Type];
                 unitPrefab.HitPoints = unitData.HitPoints;
                 service.SpawnUnit(unitPrefab, unitData.Position, Quaternion.Euler(unitData.Rotation));
+                Debug.Log($"{unitPrefab.Type} was spawned");
             }
         }
     }

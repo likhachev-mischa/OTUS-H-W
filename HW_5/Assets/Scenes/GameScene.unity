@@ -624,8 +624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7badd9ed2b8e49019f0a1a46ad5cf3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitManager:
-    container: {fileID: 1263304700}
 --- !u!114 &653492623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,7 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd2eb66bdc547a994488c7c06b348e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneRepository:
+  unitRepository:
     unitPrefabs:
     - {fileID: -6780732715649493285, guid: 37773be3ffa21ce4a89a9ab8b6243a4e, type: 3}
     - {fileID: 4917966256930646285, guid: 5818e0abea723b04aa6c9c27b6074da5, type: 3}
@@ -661,6 +659,7 @@ MonoBehaviour:
     - {fileID: -8542220791256040496, guid: 986139478c473b243896c3a1ad3a33ac, type: 3}
     - {fileID: -35759933609886829, guid: 091fdccaeaa7b2241a4c5998b2bfd5ec, type: 3}
     - {fileID: -6822647825084766476, guid: 0dacbb30143453142a1e140b0eaa3c79, type: 3}
+    - {fileID: -154247976834514717, guid: aff3ad202ea2a2147a1ed43e434ea785, type: 3}
     - {fileID: 8476477346736721402, guid: c36c01199a8619b41bf7ec920897b7f6, type: 3}
     - {fileID: 6467707349054415413, guid: 6e11dc0269b03fc42bf8720d4403af8e, type: 3}
     - {fileID: 362565236786530893, guid: 547dc35c50f0d8942bf5e279a07b1dd8, type: 3}
@@ -680,7 +679,8 @@ MonoBehaviour:
     - {fileID: 4451994437447746111, guid: b0fda020461c1654a866e263396364d2, type: 3}
     - {fileID: 4032437966975482922, guid: cdbe91a91060b1e4eb4bd0b52d578091, type: 3}
   saveLoadInstaller:
-    sceneContext: {fileID: 653492623}
+    unitManager:
+      container: {fileID: 1263304700}
 --- !u!114 &653492625
 MonoBehaviour:
   m_ObjectHideFlags: 0

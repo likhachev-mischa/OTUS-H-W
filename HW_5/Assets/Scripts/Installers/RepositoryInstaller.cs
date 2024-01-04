@@ -1,9 +1,7 @@
-using System;
 using DI;
 using SaveSystem;
-using UnityEngine;
 
-namespace Common
+namespace Installers
 {
     public class RepositoryInstaller : GameInstaller
     {

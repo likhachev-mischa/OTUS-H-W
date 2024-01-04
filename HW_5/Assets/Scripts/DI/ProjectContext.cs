@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Object = System.Object;
 
 namespace DI
 {
@@ -40,6 +37,7 @@ namespace DI
         public void RegisterScene()
         {
             sceneContext = FindObjectOfType<SceneContext>();
+            serviceLocator.BindService(typeof(Context),sceneContext);
             sceneContext.RegisterServices(serviceLocator,gameManager);
         }
 

@@ -1,8 +1,6 @@
 using DI;
-using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Common
+namespace Installers
 {
     public class ProjectInstallerContainer : GameInstallerContainer
     {

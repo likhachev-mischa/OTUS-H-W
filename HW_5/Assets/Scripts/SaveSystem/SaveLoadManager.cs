@@ -15,7 +15,6 @@ namespace SaveSystem
         {
             this.gameRepository = gameRepository;
             this.gameSavers = gameSavers;
-            Debug.Log("SaveLoad Manager Construct");
             this.gameContext = gameContext;
         }
         
@@ -35,7 +34,6 @@ namespace SaveSystem
         public void Load()
         {
             gameRepository.GetState();
-
             for (var i = 0; i < gameSavers.Length; i++)
             {
                 IGameSaver gameSaver = gameSavers[i];

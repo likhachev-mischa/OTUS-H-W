@@ -3,16 +3,14 @@ using DI;
 using GameEngine;
 using UnityEngine;
 
-namespace Common
+namespace Installers
 {
     [Serializable]
     public class SaveLoadInstaller : GameInstaller
     {
-        [Service(typeof(Context))] [SerializeField]
-        private SceneContext sceneContext;
-
         [Service(typeof(ResourceService))] private ResourceService resourceService = new();
 
-        [Service(typeof(UnitManager))] private UnitManager unitManager = new();
+        [SerializeField] [Service(typeof(UnitManager))]
+        private UnitManager unitManager = new();
     }
 }

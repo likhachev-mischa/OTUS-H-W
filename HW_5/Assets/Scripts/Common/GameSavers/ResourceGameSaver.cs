@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using DI;
 using GameEngine;
 using SaveSystem;
 
-namespace Common.GameSavers
+namespace GameSavers
 {
     public struct ResourceData
     {
@@ -16,22 +15,39 @@ namespace Common.GameSavers
             Amount = amount;
         }
     }
-
-
-    public class ResourceGameSaver : GameSaver<IEnumerable<ResourceData>, ResourceService>
+    
+    public struct Resources
     {
-        protected override IEnumerable<ResourceData> ConvertToData(ResourceService service)
+        public List<ResourceData> list;
+
+        public Resources(List<ResourceData> list)
         {
+            this.list = list;
+        }
+    }
+
+    public class ResourceGameSaver : GameSaver<Resources, ResourceService>
+    {
+        protected override Resources ConvertToData(ResourceService service)
+        {
+            List<ResourceData> resourceList = new();
             IEnumerable<Resource> resources = service.GetResources();
 
             foreach (Resource resource in resources)
             {
-                yield return new ResourceData(resource.ID, resource.Amount);
+                resourceList.Add(new ResourceData(resource.ID, resource.Amount));
             }
+
+            return new Resources(resourceList);
         }
 
-        protected override void SetupData(IEnumerable<ResourceData> data, ResourceService service)
+        protected override void SetupData(Resources data, ResourceService service)
         {
+            IEnumerable<Resource> resources = service.GetResources();
+            foreach (Resource resource in resources)
+            {
+                resource.Amount = data.list.Find(x => x.ID == resource.ID).Amount;
+            }
         }
     }
 }
