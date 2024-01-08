@@ -12,8 +12,7 @@ namespace DI
         
         public void RegisterProject()
         {
-            serviceLocator = new ServiceLocator();
-            gameManager = gameObject.AddComponent<GameManager>();
+            Initialize();
             
             projectInstallers = projectInstallerContainer.ProvideInstallers().ToArray();
 

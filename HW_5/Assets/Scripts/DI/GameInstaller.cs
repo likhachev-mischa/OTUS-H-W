@@ -68,8 +68,9 @@ namespace DI
                     continue;
                 }
 
-                Type type = attribute.Contract;
-                
+                var array = Array.CreateInstance(attribute.Contract, 0);
+                Type type = array.GetType();
+
                 object service = field.GetValue(this);
                 if (dict.TryGetValue(type, out List<object> value))
                 {

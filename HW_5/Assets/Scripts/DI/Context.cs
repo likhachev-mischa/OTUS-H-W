@@ -8,7 +8,7 @@ namespace DI
     {
         protected GameManager gameManager;
         protected ServiceLocator serviceLocator;
-        
+
         public object GetService(Type type)
         {
             return serviceLocator.GetService(type);
@@ -23,7 +23,7 @@ namespace DI
         {
             serviceLocator.BindService(type, service);
         }
-        
+
         protected void ExtractServices(object installer)
         {
             if (installer is IServiceProvider serviceProvider)
@@ -42,15 +42,15 @@ namespace DI
                     {
                         throw new Exception("Type of ServiceCollection must be an array!");
                     }
+
                     var array = Array.CreateInstance(type.GetElementType(), list.Count);
                     for (int i = 0; i < array.Length; ++i)
                     {
-                        array.SetValue(list[i],i);
+                        array.SetValue(list[i], i);
                     }
-  
-                    serviceLocator.BindService(type,array);
+
+                    serviceLocator.BindService(type, array);
                 }
-                
             }
         }
 
@@ -69,7 +69,7 @@ namespace DI
                 gameManager.AddListeners(listenerProvider.ProvideListeners());
             }
         }
-        
+
         protected void InjectGameObjectsOnScene()
         {
             GameObject[] gameObjects = gameObject.scene.GetRootGameObjects();
@@ -78,6 +78,12 @@ namespace DI
             {
                 Inject(go.transform);
             }
+        }
+
+        protected void Initialize()
+        {
+            serviceLocator = new ServiceLocator();
+            gameManager = gameObject.AddComponent<GameManager>();
         }
 
         private void Inject(Transform targetTransform)

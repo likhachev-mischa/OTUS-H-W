@@ -6,10 +6,10 @@ namespace Installers
 {
     public class GameSaversInstaller : GameInstaller
     {
-        [ServiceCollection(typeof(IGameSaver[]))]
+        [ServiceCollection(typeof(IGameSaver))]
         private UnitGameSaver unitGameSaver = new();
 
-        [ServiceCollection(typeof(IGameSaver[]))]
+        [ServiceCollection(typeof(IGameSaver))]
         private ResourceGameSaver resourceGameSaver = new();
     }
 }
