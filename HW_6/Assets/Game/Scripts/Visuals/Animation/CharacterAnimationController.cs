@@ -28,8 +28,9 @@ namespace Game
         private readonly AtomicEvent fireRequest;
         private readonly Transform characterTransform;
 
-        
+
         private int rotationY;
+
         public CharacterAnimatorController(Animator animator, IAtomicValue<Vector3> moveDirection,
             IAtomicValue<bool> isDead, AtomicEvent fireRequest, Transform transform)
         {
@@ -58,7 +59,6 @@ namespace Game
         public void Update()
         {
             CharacterStates state = GetAnimationValue();
-            Debug.Log(state);
             animator.SetInteger(MainState, (int)state);
         }
 
@@ -85,15 +85,24 @@ namespace Game
             int movementAngle = (int)(Mathf.Atan2(x, z) * Mathf.Rad2Deg);
 
             Vector3 currentRotation = characterTransform.rotation.eulerAngles;
-            
+
             Vector2 normalVector = new(Mathf.Sin(currentRotation.y * Mathf.Deg2Rad),
                 Mathf.Cos(currentRotation.y * Mathf.Deg2Rad));
-            
+
             int characterAngle = (int)(Mathf.Atan2(normalVector.x, normalVector.y) * Mathf.Rad2Deg);
-            
+
             characterAngle = SnapAngle(characterAngle);
 
             int resultAngle = movementAngle - characterAngle;
+
+            if (resultAngle <= -180)
+            {
+                resultAngle += 360;
+            }
+            else if (resultAngle >= 180)
+            {
+                resultAngle -= 360;
+            }
 
             return resultAngle switch
             {
