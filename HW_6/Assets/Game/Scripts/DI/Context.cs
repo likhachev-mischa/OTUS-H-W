@@ -93,7 +93,7 @@ namespace DI
             {
                 DependencyInjector.Inject(target, serviceLocator);
             }
-
+            
             foreach (Transform child in targetTransform)
             {
                 Inject(child);

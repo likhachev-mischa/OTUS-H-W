@@ -37,6 +37,7 @@ namespace DI
         {
             sceneContext = FindObjectOfType<SceneContext>();
             serviceLocator.BindService(typeof(Context),sceneContext);
+            serviceLocator.BindService(typeof(GameManager),gameManager);
             sceneContext.RegisterServices(serviceLocator,gameManager);
         }
 

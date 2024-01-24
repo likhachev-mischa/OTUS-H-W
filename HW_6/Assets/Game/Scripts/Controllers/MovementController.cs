@@ -5,7 +5,7 @@ namespace Game
 {
     public class MovementController : IGameUpdateListener,IGameLateLoadListener
     {
-        private CharacterEntity characterEntity;
+        private Entity characterEntity;
         private MovementComponent movementComponent;
 
         private bool enabled;

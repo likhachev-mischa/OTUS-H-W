@@ -15,8 +15,10 @@ namespace Game
 
         public void OnPostConstruct()
         {
-            Add(new MovementComponent(character.Moved));
+            Add(new MovementComponent(character.Moved,character.transform));
             Add(new RotationComponent(character.Rotated));
+            Add(new ShootComponent(character.FireRequest));
+            Add(new TakeDamageComponent(character.TakeDamage));
         }
     }
 }

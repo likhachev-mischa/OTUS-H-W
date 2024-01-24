@@ -14,5 +14,6 @@ namespace Game.Installers
         private Character character;
 
         [SerializeField] [Listener] private CharacterVisuals characterVisuals;
+        [SerializeField] [Listener] private CharacterVFX characterVFX;
     }
 }

@@ -25,20 +25,22 @@ namespace Game
 
         private readonly IAtomicValue<Vector3> moveDirection;
         private readonly IAtomicValue<bool> isDead;
+        private readonly AtomicVariable<bool> canShoot;
         private readonly AtomicEvent fireRequest;
-        private readonly Transform characterTransform;
-
-
-        private int rotationY;
+        private readonly Transform transform;
+        private readonly AtomicVariable<bool> canPlayAnimation;
 
         public CharacterAnimatorController(Animator animator, IAtomicValue<Vector3> moveDirection,
-            IAtomicValue<bool> isDead, AtomicEvent fireRequest, Transform transform)
+            IAtomicValue<bool> isDead, AtomicEvent fireRequest, Transform transform, AtomicVariable<bool> canShoot,
+            AtomicVariable<bool> canPlayAnimation)
         {
             this.animator = animator;
             this.moveDirection = moveDirection;
             this.isDead = isDead;
             this.fireRequest = fireRequest;
-            this.characterTransform = transform;
+            this.transform = transform;
+            this.canShoot = canShoot;
+            this.canPlayAnimation = canPlayAnimation;
         }
 
         public void OnEnable()
@@ -53,7 +55,12 @@ namespace Game
 
         private void OnFireRequested()
         {
+            if (!canShoot.Value || !canPlayAnimation.Value)
+            {
+                return;
+            }
             animator.SetTrigger(ShootTrigger);
+            canPlayAnimation.Value = false;
         }
 
         public void Update()
@@ -73,7 +80,7 @@ namespace Game
             {
                 return GetMovementDirection();
             }
-
+            
             return CharacterStates.IDLE;
         }
 
@@ -84,7 +91,7 @@ namespace Game
 
             int movementAngle = (int)(Mathf.Atan2(x, z) * Mathf.Rad2Deg);
 
-            Vector3 currentRotation = characterTransform.rotation.eulerAngles;
+            Vector3 currentRotation = transform.rotation.eulerAngles;
 
             Vector2 normalVector = new(Mathf.Sin(currentRotation.y * Mathf.Deg2Rad),
                 Mathf.Cos(currentRotation.y * Mathf.Deg2Rad));
@@ -125,7 +132,6 @@ namespace Game
                 >= 22 and < 67 => 45,
                 >= 67 and < 112 => 90,
                 >= 112 and < 157 => 135,
-                //skip 180
                 >= -157 and < -112 => -135,
                 >= -112 and < -67 => -90,
                 >= -67 and < -22 => -45,

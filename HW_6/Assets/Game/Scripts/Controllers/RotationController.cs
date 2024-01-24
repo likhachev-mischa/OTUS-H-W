@@ -5,10 +5,10 @@ namespace Game
 {
     public class RotationController : IGameUpdateListener,IGameLateLoadListener
     {
-        private CharacterEntity characterEntity;
+        private Entity characterEntity;
         private RotationComponent rotationComponent;
         private Camera camera;
-        private float planeDistance = 15f;
+        private readonly float planeDistance = 15f;
 
         private Plane plane;
         

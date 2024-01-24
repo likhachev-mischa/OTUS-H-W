@@ -9,6 +9,7 @@ namespace Game
         [SerializeField] private Animator animator;
         private Character character;
 
+        private readonly AtomicVariable<bool> canPlayAnimation = new();
 
         private CharacterAnimatorController animatorController;
 
@@ -20,8 +21,13 @@ namespace Game
 
         public void OnPostConstruct()
         {
+            canPlayAnimation.Value = true;
+            
             animatorController = new CharacterAnimatorController(animator, character.MoveDirection, character.IsDead,
-                character.FireRequest,character.transform);
+                character.FireRequest, character.transform, character.CanShoot, canPlayAnimation);
+            
+            var dispatcher = animator.gameObject.AddComponent<CharacterAnimationDispatcher>();
+            dispatcher.Initialize(character.FireEvent, canPlayAnimation);
         }
 
         public void OnStart()

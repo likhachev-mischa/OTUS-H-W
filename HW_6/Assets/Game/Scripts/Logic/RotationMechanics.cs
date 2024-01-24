@@ -6,16 +6,18 @@ namespace Game
     {
         private readonly IAtomicValue<int> speed;
         private readonly AtomicVariable<Vector3> rotationDirection;
-        private readonly AtomicEvent<Vector3> rotated;
+        private readonly IAtomicEvent<Vector3> rotated;
         private readonly Transform transform;
+        private readonly IAtomicVariable<bool> canMove;
 
         public RotationMechanics(IAtomicValue<int> speed, AtomicVariable<Vector3> rotationDirection,
-            AtomicEvent<Vector3> rotated, Transform transform)
+            IAtomicEvent<Vector3> rotated, Transform transform, IAtomicVariable<bool> canMove)
         {
             this.speed = speed;
             this.rotationDirection = rotationDirection;
             this.rotated = rotated;
             this.transform = transform;
+            this.canMove = canMove;
         }
 
         public void OnEnable()
@@ -30,6 +32,11 @@ namespace Game
 
         private void OnRotated(Vector3 direction)
         {
+            if (!canMove.Value)
+            {
+                return;
+            }
+
             float rotationSpeed = (float)speed.Value / 1000f;
 
             Vector3 currentRotation = transform.rotation.eulerAngles;
@@ -53,8 +60,8 @@ namespace Game
 
             float possibleNextNormal = normalVectorAngle - rotationAngle;
 
-            if (Mathf.Approximately(Mathf.Ceil(directionVectorAngle), Mathf.Ceil(possibleNextNormal)) ||
-                Mathf.Approximately(Mathf.Ceil(directionVectorAngle), Mathf.Ceil(possibleNextNormal + 360f)))
+            if ((int)Mathf.Ceil(directionVectorAngle) == (int)Mathf.Ceil(possibleNextNormal) ||
+                (int)Mathf.Ceil(directionVectorAngle) == (int)Mathf.Ceil(possibleNextNormal + 360f))
             {
                 rotationAngle = -rotationAngle;
             }
@@ -63,7 +70,7 @@ namespace Game
 
             rotationDirection.Value = new Vector3(0, newAngle, 0);
 
-            transform.rotation = Quaternion.Lerp(Quaternion.Euler(currentRotation),
+            transform.rotation = Quaternion.Lerp(transform.rotation,
                 Quaternion.Euler(rotationDirection.Value),
                 rotationSpeed);
 
