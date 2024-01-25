@@ -7,7 +7,7 @@ namespace Game.Installers
     [Serializable]
     public sealed class CharacterInstaller : GameInstaller
     {
-        [Listener] [Service(typeof(CharacterEntity))] [SerializeField]
+        [Service(typeof(CharacterEntity))] [SerializeField]
         private CharacterEntity characterEntity;
 
         [Service(typeof(Character))] [Listener] [SerializeField]

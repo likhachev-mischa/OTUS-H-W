@@ -185,7 +185,7 @@ MonoBehaviour:
       bulletAmount: 15
   zombieInstaller:
     zombieSpawner:
-      spawnInterval: 7
+      spawnInterval: 2
     zombieSystem:
       zombiePrefab: {fileID: 7961175942955341266, guid: 3223df01c7000214db62689229698870,
         type: 3}
@@ -652,6 +652,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Health._value
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3880979936257733417, guid: 3b5b2ae0f895574449961910366cbf8a,
+        type: 3}
+      propertyPath: RotationSpeed._value
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6378945258768650400, guid: 3b5b2ae0f895574449961910366cbf8a,
         type: 3}

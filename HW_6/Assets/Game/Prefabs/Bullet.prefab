@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed:
-    _value: 10
+    _value: 15
   LifeTime:
     _value: 10
   MoveDirection:

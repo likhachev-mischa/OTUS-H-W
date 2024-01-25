@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Game
 {
@@ -44,11 +45,19 @@ namespace Game
 
             Vector2 rotationVector = new Vector2(direction.x - currentPosition.x, direction.z - currentPosition.z)
                 .normalized;
-
             Vector2 normalVector = new(Mathf.Sin(currentRotation.y * Mathf.Deg2Rad),
                 Mathf.Cos(currentRotation.y * Mathf.Deg2Rad));
 
             float rotationCos = rotationVector.x * normalVector.x + rotationVector.y * normalVector.y;
+
+            if (rotationCos < -1)
+            {
+                rotationCos = -1f;
+            }
+            else if (rotationCos>1)
+            {
+                rotationCos = 1f;
+            }
 
             float rotationAngle = Mathf.Acos(rotationCos) * Mathf.Rad2Deg;
 
@@ -76,7 +85,7 @@ namespace Game
 
             float AngleToCoordinates(float f)
             {
-                if (Mathf.Sign(f) > 0)
+                if (f > 0)
                 {
                     float temp = 180 - f;
                     f = -180 - temp;

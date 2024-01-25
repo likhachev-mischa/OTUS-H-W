@@ -6,13 +6,14 @@ namespace Game
     {
         [SerializeField] private Animator animator;
         [SerializeField] private Zombie zombie;
+        [SerializeField] private GameObject deadZombieVisuals;
 
         private ZombieAnimatorController animatorController;
 
         public void OnEnable()
         {
             animatorController = new ZombieAnimatorController(animator, zombie.MoveDirection, zombie.IsDead,
-                zombie.AttackRequest, zombie.transform, zombie.CanAttack,zombie.Despawn);
+                zombie.AttackRequest, zombie.transform, zombie.CanAttack,zombie.Despawn,deadZombieVisuals);
             
             animatorController.OnEnable();
         }

@@ -5,9 +5,9 @@ namespace Game
     public sealed class AttackComponent
     {
         public IAtomicValue<float> attackDistance;
-        private IAtomicVariable<bool> canAttack;
-        private IAtomicAction attackRequest;
-        private IAtomicVariable<TakeDamageComponent> target;
+        public IAtomicVariable<bool> canAttack;
+        public IAtomicAction attackRequest;
+        public IAtomicVariable<TakeDamageComponent> target;
 
         public AttackComponent(IAtomicValue<float> attackDistance, IAtomicVariable<bool> canAttack,
             IAtomicAction attackRequest, IAtomicVariable<TakeDamageComponent> target)
@@ -18,18 +18,9 @@ namespace Game
             this.target = target;
         }
 
-        public void Attack(Entity target)
+        public void Attack()
         {
-            if (!canAttack.Value)
-            {
-                return;
-            }
-
-            if (target.TryGet(out TakeDamageComponent takeDamageComponent))
-            {
-                this.target.Value = takeDamageComponent;
-                attackRequest.Invoke();
-            }
+            attackRequest.Invoke();
         }
     }
 }

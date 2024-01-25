@@ -25,11 +25,12 @@ namespace Game
         private Transform transform;
 
         private CapsuleCollider capsuleCollider;
+        private GameObject deadZombieVisuals;
 
 
         public ZombieAnimatorController(Animator animator, IAtomicValue<Vector3> moveDirection,
             IAtomicValue<bool> isDead, AtomicEvent attackRequest, Transform transform, AtomicVariable<bool> canAttack,
-            IAtomicEvent<MonoBehaviour> despawn)
+            IAtomicEvent<MonoBehaviour> despawn, GameObject deadZombieVisuals)
         {
             this.animator = animator;
             this.moveDirection = moveDirection;
@@ -38,6 +39,7 @@ namespace Game
             this.canAttack = canAttack;
             this.despawn = despawn;
             this.transform = transform;
+            this.deadZombieVisuals = deadZombieVisuals;
         }
 
         public void OnEnable()
@@ -65,8 +67,7 @@ namespace Game
 
         private async void OnDespawn(MonoBehaviour _)
         {
-            GameObject visuals = Object.Instantiate(animator.gameObject, transform.position, transform.rotation); 
-            visuals.GetComponent<Animator>().SetInteger(MainState, (int)ZombieStates.DEAD + 1);
+            GameObject visuals = Object.Instantiate(deadZombieVisuals, transform.position, transform.rotation);
             var millisecondsDelay = 10000;
             await UniTask.Delay(millisecondsDelay);
             Object.Destroy(visuals);

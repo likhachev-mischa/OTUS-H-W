@@ -27,11 +27,7 @@ namespace Game
         public AtomicEvent AttackRequest;
         public AtomicEvent AttackEvent;
 
-        public ZombieEntity zombieEntity;
-
         public AtomicVariable<TakeDamageComponent> Target;
-
-        private BulletLauncher bulletLauncher;
 
         private MovementMechanics movementMechanics;
         private RotationMechanics rotationMechanics;
@@ -55,9 +51,6 @@ namespace Game
             canAttackMechanics = new CanAttackMechanics(CanAttack, IsDead);
             
             canCollideMechanics = new CanCollideMechanics(gameObject.GetComponent<CapsuleCollider>(), IsDead);
-
-            zombieEntity = this.gameObject.AddComponent<ZombieEntity>();
-            zombieEntity.Initialize(this);
         }
 
         private void OnEnable()

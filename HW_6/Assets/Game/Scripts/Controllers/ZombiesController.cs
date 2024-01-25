@@ -43,7 +43,16 @@ namespace Game
 
                 if (toTarget.magnitude <= attackComponent.attackDistance.Value)
                 {
-                    attackComponent.Attack(target);
+                    if (!attackComponent.canAttack.Value)
+                    {
+                        return;
+                    }
+                    if (target.TryGet(out TakeDamageComponent takeDamageComponent))
+                    {
+                        attackComponent.target.Value = takeDamageComponent;
+                    }
+                    attackComponent.Attack();
+                    
                     movementComponent.Move(Vector3.zero);
                     
                 }
@@ -56,12 +65,12 @@ namespace Game
 
         private void OnZombieSpawned(Zombie zombie)
         {
-            zombieEntities.Add(zombie.zombieEntity);
+            zombieEntities.Add(zombie.gameObject.GetComponent<Entity>());
         }
 
         private void OnZombieDespawned(Zombie zombie)
         {
-            zombieEntities.Remove(zombie.zombieEntity);
+            zombieEntities.Remove(zombie.gameObject.GetComponent<Entity>());
         }
 
         public void OnFinish()
