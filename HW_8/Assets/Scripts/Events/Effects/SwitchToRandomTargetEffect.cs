@@ -10,7 +10,11 @@ namespace Events.Effects
     {
         public IEntity Source { get; set; }
         public Target Target { get; set; }
+        public IEffect NextEffect { get; set; }
 
         [field: SerializeField] public float Probability { get; set; }
+        
+        [SerializeReference]
+        public IEffect[] SuccessEffects;
     }
 }

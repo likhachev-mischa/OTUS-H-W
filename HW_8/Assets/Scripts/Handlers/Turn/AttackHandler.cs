@@ -29,15 +29,20 @@ namespace Handlers.Turn
             }
 
             Debug.LogWarning($"{evt.Source.Get<Name>().Value} is attacking {evt.Target.entity.Get<Name>().Value}");
+
+            IEffect[] effects = weaponComponent.Effects;
+            IEffect firstEffect = effects[0];
             
-            foreach (IEffect effect in weaponComponent.Effects)
+            IEffect lastEffect = firstEffect;
+            for (var i = 1; i < effects.Length; i++)
             {
-                effect.Source = evt.Source;
-                effect.Target = evt.Source.Get<Target>();
-                    
-                EventBus.RaiseEvent(effect);
+                lastEffect.NextEffect = effects[i];
+                lastEffect = lastEffect.NextEffect;
             }
-            EventBus.RaiseEvent(new AttackFinishedRequest(evt.Source,evt.Target));
+
+            lastEffect.NextEffect = new AttackFinishedRequest() { Source = evt.Source, Target = evt.Target };
+            EventBus.RaiseEvent(firstEffect);
+            //EventBus.RaiseEvent(new AttackFinishedRequest() {Source = evt.Source,Target = evt.Target});
         }
     }
 }

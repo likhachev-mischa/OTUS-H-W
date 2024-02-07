@@ -12,11 +12,7 @@ namespace Installers
         [Listener] private EnemySelectionHandler enemySelectionHandler = new();
 
         [Listener] private AttackHandler attackHandler = new();
-        [Listener] private DealDamageHandler dealDamageHandler = new();
-        [Listener] private ReceiveDamageHandler receiveDamageHandler = new();
         [Listener] private DeathHandler deathHandler = new();
-        [Listener] private SwitchToRandomTargetHandler switchToRandomTargetHandler = new();
-        [Listener] private UltimateEventHandler ultimateEventHandler = new();
         [Listener] private TeamSwitchHandler teamSwitchHandler = new();
         [Listener] private GameFinishHandler gameFinishHandler = new();
 
@@ -24,8 +20,7 @@ namespace Installers
 
         [Listener] private AttackFinishedHandler attackFinishedHandler = new();
         [Listener] private DefenceFinishedHandler defenceFinishedHandler = new();
-        [Listener] private VampirismEventHandler vampirismEventHandler = new();
-        [Listener] private FreezeEnemyHandler freezeEnemyHandler = new();
+
 
         [Listener] private TurnFinishHandler turnFinishHandler = new();
 
@@ -34,7 +29,7 @@ namespace Installers
         [Listener] private ReceiveDamageEffectHandler receiveDamageEffectHandler = new();
         [Listener] private SwitchToRandomTargetEffectHandler switchToRandomTargetEffectHandler = new();
         [Listener] private VampirismEffectHandler vampirismEffectHandler = new();
-        [Listener] private DivineShieldEffectHandler divineShieldEffectHandler = new();
+        [Listener] private DamageBlockEffectHandler damageBlockEffectHandler = new();
         [Listener] private FreezeEnemyEffectHandler freezeEnemyEffectHandler = new();
         [Listener] private UltimateEffectHandler ultimateEffectHandler = new();
 

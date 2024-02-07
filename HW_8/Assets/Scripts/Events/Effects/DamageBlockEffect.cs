@@ -1,6 +1,7 @@
 ﻿using System;
 using Entities;
 using Entities.Components;
+using UnityEngine;
 
 namespace Events.Effects
 {
@@ -9,7 +10,15 @@ namespace Events.Effects
     {
         public IEntity Source { get; set; }
         public Target Target { get; set; }
+        public IEffect NextEffect { get; set; }
 
+
+        public bool IsInfinite;
+        
         public int Amount;
+        
+        [SerializeReference]
+        public IEffect[] SuccessEffects;
+
     }
 }

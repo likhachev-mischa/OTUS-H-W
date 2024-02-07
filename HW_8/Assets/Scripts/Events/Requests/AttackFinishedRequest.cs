@@ -1,21 +1,15 @@
 ﻿using System;
 using Entities;
 using Entities.Components;
-using Game.EventBus;
+using Events.Effects;
 
 namespace Events.Requests
 {
     [Serializable]
-    public struct AttackFinishedRequest : IEvent
+    public struct AttackFinishedRequest : IEffect
     {
-        public readonly IEntity Source;
-        public readonly Target Target;
-
-        public AttackFinishedRequest(IEntity source, Target target)
-        {
-            Source = source;
-            Target = target;
-        }
-        
+        public IEntity Source { get; set; }
+        public Target Target { get; set; }
+        public IEffect NextEffect { get; set; }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using DI;
 using Events;
+using Events.Effects;
 using Game.EventBus;
 using Pipeline;
 
 namespace Handlers
 {
-    public class ReceiveDamageVisualHandler : BaseHandler<ReceiveDamageEvent>
+    public class ReceiveDamageVisualHandler : BaseHandler<ReceiveDamageEffect>
     {
         private VisualPipeline visualPipeline;
         
@@ -16,7 +17,7 @@ namespace Handlers
             this.visualPipeline = visualPipeline;
         }
         
-        protected override void HandleEvent(ReceiveDamageEvent evt)
+        protected override void HandleEvent(ReceiveDamageEffect evt)
         {
             visualPipeline.AddTask(new UpdateStatsTask(evt.Source));
         }

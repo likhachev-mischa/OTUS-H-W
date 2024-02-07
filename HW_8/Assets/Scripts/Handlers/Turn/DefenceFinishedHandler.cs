@@ -51,7 +51,7 @@ namespace Handlers.Turn
 
             if (initiateDefence)
             {
-                EventBus.RaiseEvent(new AttackFinishedRequest(entity,newTarget));
+                EventBus.RaiseEvent(new AttackFinishedRequest(){Source = entity,Target = newTarget});
             }
             else
             {

@@ -3,7 +3,7 @@
 namespace Entities.Components
 {
     [Serializable]
-    public class DivineShieldCount
+    public class ShieldCount
     {
         public int Value;
     }

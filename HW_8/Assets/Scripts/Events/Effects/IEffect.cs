@@ -8,5 +8,7 @@ namespace Events.Effects
     {
         public IEntity Source { get; set; }
         public Target Target { get; set; }
+
+        public IEffect NextEffect { get; set; }
     }
 }

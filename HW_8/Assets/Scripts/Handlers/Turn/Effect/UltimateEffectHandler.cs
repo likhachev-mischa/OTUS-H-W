@@ -3,6 +3,7 @@ using Entities.Components;
 using Events;
 using Events.Effects;
 using Game.EventBus;
+using UnityEngine;
 
 namespace Handlers.Turn
 {
@@ -16,7 +17,7 @@ namespace Handlers.Turn
 
         protected override void HandleEvent(UltimateEffect evt)
         {
-            EventBus.RaiseEvent(new UltimateEvent(evt.Source, evt.Target));
+            Debug.Log($"{evt.Source.Get<Name>().Value} has used it's ultimate!");
         }
     }
 }
