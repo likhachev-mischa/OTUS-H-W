@@ -1,4 +1,5 @@
 using System.Linq;
+using Entities.Components;
 using UnityEngine;
 
 namespace DI
@@ -9,11 +10,17 @@ namespace DI
 
         private SceneContext sceneContext;
         private GameInstaller[] projectInstallers;
+
+        private ObjectResolver objectResolver;
         
+
         public void RegisterProject()
         {
             Initialize();
-            
+
+            objectResolver = new ObjectResolver(serviceLocator);
+            serviceLocator.BindService(typeof(IObjectResolver), objectResolver);
+
             projectInstallers = projectInstallerContainer.ProvideInstallers().ToArray();
 
             foreach (GameInstaller installer in projectInstallers)
@@ -30,21 +37,22 @@ namespace DI
             {
                 ExtractInjectors(installer);
             }
+
             InjectGameObjectsOnScene();
         }
-        
+
         public void RegisterScene()
         {
             sceneContext = FindObjectOfType<SceneContext>();
-            serviceLocator.BindService(typeof(Context),sceneContext);
-            serviceLocator.BindService(typeof(GameManager),gameManager);
-            sceneContext.RegisterServices(serviceLocator,gameManager);
+            serviceLocator.BindService(typeof(Context), sceneContext);
+            serviceLocator.BindService(typeof(GameManager), gameManager);
+            sceneContext.RegisterServices(serviceLocator, gameManager);
         }
 
         public void StartScene()
         {
             sceneContext.Inject();
-            gameManager.PostConstruct();
+            gameManager.Initialize();
             gameManager.LateLoad();
             gameManager.StartGame();
         }
@@ -53,7 +61,5 @@ namespace DI
         {
             sceneContext.Unload();
         }
-
-        
     }
 }

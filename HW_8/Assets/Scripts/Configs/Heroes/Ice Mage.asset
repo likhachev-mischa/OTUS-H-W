@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460c21bad7174661a6c94a8803123a45, type: 3}
+  m_Name: Ice Mage
+  m_EditorClassIdentifier: 
+  Stats:
+    Health: 50
+    Damage: 2
+  WeaponEffects:
+  - rid: 7783868477822730249
+  - rid: 7783868490657824832
+  ArmorEffects:
+  - rid: 7783868453577818117
+  PostAttackEffects: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 7783868453577818117
+      type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+    - rid: 7783868477822730249
+      type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+    - rid: 7783868490657824832
+      type: {class: FreezeEnemyEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Duration: 1

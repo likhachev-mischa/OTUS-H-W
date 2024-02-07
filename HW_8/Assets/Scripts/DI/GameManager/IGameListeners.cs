@@ -5,12 +5,12 @@
     }
 
 
-    public interface IGamePostConstructListener : IGameListener
+    public interface IInitializable : IGameListener
     {
-        void OnPostConstruct();
+        void Initialize();
     }
 
-    public interface IGameLateLoadListener : IGameListener
+    public interface ILateLoadListener : IGameListener
     {
         void OnLateLoad();
     }

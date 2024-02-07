@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460c21bad7174661a6c94a8803123a45, type: 3}
+  m_Name: Lord Vamp
+  m_EditorClassIdentifier: 
+  Stats:
+    Health: 22
+    Damage: 6
+  WeaponEffects:
+  - rid: 7783868490657824811
+  ArmorEffects:
+  - rid: 7783868453577818117
+  - rid: 7783868490657824813
+  PostAttackEffects:
+  - rid: 7783868490657824827
+  - rid: 7783868490657824815
+  references:
+    version: 2
+    RefIds:
+    - rid: 7783868453577818117
+      type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+    - rid: 7783868490657824811
+      type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+    - rid: 7783868490657824813
+      type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+    - rid: 7783868490657824815
+      type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+    - rid: 7783868490657824827
+      type: {class: VampirismEffect, ns: Handlers.Turn, asm: Assembly-CSharp}
+      data:
+        <Probability>k__BackingField: 0.5

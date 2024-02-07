@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DI
@@ -16,8 +17,8 @@ namespace DI
     {
         public GameState State { get; private set; }
 
-        private readonly List<IGamePostConstructListener> postConstructListeners = new();
-        private readonly List<IGameLateLoadListener> lateLoadListeners = new();
+        private readonly List<IInitializable> postConstructListeners = new();
+        private readonly List<ILateLoadListener> lateLoadListeners = new();
         private readonly List<IGameStartListener> startListeners = new();
         private readonly List<IGameFinishListener> finishListeners = new();
         private readonly List<IGamePauseListener> pauseListeners = new();
@@ -26,6 +27,8 @@ namespace DI
         private readonly List<IGameUpdateListener> updateListeners = new();
         private readonly List<IGameFixedUpdateListener> fixedUpdateListeners = new();
         private readonly List<IGameLateUpdateListener> lateUpdateListeners = new();
+
+        private readonly List<IDisposable> cleanupList = new();
 
         private void Update()
         {
@@ -72,11 +75,11 @@ namespace DI
             }
         }
 
-        public void PostConstruct()
+        public void Initialize()
         {
             for (int i = 0, count = postConstructListeners.Count; i < count; i++)
             {
-                postConstructListeners[i].OnPostConstruct();
+                postConstructListeners[i].Initialize();
             }
 
             State = GameState.LOADING;
@@ -159,8 +162,8 @@ namespace DI
                 return;
             }
 
-            AddListeners(listener as IGamePostConstructListener, postConstructListeners);
-            AddListeners(listener as IGameLateLoadListener, lateLoadListeners);
+            AddListeners(listener as IInitializable, postConstructListeners);
+            AddListeners(listener as ILateLoadListener, lateLoadListeners);
             AddListeners(listener as IGameStartListener, startListeners);
             AddListeners(listener as IGameFinishListener, finishListeners);
             AddListeners(listener as IGamePauseListener, pauseListeners);
@@ -168,9 +171,11 @@ namespace DI
             AddListeners(listener as IGameUpdateListener, updateListeners);
             AddListeners(listener as IGameFixedUpdateListener, fixedUpdateListeners);
             AddListeners(listener as IGameLateUpdateListener, lateUpdateListeners);
+            
+            AddListeners(listener as IDisposable, cleanupList);
         }
 
-        private void AddListeners<T>(T listener, List<T> listeners) where T : IGameListener
+        private void AddListeners<T>(T listener, List<T> listeners)
         {
             if (listener == null)
             {
@@ -187,8 +192,8 @@ namespace DI
                 return;
             }
 
-            RemoveListeners(listener as IGamePostConstructListener, postConstructListeners);
-            RemoveListeners(listener as IGameLateLoadListener, lateLoadListeners);
+            RemoveListeners(listener as IInitializable, postConstructListeners);
+            RemoveListeners(listener as ILateLoadListener, lateLoadListeners);
             RemoveListeners(listener as IGameStartListener, startListeners);
             RemoveListeners(listener as IGameFinishListener, finishListeners);
             RemoveListeners(listener as IGamePauseListener, pauseListeners);
@@ -196,9 +201,11 @@ namespace DI
             RemoveListeners(listener as IGameUpdateListener, updateListeners);
             RemoveListeners(listener as IGameFixedUpdateListener, fixedUpdateListeners);
             RemoveListeners(listener as IGameLateUpdateListener, lateUpdateListeners);
+            
+            RemoveListeners(listener as IDisposable, cleanupList);
         }
 
-        private void RemoveListeners<T>(T listener, List<T> listeners) where T : IGameListener
+        private void RemoveListeners<T>(T listener, List<T> listeners)
         {
             if (listener == null)
             {
@@ -206,6 +213,14 @@ namespace DI
             }
 
             listeners.Remove(listener);
+        }
+
+        private void OnDestroy()
+        {
+            for (var i = 0; i < cleanupList.Count; i++)
+            {
+                cleanupList[i].Dispose();
+            }
         }
     }
 }
