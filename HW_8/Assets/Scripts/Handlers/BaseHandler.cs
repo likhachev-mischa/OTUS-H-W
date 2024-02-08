@@ -13,7 +13,7 @@ namespace Handlers
         {
             EventBus = eventBus;
         }
-        
+
         void IInitializable.Initialize()
         {
             EventBus.Subscribe<T>(HandleEvent);

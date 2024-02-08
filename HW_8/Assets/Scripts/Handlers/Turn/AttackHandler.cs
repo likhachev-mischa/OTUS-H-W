@@ -4,6 +4,7 @@ using Events;
 using Events.Effects;
 using Events.Requests;
 using Game.EventBus;
+using Pipeline;
 using Services;
 using UnityEngine;
 
@@ -12,17 +13,20 @@ namespace Handlers.Turn
     public sealed class AttackHandler : BaseHandler<AttackEvent>
     {
         private TurnStateService turnStateService;
-        
+        private EffectStack effectStack;
+
         [Inject]
-        private void Construct(EventBus eventBus, TurnStateService turnStateService)
+        private void Construct(EventBus eventBus, TurnStateService turnStateService, EffectStack effectStack)
         {
             base.Construct(eventBus);
             this.turnStateService = turnStateService;
+            this.effectStack = effectStack;
         }
-        
+
         protected override void HandleEvent(AttackEvent evt)
         {
             turnStateService.State = TurnState.ATTACK;
+
             if (!evt.Source.TryGet(out WeaponComponent weaponComponent))
             {
                 return;
@@ -30,19 +34,21 @@ namespace Handlers.Turn
 
             Debug.LogWarning($"{evt.Source.Get<Name>().Value} is attacking {evt.Target.entity.Get<Name>().Value}");
 
-            IEffect[] effects = weaponComponent.Effects;
-            IEffect firstEffect = effects[0];
-            
-            IEffect lastEffect = firstEffect;
-            for (var i = 1; i < effects.Length; i++)
+            effectStack.Push(new AttackFinishedRequest() { Source = evt.Source, Target = evt.Target });
+
+            if (weaponComponent.Effects != null)
             {
-                lastEffect.NextEffect = effects[i];
-                lastEffect = lastEffect.NextEffect;
+                for (var i = weaponComponent.Effects.Length - 1; i >= 0; i--)
+                {
+                    IEffect effect = weaponComponent.Effects[i];
+                    effect.Source = evt.Source;
+                    effect.Target = evt.Target;
+
+                    effectStack.Push(effect);
+                }
             }
 
-            lastEffect.NextEffect = new AttackFinishedRequest() { Source = evt.Source, Target = evt.Target };
-            EventBus.RaiseEvent(firstEffect);
-            //EventBus.RaiseEvent(new AttackFinishedRequest() {Source = evt.Source,Target = evt.Target});
+            EventBus.RaiseEvent(effectStack.Pop());
         }
     }
 }

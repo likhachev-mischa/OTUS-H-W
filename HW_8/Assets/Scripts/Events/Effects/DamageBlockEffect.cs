@@ -10,15 +10,11 @@ namespace Events.Effects
     {
         public IEntity Source { get; set; }
         public Target Target { get; set; }
-        public IEffect NextEffect { get; set; }
-
 
         public bool IsInfinite;
-        
-        public int Amount;
-        
-        [SerializeReference]
-        public IEffect[] SuccessEffects;
 
+        public int Amount;
+
+        [SerializeReference] public IEffect[] SuccessEffects;
     }
 }

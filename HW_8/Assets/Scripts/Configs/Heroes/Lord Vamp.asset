@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460c21bad7174661a6c94a8803123a45, type: 3}
   m_Name: Lord Vamp
   m_EditorClassIdentifier: 
+  HeroName: Lord Vamp
   Stats:
     Health: 22
     Damage: 6
@@ -21,7 +22,7 @@ MonoBehaviour:
   - rid: 7783868453577818117
   - rid: 7783868490657824813
   PostAttackEffects:
-  - rid: 7783868490657824827
+  - rid: 7783868497090838536
   - rid: 7783868490657824815
   references:
     version: 2
@@ -30,11 +31,19 @@ MonoBehaviour:
       type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
     - rid: 7783868490657824811
       type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 0
     - rid: 7783868490657824813
       type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 0
     - rid: 7783868490657824815
       type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
-    - rid: 7783868490657824827
+    - rid: 7783868497090838536
       type: {class: VampirismEffect, ns: Handlers.Turn, asm: Assembly-CSharp}
       data:
         <Probability>k__BackingField: 0.5
+        SuccessEffects:
+        - rid: 7783868497090838537
+    - rid: 7783868497090838537
+      type: {class: UltimateEffect, ns: Events.Effects, asm: Assembly-CSharp}

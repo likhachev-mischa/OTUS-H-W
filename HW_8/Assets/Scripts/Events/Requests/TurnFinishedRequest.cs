@@ -1,18 +1,14 @@
 ﻿using System;
 using Entities;
 using Entities.Components;
-using Game.EventBus;
+using Events.Effects;
 
-namespace Events.Effects
+namespace Events.Requests
 {
     [Serializable]
-    public struct TurnFinishedRequest : IEvent
+    public struct TurnFinishedRequest : IEffect
     {
-        public IEntity Source;
-
-        public TurnFinishedRequest(IEntity source)
-        {
-            Source = source;
-        }
+        public IEntity Source { get; set; }
+        public Target Target { get; set; }
     }
 }

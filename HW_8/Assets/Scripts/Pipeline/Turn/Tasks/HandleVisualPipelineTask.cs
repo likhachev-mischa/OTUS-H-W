@@ -16,7 +16,7 @@ namespace Pipeline.Tasks
         protected override void OnRun()
         {
             visualPipeline.OnFinished += OnVisualPipelineFinished;
-            
+
             visualPipeline.Run();
         }
 

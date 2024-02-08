@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460c21bad7174661a6c94a8803123a45, type: 3}
   m_Name: Mediator
   m_EditorClassIdentifier: 
+  HeroName: Mediator
   Stats:
     Health: 50
     Damage: 1
@@ -29,7 +30,11 @@ MonoBehaviour:
       type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
     - rid: 7783868490657824823
       type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 0
     - rid: 7783868490657824825
       type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 0
     - rid: 7783868490657824826
       type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}

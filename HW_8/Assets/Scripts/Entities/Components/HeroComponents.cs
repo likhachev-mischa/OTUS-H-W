@@ -18,6 +18,8 @@ namespace Entities.Components
         
         [SerializeReference]
         public IEffect[] PostAttackEffects;
-        
+
+        [SerializeReference] public IEffect[] EndOfTurnEffects;
+
     }
 }

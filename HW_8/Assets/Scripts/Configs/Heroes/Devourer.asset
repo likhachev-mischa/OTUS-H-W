@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460c21bad7174661a6c94a8803123a45, type: 3}
   m_Name: Devourer
   m_EditorClassIdentifier: 
+  HeroName: Devourer
   Stats:
     Health: 50
     Damage: 3
@@ -23,7 +24,8 @@ MonoBehaviour:
   PostAttackEffects:
   - rid: 7783868490657824798
   - rid: 7783868490657824784
-  - rid: 7783868490657824792
+  - rid: 7783868497090838533
+  - rid: 7783868497090838532
   references:
     version: 2
     RefIds:
@@ -33,11 +35,20 @@ MonoBehaviour:
       type: {class: SwitchToRandomTargetEffect, ns: Events.Effects, asm: Assembly-CSharp}
       data:
         <Probability>k__BackingField: 1
+        SuccessEffects: []
     - rid: 7783868490657824791
       type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
-    - rid: 7783868490657824792
-      type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 0
     - rid: 7783868490657824794
       type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 0
     - rid: 7783868490657824798
       type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+    - rid: 7783868497090838532
+      type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 0
+    - rid: 7783868497090838533
+      type: {class: UltimateEffect, ns: Events.Effects, asm: Assembly-CSharp}

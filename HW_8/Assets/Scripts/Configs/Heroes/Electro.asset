@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460c21bad7174661a6c94a8803123a45, type: 3}
   m_Name: Electro
   m_EditorClassIdentifier: 
+  HeroName: Electro
   Stats:
     Health: 10
     Damage: 10
@@ -19,7 +20,9 @@ MonoBehaviour:
   - rid: 7783868477822730245
   ArmorEffects:
   - rid: 7783868453577818117
-  PostAttackEffects: []
+  - rid: 7783868497090838530
+  PostAttackEffects:
+  - rid: 7783868497090838531
   references:
     version: 2
     RefIds:
@@ -28,4 +31,10 @@ MonoBehaviour:
     - rid: 7783868477822730245
       type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
       data:
-        <Damage>k__BackingField: 10
+        Damage: 0
+    - rid: 7783868497090838530
+      type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 0
+    - rid: 7783868497090838531
+      type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}

@@ -7,7 +7,7 @@ namespace Pipeline.Tasks
         protected override void OnRun()
         {
             Debug.Log("Start Turn!");
-            
+
             Finish();
         }
     }

@@ -21,16 +21,14 @@ namespace Installers
         {
             
             turnPipeline.AddTask(new StartTurnTask());
-            
-            //turnPipeline.AddTask(objectResolver.CreateInstance<HandleVisualPipelineTask>());
             turnPipeline.AddTask(objectResolver.CreateInstance<HeroSelectionTask>());
+            
             turnPipeline.AddTask(objectResolver.CreateInstance<HandleVisualPipelineTask>());
-            //turnPipeline.AddTask(objectResolver.CreateInstance<HandleVisualPipelineTask>());
+            
             turnPipeline.AddTask(objectResolver.CreateInstance<EnemySelectionTask>());
+            
             turnPipeline.AddTask(objectResolver.CreateInstance<HandleVisualPipelineTask>());
-           // turnPipeline.AddTask(objectResolver.CreateInstance<HandleVisualPipelineTask>());
-            //turnPipeline.AddTask(objectResolver.CreateInstance<FinishTurnTask>());
-            //turnPipeline.AddTask(objectResolver.CreateInstance<HandleVisualPipelineTask>());
+
         }
 
         void IDisposable.Dispose()

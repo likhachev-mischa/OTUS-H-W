@@ -1,30 +1,37 @@
-﻿using UnityEngine;
+﻿using DI;
+using UnityEngine;
 
 namespace Pipeline.Tasks
 {
     public class FinishGameTask : Task
     {
-        private Pipeline pipeline;
+        private TurnPipeline pipeline;
+        private GameManager gameManager;
 
-        public FinishGameTask(Pipeline pipeline)
+        [Inject]
+        public void Construct(TurnPipeline pipeline, GameManager gameManager)
         {
             this.pipeline = pipeline;
+            this.gameManager = gameManager;
         }
 
         protected override void OnRun()
         {
-            pipeline.OnFinished += OnPipelineFinished;
+            Debug.LogWarning("GAME FINISHED");
+            gameManager.FinishGame();
+            //pipeline.OnFinished += OnPipelineFinished;
         }
 
-        protected override void OnFinish()
+        /*protected override void OnFinish()
         {
             pipeline.OnFinished -= OnPipelineFinished;
         }
 
         private void OnPipelineFinished()
         {
-            pipeline.Clear();
+            Debug.LogWarning("GAME FINISHED");
+            gameManager.FinishGame();
             Finish();
-        }
+        }*/
     }
 }

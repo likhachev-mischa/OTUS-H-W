@@ -19,7 +19,7 @@ namespace Services
             this.teamService = teamService;
             indexes = new Dictionary<Entity, int>();
         }
-        
+
         public IEntity GetHero()
         {
             Entity team = teamService.GetCurrentTeam();
@@ -45,7 +45,7 @@ namespace Services
             int index = indexes[team];
 
             IEntity hero = heroes.list[index];
-           
+
             return hero;
         }
 
@@ -61,12 +61,11 @@ namespace Services
             {
                 indexes[team] = 0;
             }
-            
+
             if (indexes[team] >= heroIndex && indexes[team] >= 0)
             {
                 --indexes[team];
             }
         }
-        
     }
 }

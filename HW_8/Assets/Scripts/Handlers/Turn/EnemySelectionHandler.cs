@@ -23,7 +23,7 @@ namespace Handlers.Turn
             IEntity hero = activeHeroService.Hero;
             var heroTarget = hero.Get<Target>();
             heroTarget.entity = evt.enemy;
-            EventBus.RaiseEvent(new AttackEvent(hero,heroTarget));
+            EventBus.RaiseEvent(new AttackEvent(hero, heroTarget));
         }
     }
 }

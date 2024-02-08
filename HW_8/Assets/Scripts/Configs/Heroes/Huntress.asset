@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460c21bad7174661a6c94a8803123a45, type: 3}
   m_Name: Huntress
   m_EditorClassIdentifier: 
+  HeroName: Huntress
   Stats:
     Health: 25
     Damage: 10
@@ -20,7 +21,8 @@ MonoBehaviour:
   ArmorEffects:
   - rid: 7783868453577818117
   - rid: 7783868490657824797
-  PostAttackEffects: []
+  PostAttackEffects:
+  - rid: 7783868497090838538
   references:
     version: 2
     RefIds:
@@ -28,5 +30,11 @@ MonoBehaviour:
       type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
     - rid: 7783868477822730247
       type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 0
     - rid: 7783868490657824797
       type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 0
+    - rid: 7783868497090838538
+      type: {class: UltimateEffect, ns: Events.Effects, asm: Assembly-CSharp}

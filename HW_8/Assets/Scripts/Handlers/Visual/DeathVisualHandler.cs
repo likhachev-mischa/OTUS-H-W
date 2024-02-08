@@ -5,9 +5,10 @@ using Pipeline;
 
 namespace Handlers
 {
-    public class DeathVisualHandler: BaseHandler<DeathEvent>
+    public class DeathVisualHandler : BaseHandler<DeathEvent>
     {
         private VisualPipeline visualPipeline;
+
         [Inject]
         private void Construct(EventBus eventBus, VisualPipeline visualPipeline)
         {

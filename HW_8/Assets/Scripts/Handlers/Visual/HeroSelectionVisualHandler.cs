@@ -9,17 +9,17 @@ namespace Handlers
     public class HeroSelectionVisualHandler : BaseHandler<HeroSelectionEvent>
     {
         private VisualPipeline visualPipeline;
+
         [Inject]
         private void Construct(EventBus eventBus, VisualPipeline visualPipeline)
         {
-           base.Construct(eventBus);
-           this.visualPipeline = visualPipeline;
+            base.Construct(eventBus);
+            this.visualPipeline = visualPipeline;
         }
 
         protected override void HandleEvent(HeroSelectionEvent evt)
         {
-            Debug.Log("Hero selected");
-            visualPipeline.AddTask(new SelectHeroVisualTask(evt.hero,true));
+            visualPipeline.AddTask(new SelectHeroVisualTask(evt.hero, true));
             visualPipeline.Run();
         }
     }

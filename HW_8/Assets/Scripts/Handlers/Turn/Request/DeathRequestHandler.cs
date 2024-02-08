@@ -7,20 +7,22 @@ using UnityEngine;
 
 namespace Handlers
 {
-    public class DeathHandler : BaseHandler<DeathEvent>
+    public class DeathRequestHandler : BaseHandler<DeathRequest>
     {
         private HeroRepositoryService heroRepositoryService;
+
         [Inject]
-        private void Construct(EventBus eventBus ,HeroRepositoryService heroRepositoryService)
+        private void Construct(EventBus eventBus, HeroRepositoryService heroRepositoryService)
         {
             base.Construct(eventBus);
-            this.heroRepositoryService = heroRepositoryService; 
+            this.heroRepositoryService = heroRepositoryService;
         }
-        
-        protected override void HandleEvent(DeathEvent evt)
+
+        protected override void HandleEvent(DeathRequest evt)
         {
             Debug.LogWarning($"{evt.Target.entity.Get<Name>().Value} was killed by {evt.Source.Get<Name>().Value}");
             heroRepositoryService.RemoveHero(evt.Target.entity);
+            EventBus.RaiseEvent(new DeathEvent(evt.Source,evt.Target));
         }
     }
 }

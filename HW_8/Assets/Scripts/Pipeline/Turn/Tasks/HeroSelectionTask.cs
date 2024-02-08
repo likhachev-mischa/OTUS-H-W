@@ -26,29 +26,7 @@ namespace Pipeline.Tasks
         protected override void OnRun()
         {
             IEntity hero = repositoryService.GetHero();
-            //int count = teamService.FindHeroTeam((Entity)hero).Get<HeroesContainer>().list.Count;
-
-            /*while (hero.TryGet(out Inactive inactive) && count > 0)
-            {
-                --count;
-                if (inactive.Value)
-                {
-                    if (inactive.Duration > 0)
-                    {
-                        --inactive.Duration;
-                        hero = repositoryService.GetHero();
-                    }
-                    else
-                    {
-                        inactive.Value = false;
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }*/
-
+           
             if (hero.TryGet(out Inactive inactive))
             {
                 if (inactive.Value)
@@ -56,36 +34,23 @@ namespace Pipeline.Tasks
                     if (inactive.Duration > 0)
                     {
                         --inactive.Duration;
+                        if (inactive.Duration == 0)
+                        {
+                            inactive.Value = false;
+                        }
+                        Debug.LogWarning("SKIP TURN");
+                        eventBus.RaiseEvent(new TurnFinishedEvent(hero));
+                        eventBus.RaiseEvent(new TurnSkippedEvent(hero));
+                        Finish();
+                        return;
                     }
-                    else
-                    {
-                        inactive.Value = false;
-                    }
 
-                    Debug.LogWarning("SKIP TURN");
-                    eventBus.RaiseEvent(new TurnFinishedEvent(hero));
-                    eventBus.RaiseEvent(new TurnSkippedEvent(hero));
                 }
-                else
-                {
-                    eventBus.RaiseEvent(new HeroSelectionEvent(hero));
-                }
+               
             }
-            else
-            {
-                eventBus.RaiseEvent(new HeroSelectionEvent(hero));
-            }
-
-            /*if (count <= 0)
-            {
-                Debug.LogWarning("TURN FINISHED AS ALL HEROES FROZE");
-                eventBus.RaiseEvent(new TurnFinishedEvent(hero));
-            }*/
-            /*else
-            {
-                eventBus.RaiseEvent(new HeroSelectionEvent(hero));
-            }*/
-
+           
+            eventBus.RaiseEvent(new HeroSelectionEvent(hero));
+            
             Finish();
         }
     }

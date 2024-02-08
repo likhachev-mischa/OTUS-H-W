@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460c21bad7174661a6c94a8803123a45, type: 3}
   m_Name: Dumb Ork
   m_EditorClassIdentifier: 
+  HeroName: Dumb Ork
   Stats:
     Health: 32
     Damage: 8
   WeaponEffects:
-  - rid: 7783868490657824809
+  - rid: 7783868497090838534
   - rid: 7783868490657824807
   ArmorEffects:
   - rid: 7783868453577818117
@@ -32,9 +33,17 @@ MonoBehaviour:
       type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
     - rid: 7783868490657824807
       type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
-    - rid: 7783868490657824809
+      data:
+        Damage: 0
+    - rid: 7783868490657824810
+      type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 0
+    - rid: 7783868497090838534
       type: {class: SwitchToRandomTargetEffect, ns: Events.Effects, asm: Assembly-CSharp}
       data:
         <Probability>k__BackingField: 0.5
-    - rid: 7783868490657824810
-      type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+        SuccessEffects:
+        - rid: 7783868497090838535
+    - rid: 7783868497090838535
+      type: {class: UltimateEffect, ns: Events.Effects, asm: Assembly-CSharp}

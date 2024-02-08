@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Handlers
 {
-    public class HeroDeselectionVisualHandler: BaseHandler<TurnFinishedEvent>
+    public class HeroDeselectionVisualHandler : BaseHandler<TurnFinishedEvent>
     {
         private VisualPipeline visualPipeline;
 
@@ -19,8 +19,7 @@ namespace Handlers
 
         protected override void HandleEvent(TurnFinishedEvent evt)
         {
-            visualPipeline.AddTask(new SelectHeroVisualTask(evt.hero,false));
+            visualPipeline.AddTask(new SelectHeroVisualTask(evt.hero, false));
         }
     }
-    
 }

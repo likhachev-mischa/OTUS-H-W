@@ -12,5 +12,7 @@ namespace Installers
         [Service(typeof(TurnPipeline))] private TurnPipeline turnPipeline = new();
         [Listener] private TurnPipelineInstaller turnPipelineInstaller = new();
         [SerializeField] [Listener] private TurnPipelineRunner turnPipelineRunner = new();
+
+        [Service(typeof(EffectStack))] private EffectStack effectStack = new();
     }
 }

@@ -30,8 +30,8 @@ namespace Pipeline.Tasks
 
         private void OnEnemySelected(IEntity enemy)
         {
-           eventBus.RaiseEvent(new EnemySelectionEvent(enemy));
-           Finish();
+            eventBus.RaiseEvent(new EnemySelectionEvent(enemy));
+            Finish();
         }
     }
 }

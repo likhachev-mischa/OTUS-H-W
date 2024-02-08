@@ -1,4 +1,5 @@
-﻿using DI;
+﻿using System.Collections.Generic;
+using DI;
 using Entities;
 using Entities.Components;
 using Events;
@@ -13,13 +14,16 @@ namespace Handlers
     {
         private TurnPipeline turnPipeline;
         private TeamService teamService;
+        private IObjectResolver objectResolver;
 
         [Inject]
-        private void Construct(EventBus eventBus, TurnPipeline turnPipeline, TeamService teamService)
+        private void Construct(EventBus eventBus, TurnPipeline turnPipeline, TeamService teamService,
+           IObjectResolver objectResolver)
         {
             base.Construct(eventBus);
             this.turnPipeline = turnPipeline;
             this.teamService = teamService;
+            this.objectResolver = objectResolver;
         }
 
         protected override void HandleEvent(DeathEvent evt)
@@ -28,10 +32,10 @@ namespace Handlers
 
             for (var i = 0; i < teams.Length; i++)
             {
-                var list = teams[i].Get<HeroesContainer>().list;
+                List<Entity> list = teams[i].Get<HeroesContainer>().list;
                 if (list.Count == 0)
                 {
-                    turnPipeline.AddTask(new FinishGameTask(turnPipeline));
+                    turnPipeline.AddTask(objectResolver.CreateInstance<FinishGameTask>());
                     return;
                 }
             }

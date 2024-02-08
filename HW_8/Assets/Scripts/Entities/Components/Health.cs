@@ -7,5 +7,7 @@ namespace Entities.Components
     {
         public int Value;
         public int ReceivedDamage;
+
+        public int InitialValue;
     }
 }

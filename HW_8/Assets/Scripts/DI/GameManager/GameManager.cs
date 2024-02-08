@@ -135,6 +135,11 @@ namespace DI
             {
                 finishListeners[i].OnFinish();
             }
+            
+            for (var i = 0; i < cleanupList.Count; i++)
+            {
+                cleanupList[i].Dispose();
+            }
 
             State = GameState.FINISHED;
         }
