@@ -23,6 +23,10 @@ MonoBehaviour:
   - rid: 7783868490657824825
   PostAttackEffects:
   - rid: 7783868490657824826
+  EndOfTurnEffects:
+  - rid: 7783868515407364098
+  - rid: 7783868515407364100
+  - rid: 7783868515407364101
   references:
     version: 2
     RefIds:
@@ -38,3 +42,15 @@ MonoBehaviour:
         Damage: 0
     - rid: 7783868490657824826
       type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+    - rid: 7783868515407364098
+      type: {class: SwitchToRandomTargetEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        IsAimedOnAllies: 1
+        <Probability>k__BackingField: 1
+        SuccessEffects: []
+    - rid: 7783868515407364100
+      type: {class: HealEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Value: 1
+    - rid: 7783868515407364101
+      type: {class: UltimateEffect, ns: Events.Effects, asm: Assembly-CSharp}

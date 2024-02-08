@@ -26,6 +26,7 @@ MonoBehaviour:
   - rid: 7783868490657824784
   - rid: 7783868497090838533
   - rid: 7783868497090838532
+  EndOfTurnEffects: []
   references:
     version: 2
     RefIds:
@@ -34,6 +35,7 @@ MonoBehaviour:
     - rid: 7783868490657824784
       type: {class: SwitchToRandomTargetEffect, ns: Events.Effects, asm: Assembly-CSharp}
       data:
+        IsAimedOnAllies: 0
         <Probability>k__BackingField: 1
         SuccessEffects: []
     - rid: 7783868490657824791

@@ -19,19 +19,7 @@ namespace Pipeline.Tasks
         {
             Debug.LogWarning("GAME FINISHED");
             gameManager.FinishGame();
-            //pipeline.OnFinished += OnPipelineFinished;
         }
-
-        /*protected override void OnFinish()
-        {
-            pipeline.OnFinished -= OnPipelineFinished;
-        }
-
-        private void OnPipelineFinished()
-        {
-            Debug.LogWarning("GAME FINISHED");
-            gameManager.FinishGame();
-            Finish();
-        }*/
+        
     }
 }

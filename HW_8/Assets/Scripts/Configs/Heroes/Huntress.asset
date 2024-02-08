@@ -22,7 +22,9 @@ MonoBehaviour:
   - rid: 7783868453577818117
   - rid: 7783868490657824797
   PostAttackEffects:
+  - rid: 7783868515407364103
   - rid: 7783868497090838538
+  EndOfTurnEffects: []
   references:
     version: 2
     RefIds:
@@ -38,3 +40,9 @@ MonoBehaviour:
         Damage: 0
     - rid: 7783868497090838538
       type: {class: UltimateEffect, ns: Events.Effects, asm: Assembly-CSharp}
+    - rid: 7783868515407364103
+      type: {class: DamageBlockEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        IsInfinite: 1
+        Amount: 0
+        SuccessEffects: []

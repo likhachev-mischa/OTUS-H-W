@@ -14,15 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HeroName: Electro
   Stats:
-    Health: 10
-    Damage: 10
+    Health: 35
+    Damage: 7
   WeaponEffects:
   - rid: 7783868477822730245
   ArmorEffects:
   - rid: 7783868453577818117
+  - rid: 7783868515407364112
+  - rid: 7783868515407364105
   - rid: 7783868497090838530
   PostAttackEffects:
+  - rid: 7783868515407364111
+  - rid: 7783868515407364108
   - rid: 7783868497090838531
+  EndOfTurnEffects: []
   references:
     version: 2
     RefIds:
@@ -38,3 +43,25 @@ MonoBehaviour:
         Damage: 0
     - rid: 7783868497090838531
       type: {class: ReceiveDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+    - rid: 7783868515407364105
+      type: {class: MultiTargetEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Effects:
+        - rid: 7783868515407364107
+    - rid: 7783868515407364107
+      type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 1
+    - rid: 7783868515407364108
+      type: {class: MultiTargetEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Effects:
+        - rid: 7783868515407364110
+    - rid: 7783868515407364110
+      type: {class: DealDamageEffect, ns: Events.Effects, asm: Assembly-CSharp}
+      data:
+        Damage: 1
+    - rid: 7783868515407364111
+      type: {class: UltimateEffect, ns: Events.Effects, asm: Assembly-CSharp}
+    - rid: 7783868515407364112
+      type: {class: UltimateEffect, ns: Events.Effects, asm: Assembly-CSharp}
