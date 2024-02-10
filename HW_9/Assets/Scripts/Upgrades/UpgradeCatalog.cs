@@ -5,7 +5,7 @@ namespace Sample
 {
     [CreateAssetMenu(
         fileName = "UpgradeCatalog",
-        menuName = "Sample/New UpgradeCatalog"
+        menuName = "Configs/New UpgradeCatalog"
     )]
     public sealed class UpgradeCatalog : ScriptableObject
     {

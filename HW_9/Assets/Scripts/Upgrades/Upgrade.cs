@@ -53,6 +53,11 @@ namespace Sample
             this.OnLevelUp?.Invoke(nextLevel);
         }
 
+        public virtual bool CanLevelUp()
+        {
+            return !IsMaxLevel;
+        }
+        
         protected abstract void LevelUp(int level);
     }
 }

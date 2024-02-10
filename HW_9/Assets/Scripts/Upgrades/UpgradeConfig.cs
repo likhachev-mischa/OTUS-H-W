@@ -8,16 +8,14 @@ namespace Sample
     {
         protected const float SPACE_HEIGHT = 10.0f;
 
-        [SerializeField]
-        public string id;
-        
-        [Range(2, 99)]
-        [SerializeField]
-        public int maxLevel = 2;
+        [PropertyOrder(1)]
+        [SerializeField] public string id;
 
-        [Space(SPACE_HEIGHT)]
-        [SerializeField]
-        private PriceTable priceTable;
+        [PropertyOrder(2)]
+        [Range(2, 99)] [SerializeField] public int maxLevel = 2;
+
+        [PropertyOrder(10)]
+        [Space(SPACE_HEIGHT)] [SerializeField] private PriceTable priceTable;
 
         public abstract Upgrade InstantiateUpgrade();
 
@@ -32,13 +30,13 @@ namespace Sample
                 // ignored
             }
         }
-        
+
         protected virtual void Validate()
         {
             this.priceTable.OnValidate(this.maxLevel);
         }
-        
-        
+
+
         public int GetPrice(int level)
         {
             return this.priceTable.GetPrice(level);
@@ -47,13 +45,9 @@ namespace Sample
         [Serializable]
         public sealed class PriceTable
         {
-            [Space]
-            [SerializeField]
-            private int basePrice;
+            [Space] [SerializeField] private int basePrice;
 
-            [Space]
-            [ListDrawerSettings(OnBeginListElementGUI = "DrawLevels")]
-            [SerializeField]
+            [Space] [ListDrawerSettings(OnBeginListElementGUI = "DrawLevels")] [SerializeField]
             private int[] levels;
 
             public int GetPrice(int level)
@@ -68,7 +62,7 @@ namespace Sample
                 GUILayout.Space(8);
                 GUILayout.Label($"Level #{index + 1}");
             }
-        
+
             public void OnValidate(int maxLevel)
             {
                 this.EvaluatePriceTable(maxLevel);

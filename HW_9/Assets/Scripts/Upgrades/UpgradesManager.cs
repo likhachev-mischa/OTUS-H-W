@@ -43,7 +43,7 @@ namespace Sample
 
         public bool CanLevelUp(Upgrade upgrade)
         {
-            if (upgrade.IsMaxLevel)
+            if (!upgrade.CanLevelUp())
             {
                 return false;
             }
