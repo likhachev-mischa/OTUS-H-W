@@ -30,5 +30,10 @@ namespace DefaultNamespace
             dependentUpgradesController.Construct(upgradesManager);
             dependentUpgradesController.Initialize();
         }
+
+        private void OnDestroy()
+        {
+            dependentUpgradesController.Dispose();
+        }
     }
 }
