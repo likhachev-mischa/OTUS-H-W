@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 namespace Sample
 {
     //Нельзя менять!
+    [Serializable]
     public sealed class Inventory
     {
         public event Action<Item> OnItemAdded;
@@ -23,7 +24,7 @@ namespace Sample
         {
             this.items = new List<Item>(items);
         }
-
+        
         public void AddItem(Item item)
         {
             if (!this.items.Contains(item))

@@ -9,6 +9,6 @@ namespace Equipment
     {
         [field: SerializeField] public EquipmentType Type { get; private set; }
 
-        [field: SerializeReference] public Stat[] Stats { get; private set; }
+        [field: SerializeField] public Stat[] Stats { get; private set; }
     }
 }

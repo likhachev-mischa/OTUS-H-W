@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 namespace Sample
 {
     //Нельзя менять!
+    [Serializable]
     public sealed class Character
     {
         public event Action OnStateChanged;
