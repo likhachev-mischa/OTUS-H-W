@@ -1,27 +1,22 @@
-﻿using Sirenix.OdinInspector;
+﻿using System.Collections.Generic;
 
 namespace Sample
 {
     public class DependentUpgrade : Upgrade
     {
-        public string[] DependentIds { get; private set; }
+        public Dictionary<string, int> Dependencies { get; private set; }
+        public bool AllDependenciesReady { get; set; }
 
-        public bool AllDependenciesReady;
-        
+
         public DependentUpgrade(DependentUpgradeConfig config) : base(config)
         {
-            DependentIds = config.dependantIds;
+            Dependencies = new Dictionary<string, int>(config.dependencies);
             AllDependenciesReady = true;
         }
-        
+
         public override bool CanLevelUp()
         {
             return base.CanLevelUp() && AllDependenciesReady;
-        }
-
-        protected override void LevelUp(int level)
-        {
-            
         }
     }
 }

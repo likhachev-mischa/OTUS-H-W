@@ -4,20 +4,23 @@ using UnityEngine;
 
 namespace Sample
 {
-    public abstract class UpgradeConfig : ScriptableObject
+    [CreateAssetMenu(menuName = "Configs/UpgradeConfig", fileName = "New UpgradeConfig")]
+    public class UpgradeConfig : SerializedScriptableObject
     {
         protected const float SPACE_HEIGHT = 10.0f;
 
-        [PropertyOrder(1)]
-        [SerializeField] public string id;
+        [PropertyOrder(1)] [SerializeField] public string id;
 
-        [PropertyOrder(2)]
-        [Range(2, 99)] [SerializeField] public int maxLevel = 2;
+        [PropertyOrder(2)] [Range(2, 99)] [SerializeField]
+        public int maxLevel = 2;
 
-        [PropertyOrder(10)]
-        [Space(SPACE_HEIGHT)] [SerializeField] private PriceTable priceTable;
+        [PropertyOrder(10)] [Space(SPACE_HEIGHT)] [SerializeField]
+        private PriceTable priceTable;
 
-        public abstract Upgrade InstantiateUpgrade();
+        public virtual Upgrade InstantiateUpgrade()
+        {
+            return new Upgrade(this);
+        }
 
         private void OnValidate()
         {
@@ -35,7 +38,6 @@ namespace Sample
         {
             this.priceTable.OnValidate(this.maxLevel);
         }
-
 
         public int GetPrice(int level)
         {

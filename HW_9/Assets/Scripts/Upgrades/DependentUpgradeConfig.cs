@@ -1,13 +1,14 @@
-﻿using Sirenix.OdinInspector;
+﻿using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Sample
 {
-    [CreateAssetMenu(menuName = "Configs/DependentUpgradeConfig", fileName = "New DependentUpgradeConfig", order = 0)]
+    [CreateAssetMenu(menuName = "Configs/DependentUpgradeConfig", fileName = "New DependentUpgradeConfig")]
     public class DependentUpgradeConfig : UpgradeConfig
     {
         [Space] [PropertyOrder(3)] [SerializeField]
-        public string[] dependantIds;
+        public Dictionary<string,int> dependencies;
 
         public override Upgrade InstantiateUpgrade()
         {

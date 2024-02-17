@@ -7,7 +7,7 @@ namespace Sample
     {
         private UpgradesManager upgradesManager;
 
-        private readonly Dictionary<string, string[]> dictionary = new();
+        private readonly Dictionary<string, Dictionary<string, int>> dictionary = new();
 
         public void Construct(UpgradesManager upgradesManager)
         {
@@ -23,8 +23,15 @@ namespace Sample
                 Upgrade upgrade = upgrades[index];
                 if (upgrade is DependentUpgrade dependentUpgrade)
                 {
-                    dictionary[dependentUpgrade.Id] = dependentUpgrade.DependentIds;
+                    dictionary[dependentUpgrade.Id] = dependentUpgrade.Dependencies;
                 }
+            }
+            
+            
+            foreach ((string key, Dictionary<string, int> value) in dictionary)
+            {
+                var dependentUpgrade = (DependentUpgrade)upgradesManager.GetUpgrade(key);
+                dependentUpgrade.AllDependenciesReady = RecalculateDependencies(dependentUpgrade);
             }
         }
 
@@ -32,16 +39,13 @@ namespace Sample
         {
             string id = upgrade.Id;
 
-            foreach ((string key, string[] value) in dictionary)
+            foreach ((string key, Dictionary<string, int> value) in dictionary)
             {
-                for (var i = 0; i < value.Length; i++)
+                if (value.ContainsKey(id))
                 {
-                    if (string.Equals(id, value[i]))
-                    {
-                        var dependentUpgrade = (DependentUpgrade)upgradesManager.GetUpgrade(key);
-                        dependentUpgrade.AllDependenciesReady = RecalculateDependencies(dependentUpgrade);
-                        break;
-                    }
+                    var dependentUpgrade = (DependentUpgrade)upgradesManager.GetUpgrade(key);
+                    dependentUpgrade.AllDependenciesReady = RecalculateDependencies(dependentUpgrade);
+                    break;
                 }
             }
 
@@ -53,12 +57,13 @@ namespace Sample
 
         private bool RecalculateDependencies(DependentUpgrade upgrade)
         {
-            string[] dependencies = dictionary[upgrade.Id];
-            for (var i = 0; i < dependencies.Length; i++)
-            {
-                int level = upgradesManager.GetUpgrade(dependencies[i]).Level;
+            Dictionary<string, int> dependencies = dictionary[upgrade.Id];
 
-                if (level < upgrade.Level)
+            foreach ((string id, int delta) in dependencies)
+            {
+                int level = upgradesManager.GetUpgrade(id).Level;
+
+                if (level + delta < upgrade.Level)
                 {
                     return false;
                 }

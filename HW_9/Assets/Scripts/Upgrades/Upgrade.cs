@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 
 namespace Sample
 {
-    public abstract class Upgrade
+    public class Upgrade
     {
         public event Action<int> OnLevelUp;
 
@@ -29,7 +29,7 @@ namespace Sample
 
         private int currentLevel;
 
-        protected Upgrade(UpgradeConfig config)
+        public Upgrade(UpgradeConfig config)
         {
             this.config = config;
             this.currentLevel = 1;
@@ -49,7 +49,6 @@ namespace Sample
 
             var nextLevel = this.Level + 1;
             this.currentLevel = nextLevel;
-            this.LevelUp(nextLevel);
             this.OnLevelUp?.Invoke(nextLevel);
         }
 
@@ -57,7 +56,5 @@ namespace Sample
         {
             return !IsMaxLevel;
         }
-        
-        protected abstract void LevelUp(int level);
     }
 }
